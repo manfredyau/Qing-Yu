@@ -9,6 +9,11 @@ on:
       - "android/**"
       - ".github/workflows/android-build.yml"
 
+# 同一分支同时只跑一个构建，避免重复推送堆积
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-apk:
     runs-on: ubuntu-latest
