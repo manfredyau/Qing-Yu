@@ -96,11 +96,40 @@ EDUCATION_PROVIDER=mock    # mock | xuexin | aliyun
 
 ## 📱 Hotwire Native 移动端
 
-服务端已就绪（`/hotwire_native/v1/{ios,android}/path_configuration`、原生 Tab、Strada bridge 骨架）。构建原生壳：
+服务端已就绪（`/hotwire_native/v1/{ios,android}/path_configuration`、原生 Tab、Strada bridge 骨架）。
 
-1. 使用 `hotwire_native_rails` 提供的模板或 clone [Hotwire Native 官方模板](https://native.hotwired.dev)（iOS Swift / Android Kotlin）
-2. 配置 Web 服务器地址（开发 `http://localhost:3000`，生产 HTTPS）
-3. iOS 需要 macOS/Xcode，Android 需要 Android Studio（本仓库不含壳源码，均为服务端集成）
+### Android APK（GitHub Actions 云端构建）
+
+`android/` 目录是完整的 Hotwire Native Android 壳工程（Kotlin + dev.hotwire:core / navigation-fragments），
+含原生底部 Tab（推荐/消息/我的），页面全部由 Rails 服务端渲染。
+
+**构建 APK 步骤：**
+
+1. 把项目推到 GitHub：
+   ```bash
+   git remote add origin https://github.com/<你的账号>/qingyu.git
+   git push -u origin main
+   ```
+2. 打开 GitHub 仓库 → **Actions** → **Build Android APK** → **Run workflow**（推送 `android/**` 改动也会自动触发）
+3. 构建完成后进入该次运行 → **Artifacts** → 下载 `qingyu-debug-apk`（内含 APK）
+
+**APK 连接哪个后端？**
+
+- 默认 `http://10.0.2.2:3000`（Android 模拟器 → 开发机 localhost）
+- 真机调试：手机与电脑同一局域网，用电脑局域网 IP 覆盖：
+  ```bash
+  gradle -p android :app:assembleDebug -PQINGYU_BASE_URL=http://192.168.x.x:3000
+  # 或在 android/app/build.gradle.kts 中直接修改默认值
+  ```
+- 注意：APK 是开发调试版（`usesCleartextTraffic` 允许 HTTP）；生产应部署 HTTPS 后端并移除该开关
+
+**本地构建**（需 Android Studio + Android SDK）：用 Android Studio 打开 `android/` 目录，
+或命令行 `./gradlew -p android :app:assembleDebug`。
+
+### iOS
+
+iOS 壳需 macOS/Xcode 编译（本仓库不含壳源码，均为服务端集成），
+可使用 Hotwire Native 官方模板指向本服务端。
 
 原生壳 UA 含 `Turbo Native`，服务端自动切换 `:native` 视图变体与原生标题/视口。
 

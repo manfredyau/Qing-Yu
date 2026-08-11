@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">轻遇</string>
+    <string name="tab_feed">推荐</string>
+    <string name="tab_messages">消息</string>
+    <string name="tab_profile">我的</string>
+</resources>
