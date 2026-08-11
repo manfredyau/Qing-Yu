@@ -32,6 +32,18 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
     assert_select "turbo-frame#feed-card"
   end
 
+  test "shows pool-exhausted empty state when quota remains but no candidates left" do
+    make_profile_complete(@zoe)
+    # 滑完所有候选，但今日额度未用尽
+    Swipe.create!(liker: @zoe, target: @jack, action: :pass)
+
+    get feed_path
+
+    assert_response :success
+    assert_match(/今天的精选都看完了/, response.body)
+    assert_no_match(/今日剩余/, response.body)
+  end
+
   test "home redirects to feed for eligible users" do
     make_profile_complete(@zoe)
 

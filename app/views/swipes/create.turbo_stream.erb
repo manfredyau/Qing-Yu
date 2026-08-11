@@ -2,8 +2,10 @@
   <%= render "feeds/card", candidate: @candidate, remaining: @remaining, matched_user: @matched_user %>
 <% end %>
 
-<%= turbo_stream.replace "feed-remaining" do %>
-  <span class="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-teal-700 shadow-sm" id="feed-remaining">
-    今日剩余 <%= @remaining %> 次
-  </span>
+<% if @candidate %>
+  <%= turbo_stream.replace "feed-remaining" do %>
+    <%= render "feeds/remaining", remaining: @remaining, candidate: @candidate %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove "feed-remaining" %>
 <% end %>

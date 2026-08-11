@@ -1,5 +1,14 @@
 <div class="flex flex-col items-center justify-center py-24 text-center">
   <div class="text-5xl">🌙</div>
-  <p class="mt-4 text-lg font-semibold text-gray-700">今天的精选已看完</p>
-  <p class="mt-1 text-sm text-gray-400">每天只推荐 <%= RecommendationService::DAILY_LIMIT %> 位，不刷屏<br>明天 00:00 补充新的精选</p>
+  <% if remaining.to_i > 0 %>
+    <p class="mt-4 text-lg font-semibold text-gray-700">今天的精选都看完了</p>
+    <p class="mt-1 text-sm leading-relaxed text-gray-400">
+      符合你偏好的候选已全部浏览<br>明天 00:00 补充新的推荐
+    </p>
+  <% else %>
+    <p class="mt-4 text-lg font-semibold text-gray-700">今日 <%= RecommendationService::DAILY_LIMIT %> 次额度已用完</p>
+    <p class="mt-1 text-sm leading-relaxed text-gray-400">
+      每天只推荐 <%= RecommendationService::DAILY_LIMIT %> 位，不刷屏<br>明天 00:00 重置额度
+    </p>
+  <% end %>
 </div>
