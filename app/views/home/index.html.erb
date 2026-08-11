@@ -41,5 +41,20 @@
       <p class="text-sm font-medium text-gray-500">每日精选推荐</p>
       <p class="mt-1 text-xs text-gray-400">M4 上线：每天只推荐几位，不刷屏</p>
     </div>
+
+    <!-- 资料完整度 -->
+    <%= link_to edit_profile_path, class: "mt-4 block" do %>
+      <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md">
+        <div class="flex items-center justify-between">
+          <p class="text-sm font-medium text-gray-700">资料完整度</p>
+          <% if current_user.profile_complete? %>
+            <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-600">✓ 已完善</span>
+          <% else %>
+            <span class="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-600">待完善</span>
+          <% end %>
+        </div>
+        <p class="mt-2 text-xs text-gray-400">昵称、照片、兴趣标签等会让推荐更精准</p>
+      </div>
+    <% end %>
   </main>
 </div>

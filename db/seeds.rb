@@ -1,9 +1,10 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# 兴趣标签（幂等）
+INTERESTS = %w[
+  旅行 美食 音乐 电影 运动 健身 阅读 摄影 宠物 咖啡
+  游戏 桌游 露营 滑雪 潜水 骑行 烘焙 动漫 追剧 剧本杀
+  徒步 登山 游泳 羽毛球 艺术 手作 直播 科技
+].freeze
+
+INTERESTS.each { |name| Interest.find_or_create_by!(name: name) }
+
+puts "Seeded #{Interest.count} interests"

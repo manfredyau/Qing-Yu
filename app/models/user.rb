@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :sessions, as: :sessionable, dependent: :destroy
   has_many :identity_verifications, dependent: :destroy
   has_many :education_verifications, dependent: :destroy
+  has_many :photos, dependent: :destroy
+  has_many :profile_interests, dependent: :destroy
+  has_many :interests, through: :profile_interests
 
   normalizes :phone, with: ->(phone) { phone.to_s.strip.gsub(/\s+/, "") }
   normalizes :nickname, with: ->(nickname) { nickname.to_s.strip }
@@ -47,6 +50,43 @@ class User < ApplicationRecord
 
   def display_name
     nickname.presence || "轻友#{phone.last(4)}"
+  end
+
+  # ---- 资料 ----
+
+  def avatar_photo
+    photos.approved.primary.first || photos.approved.ordered.first
+  end
+
+  def has_avatar?
+    avatar_photo.present?
+  end
+
+  # 资料完整度：昵称/生日/性别/城市/照片/标签 齐备
+  def profile_complete?
+    nickname.present? && birthdate.present? && !undisclosed? && city.present? &&
+      photos.approved.any? && interests.any?
+  end
+
+  def verified_school
+    education_verifications.verified.order(verified_at: :desc).first&.school
+  end
+
+  def height_label
+    height_cm ? "#{height_cm} cm" : nil
+  end
+
+  def gender_label
+    { "undisclosed" => "未设置", "male" => "男", "female" => "女" }[gender]
+  end
+
+  class << self
+    def education_level_label(key)
+      {
+        "not_disclosed" => "不填", "high_school" => "高中", "college" => "大专",
+        "bachelor" => "本科", "master" => "硕士", "phd" => "博士"
+      }[key.to_s]
+    end
   end
 
   private

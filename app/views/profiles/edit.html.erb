@@ -1,0 +1,141 @@
+<% content_for(:title) { "编辑资料 · 轻遇" } %>
+
+<div class="mx-auto min-h-screen w-full max-w-md px-5 py-8">
+  <header class="mb-6 flex items-center gap-3">
+    <%= link_to root_path, class: "flex h-9 w-9 items-center justify-center rounded-xl bg-white text-gray-500 shadow-sm" do %>
+      <span aria-hidden="true">←</span>
+    <% end %>
+    <div>
+      <h1 class="text-xl font-bold text-gray-900">编辑资料</h1>
+      <p class="text-sm text-gray-400">完善资料，让别人更了解你</p>
+    </div>
+  </header>
+
+  <%= form_with model: current_user, url: profile_path, class: "space-y-6" do |f| %>
+    <% if current_user.errors.any? %>
+      <div class="rounded-xl bg-red-50 p-4 text-sm text-red-600">
+        <%= current_user.errors.full_messages.first %>
+      </div>
+    <% end %>
+
+    <!-- 照片 -->
+    <section class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+      <h2 class="font-semibold text-gray-900">照片</h2>
+      <p class="mt-1 text-xs text-gray-400">至少一张照片展示在资料中；新照片需审核通过后可见</p>
+      <%= render "photos", user: current_user %>
+    </section>
+
+    <!-- 基本信息 -->
+    <section class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm space-y-5">
+      <h2 class="font-semibold text-gray-900">基本信息</h2>
+
+      <div>
+        <%= f.label :nickname, "昵称", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :nickname, maxlength: 20, placeholder: "让大家怎么称呼你", class: field_class %>
+      </div>
+
+      <div>
+        <span class="block text-sm font-medium text-gray-700">性别</span>
+        <div class="mt-1.5 grid grid-cols-2 gap-3">
+          <% User.genders.each do |key, _| %>
+            <% next if key == "undisclosed" %>
+            <label class="cursor-pointer">
+              <%= f.radio_button :gender, key, class: "peer sr-only" %>
+              <span class="block rounded-xl border border-gray-200 py-3 text-center text-sm font-medium text-gray-600 transition peer-checked:border-teal-500 peer-checked:bg-teal-50 peer-checked:text-teal-700">
+                <%= { "male" => "男", "female" => "女" }[key] %>
+              </span>
+            </label>
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :birthdate, "生日（仅显示年龄）", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.date_field :birthdate, max: 18.years.ago.to_date, class: field_class %>
+      </div>
+
+      <div>
+        <%= f.label :city, "城市", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :city, maxlength: 20, placeholder: "如：北京", class: field_class %>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <%= f.label :height_cm, "身高", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :height_cm, (150..200).map { |h| ["#{h} cm", h] }, { include_blank: "不填" }, class: field_class %>
+        </div>
+        <div>
+          <%= f.label :education_level, "学历", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :education_level, User.education_levels.map { |k, _| [User.education_level_label(k), k] }.tap { |a| a[0] = ["不填", "not_disclosed"] }, {}, class: field_class %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :job, "职业", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :job, maxlength: 30, placeholder: "如：产品经理", class: field_class %>
+      </div>
+
+      <div>
+        <%= f.label :bio, "关于我", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_area :bio, rows: 3, maxlength: 200, placeholder: "用几句话介绍自己（200 字以内）", class: field_class %>
+      </div>
+    </section>
+
+    <!-- 兴趣标签 -->
+    <section class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+      <h2 class="font-semibold text-gray-900">兴趣标签</h2>
+      <p class="mt-1 text-xs text-gray-400">选择 3-6 个最能代表你的标签</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <% Interest.grouped.each do |interest| %>
+          <label class="cursor-pointer">
+            <%= f.check_box :interest_ids, { multiple: true, class: "peer sr-only" }, interest.id, nil %>
+            <span class="inline-block rounded-full border border-gray-200 px-3.5 py-1.5 text-sm text-gray-600 transition peer-checked:border-teal-500 peer-checked:bg-teal-50 peer-checked:text-teal-700"><%= interest.name %></span>
+          </label>
+        <% end %>
+      </div>
+    </section>
+
+    <!-- 择偶偏好 -->
+    <section class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm space-y-5">
+      <h2 class="font-semibold text-gray-900">择偶偏好</h2>
+      <p class="text-xs text-gray-400">用于每日精选推荐，仅自己可见</p>
+
+      <div>
+        <span class="block text-sm font-medium text-gray-700">想认识</span>
+        <div class="mt-1.5 grid grid-cols-3 gap-3">
+          <% User.pref_genders.each do |key, _| %>
+            <label class="cursor-pointer">
+              <%= f.radio_button :pref_gender, key, class: "peer sr-only" %>
+              <span class="block rounded-xl border border-gray-200 py-2.5 text-center text-sm font-medium text-gray-600 transition peer-checked:border-teal-500 peer-checked:bg-teal-50 peer-checked:text-teal-700">
+                <%= { "any" => "不限", "male" => "男", "female" => "女" }[key] %>
+              </span>
+            </label>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <%= f.label :pref_age_min, "年龄下限", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :pref_age_min, (18..60).to_a, {}, class: field_class %>
+        </div>
+        <div>
+          <%= f.label :pref_age_max, "年龄上限", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :pref_age_max, (18..60).to_a, {}, class: field_class %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :pref_distance_km, "距离范围（km）", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.select :pref_distance_km, [ 10, 20, 50, 100, 200, 500 ], {}, class: field_class %>
+      </div>
+
+      <label class="flex items-center gap-2 text-sm text-gray-600">
+        <%= f.check_box :pref_show_distance, class: "h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500" %>
+        在资料中展示我的距离
+      </label>
+    </section>
+
+    <%= f.submit "保存资料", class: "w-full cursor-pointer rounded-xl bg-teal-600 px-4 py-3.5 font-semibold text-white shadow-sm hover:bg-teal-500" %>
+  <% end %>
+</div>

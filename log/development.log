@@ -1094,3 +1094,757 @@ Processing by VerificationsController#show as */*
 Completed 200 OK in 33ms (Views: 3.1ms | ActiveRecord: 3.0ms (4 queries, 0 cached) | GC: 0.0ms)
 
 
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+Migrating to CreateInterests (20260811020120)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE TABLE "interests" ("id" bigserial primary key, "name" character varying NOT NULL, "category" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_interests_on_name" ON "interests" ("name") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020120') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+Migrating to CreateProfileInterests (20260811020121)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE TABLE "profile_interests" ("id" bigserial primary key, "user_id" bigint NOT NULL, "interest_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eecbe160b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_05f7d11076"
+FOREIGN KEY ("interest_id")
+  REFERENCES "interests" ("id")
+) /*application='Qingyu'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_profile_interests_on_user_id" ON "profile_interests" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_profile_interests_on_interest_id" ON "profile_interests" ("interest_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_profile_interests_on_user_id_and_interest_id" ON "profile_interests" ("user_id", "interest_id") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020121') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+Migrating to CreatePhotos (20260811020122)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "photos" ("id" bigserial primary key, "user_id" bigint NOT NULL, "position" integer DEFAULT 0 NOT NULL, "status" integer DEFAULT 0 NOT NULL, "primary" boolean DEFAULT FALSE NOT NULL, "rejection_reason" character varying, "reviewed_by" integer, "reviewed_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c79d76afc0"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='Qingyu'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE INDEX "index_photos_on_user_id" ON "photos" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE INDEX "index_photos_on_user_id_and_status_and_position" ON "photos" ("user_id", "status", "position") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020122') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (1.3ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '旅行' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '旅行' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (1.7ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('旅行', NULL, '2026-08-11 02:23:03.107596', '2026-08-11 02:23:03.107596') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '美食' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (3.7ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '美食' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.5ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('美食', NULL, '2026-08-11 02:23:03.127369', '2026-08-11 02:23:03.127369') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '音乐' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '音乐' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.7ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('音乐', NULL, '2026-08-11 02:23:03.145674', '2026-08-11 02:23:03.145674') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '电影' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (3.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '电影' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.5ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('电影', NULL, '2026-08-11 02:23:03.162964', '2026-08-11 02:23:03.162964') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '运动' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.0ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '运动' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.5ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('运动', NULL, '2026-08-11 02:23:03.180291', '2026-08-11 02:23:03.180291') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '健身' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.1ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '健身' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('健身', NULL, '2026-08-11 02:23:03.197900', '2026-08-11 02:23:03.197900') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '阅读' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '阅读' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (1.0ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('阅读', NULL, '2026-08-11 02:23:03.217667', '2026-08-11 02:23:03.217667') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '摄影' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '摄影' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.7ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('摄影', NULL, '2026-08-11 02:23:03.237286', '2026-08-11 02:23:03.237286') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '宠物' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '宠物' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.9ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('宠物', NULL, '2026-08-11 02:23:03.257010', '2026-08-11 02:23:03.257010') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '咖啡' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (5.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '咖啡' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('咖啡', NULL, '2026-08-11 02:23:03.277643', '2026-08-11 02:23:03.277643') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '游戏' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '游戏' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.7ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('游戏', NULL, '2026-08-11 02:23:03.295741', '2026-08-11 02:23:03.295741') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.8ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '桌游' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.9ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '桌游' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.7ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('桌游', NULL, '2026-08-11 02:23:03.314423', '2026-08-11 02:23:03.314423') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '露营' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '露营' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('露营', NULL, '2026-08-11 02:23:03.332697', '2026-08-11 02:23:03.332697') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '滑雪' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.1ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '滑雪' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.5ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('滑雪', NULL, '2026-08-11 02:23:03.350703', '2026-08-11 02:23:03.350703') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.8ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '潜水' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.0ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '潜水' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('潜水', NULL, '2026-08-11 02:23:03.368931', '2026-08-11 02:23:03.368931') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '骑行' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (3.8ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '骑行' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.7ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('骑行', NULL, '2026-08-11 02:23:03.386872', '2026-08-11 02:23:03.386872') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '烘焙' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.0ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '烘焙' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.5ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('烘焙', NULL, '2026-08-11 02:23:03.406072', '2026-08-11 02:23:03.406072') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '动漫' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '动漫' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.8ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('动漫', NULL, '2026-08-11 02:23:03.424799', '2026-08-11 02:23:03.424799') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '追剧' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '追剧' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('追剧', NULL, '2026-08-11 02:23:03.444165', '2026-08-11 02:23:03.444165') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.8ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '剧本杀' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.1ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '剧本杀' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('剧本杀', NULL, '2026-08-11 02:23:03.462702', '2026-08-11 02:23:03.462702') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '徒步' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '徒步' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('徒步', NULL, '2026-08-11 02:23:03.479935', '2026-08-11 02:23:03.479935') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '登山' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '登山' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('登山', NULL, '2026-08-11 02:23:03.498059', '2026-08-11 02:23:03.498059') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '游泳' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '游泳' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('游泳', NULL, '2026-08-11 02:23:03.515709', '2026-08-11 02:23:03.515709') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.9ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '羽毛球' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.7ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '羽毛球' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.9ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('羽毛球', NULL, '2026-08-11 02:23:03.536294', '2026-08-11 02:23:03.536294') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '艺术' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '艺术' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.6ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('艺术', NULL, '2026-08-11 02:23:03.556470', '2026-08-11 02:23:03.556470') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '手作' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (5.1ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '手作' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.4ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('手作', NULL, '2026-08-11 02:23:03.575424', '2026-08-11 02:23:03.575424') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '直播' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (5.9ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '直播' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (0.7ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('直播', NULL, '2026-08-11 02:23:03.595734', '2026-08-11 02:23:03.595734') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '科技' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mInterest Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interests" WHERE "interests"."name" = '科技' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Create (1.0ms)[0m  [1m[32mINSERT INTO "interests" ("name", "category", "created_at", "updated_at") VALUES ('科技', NULL, '2026-08-11 02:23:03.617479', '2026-08-11 02:23:03.617479') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "interests" /*application='Qingyu'*/[0m
+Started GET "/profile/edit" for ::1 at 2026-08-11 10:23:09 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+Processing by ProfilesController#edit as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering profiles/edit.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mPhoto Load (1.4ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 2 ORDER BY "photos"."position" ASC, "photos"."id" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:4
+  Rendered profiles/_photos.html.erb (Duration: 46.7ms | GC: 0.0ms)
+  [1m[36mInterest Load (1.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" ORDER BY "interests"."category" ASC, "interests"."name" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:90
+  [1m[36mInterest Pluck (1.4ms)[0m  [1m[34mSELECT "interests"."id" FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:92
+  Rendered profiles/edit.html.erb within layouts/application (Duration: 233.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 245.9ms | GC: 0.0ms)
+Completed 200 OK in 294ms (Views: 242.2ms | ActiveRecord: 19.9ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/profile/edit" for ::1 at 2026-08-11 10:23:15 +0800
+Processing by ProfilesController#edit as */*
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering profiles/edit.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mPhoto Load (0.8ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 2 ORDER BY "photos"."position" ASC, "photos"."id" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:4
+  Rendered profiles/_photos.html.erb (Duration: 4.2ms | GC: 0.0ms)
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" ORDER BY "interests"."category" ASC, "interests"."name" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:90
+  [1m[36mInterest Pluck (0.8ms)[0m  [1m[34mSELECT "interests"."id" FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:92
+  Rendered profiles/edit.html.erb within layouts/application (Duration: 19.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.5ms | GC: 0.0ms)
+Completed 200 OK in 40ms (Views: 18.3ms | ActiveRecord: 3.3ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/profile/edit" for ::1 at 2026-08-11 10:23:20 +0800
+Processing by ProfilesController#edit as */*
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering profiles/edit.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mPhoto Load (0.6ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 2 ORDER BY "photos"."position" ASC, "photos"."id" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:4
+  Rendered profiles/_photos.html.erb (Duration: 3.8ms | GC: 0.0ms)
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" ORDER BY "interests"."category" ASC, "interests"."name" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:90
+  [1m[36mInterest Pluck (0.7ms)[0m  [1m[34mSELECT "interests"."id" FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:92
+  Rendered profiles/edit.html.erb within layouts/application (Duration: 26.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 27.8ms | GC: 0.0ms)
+Completed 200 OK in 49ms (Views: 25.7ms | ActiveRecord: 3.5ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/photos" for ::1 at 2026-08-11 10:23:20 +0800
+Processing by PhotosController#create as */*
+  Parameters: {"photo" => {"file" => #<ActionDispatch::Http::UploadedFile:0x000001d2dce02ad0 @tempfile=#<Tempfile:C:/Users/Manfr/AppData/Local/Temp/RackMultipart20260811-44760-xdcpmf.png>, @content_type="image/png", @original_filename="tmp_test.png", @headers="Content-Disposition: form-data; name=\"photo[file]\"; filename=\"tmp_test.png\"\r\nContent-Type: image/png\r\n">}}
+  [1m[36mSession Load (1.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 6.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedTable: 错误:  关系 "active_storage_blobs" 不存在
+LINE 10:  WHERE a.attrelid = '"active_storage_blobs"'::regclass
+                             ^
+)
+Caused by: PG::UndefinedTable (错误:  关系 "active_storage_blobs" 不存在
+LINE 10:  WHERE a.attrelid = '"active_storage_blobs"'::regclass
+                             ^
+)
+
+Information for: ActiveRecord::StatementInvalid (PG::UndefinedTable: 错误:  关系 "active_storage_blobs" 不存在
+LINE 10:  WHERE a.attrelid = '"active_storage_blobs"'::regclass
+                             ^
+):
+  
+
+Information for cause: PG::UndefinedTable (错误:  关系 "active_storage_blobs" 不存在
+LINE 10:  WHERE a.attrelid = '"active_storage_blobs"'::regclass
+                             ^
+):
+  
+app/controllers/photos_controller.rb:3:in 'PhotosController#create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+Migrating to CreateActiveStorageTables (20260811022343)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying, "created_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='Qingyu'*/[0m
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='Qingyu'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='Qingyu'*/[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='Qingyu'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811022343') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35m (422.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "qingyu_test" /*application='Qingyu'*/[0m
+  [1m[35m (388.6ms)[0m  [1m[35mCREATE DATABASE "qingyu_test" ENCODING = 'unicode' /*application='Qingyu'*/[0m
+  [1m[35mSQL (176.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (10.8ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "name" character varying NOT NULL, "record_id" bigint NOT NULL, "record_type" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "byte_size" bigint NOT NULL, "checksum" character varying, "content_type" character varying, "created_at" timestamp(6) NOT NULL, "filename" character varying NOT NULL, "key" character varying NOT NULL, "metadata" text, "service_name" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "admin_users" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE TABLE "admin_users" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "email_address" character varying NOT NULL, "name" character varying, "password_digest" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admin_users_on_email_address" ON "admin_users" ("email_address") /*application='Qingyu'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "education_verifications" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "education_verifications" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "degree" character varying, "education_level" integer DEFAULT 0 NOT NULL, "provider" character varying DEFAULT 'mock' NOT NULL, "rejection_reason" character varying, "report_no" character varying NOT NULL, "response" jsonb, "reviewed_at" timestamp(6), "reviewed_by" integer, "school" character varying, "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL, "verified_at" timestamp(6), "verify_code" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_education_verifications_on_user_id_and_status" ON "education_verifications" ("user_id", "status") /*application='Qingyu'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_education_verifications_on_user_id" ON "education_verifications" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "identity_verifications" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "identity_verifications" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "full_name" character varying NOT NULL, "id_number" character varying NOT NULL, "provider" character varying DEFAULT 'mock' NOT NULL, "rejection_reason" character varying, "response" jsonb, "reviewed_at" timestamp(6), "reviewed_by" integer, "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL, "verified_at" timestamp(6)) /*application='Qingyu'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE INDEX "index_identity_verifications_on_user_id_and_status" ON "identity_verifications" ("user_id", "status") /*application='Qingyu'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_identity_verifications_on_user_id" ON "identity_verifications" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "interests" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "interests" ("id" bigserial primary key, "category" character varying, "created_at" timestamp(6) NOT NULL, "name" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_interests_on_name" ON "interests" ("name") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "photos" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "photos" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "position" integer DEFAULT 0 NOT NULL, "primary" boolean DEFAULT FALSE NOT NULL, "rejection_reason" character varying, "reviewed_at" timestamp(6), "reviewed_by" integer, "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_photos_on_user_id_and_status_and_position" ON "photos" ("user_id", "status", "position") /*application='Qingyu'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE INDEX "index_photos_on_user_id" ON "photos" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "profile_interests" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "profile_interests" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "interest_id" bigint NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE INDEX "index_profile_interests_on_interest_id" ON "profile_interests" ("interest_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_profile_interests_on_user_id_and_interest_id" ON "profile_interests" ("user_id", "interest_id") /*application='Qingyu'*/[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE INDEX "index_profile_interests_on_user_id" ON "profile_interests" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "sessions" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "ip_address" character varying, "sessionable_id" bigint NOT NULL, "sessionable_type" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_agent" character varying) /*application='Qingyu'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_sessions_on_sessionable" ON "sessions" ("sessionable_type", "sessionable_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "sms_codes" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE TABLE "sms_codes" ("id" bigserial primary key, "attempts" integer DEFAULT 0 NOT NULL, "code_digest" character varying NOT NULL, "consumed_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "expires_at" timestamp(6) NOT NULL, "phone" character varying NOT NULL, "purpose" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE INDEX "index_sms_codes_on_phone_and_purpose_and_expires_at" ON "sms_codes" ("phone", "purpose", "expires_at") /*application='Qingyu'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (16.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "avatar_photo_id" bigint, "bio" text, "birthdate" date, "city" character varying, "created_at" timestamp(6) NOT NULL, "education_level" integer DEFAULT 0 NOT NULL, "gender" integer DEFAULT 0 NOT NULL, "height_cm" integer, "job" character varying, "last_active_at" timestamp(6), "nickname" character varying, "password_digest" character varying, "phone" character varying NOT NULL, "pref_age_max" integer DEFAULT 45 NOT NULL, "pref_age_min" integer DEFAULT 18 NOT NULL, "pref_distance_km" integer DEFAULT 50 NOT NULL, "pref_gender" integer DEFAULT 2 NOT NULL, "pref_show_distance" boolean DEFAULT TRUE NOT NULL, "status" integer DEFAULT 1 NOT NULL, "updated_at" timestamp(6) NOT NULL, "verification_level" integer DEFAULT 0 NOT NULL, "verified_at" timestamp(6)) /*application='Qingyu'*/[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE INDEX "index_users_on_gender_and_verification_level_and_status" ON "users" ("gender", "verification_level", "status") /*application='Qingyu'*/[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='Qingyu'*/[0m
+  [1m[35m (9.5ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" ADD CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (3.7ms)[0m  [1m[35mALTER TABLE "active_storage_variant_records" ADD CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (5.3ms)[0m  [1m[35mALTER TABLE "education_verifications" ADD CONSTRAINT "fk_rails_d113bc5df9"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (4.1ms)[0m  [1m[35mALTER TABLE "identity_verifications" ADD CONSTRAINT "fk_rails_3890a13c8b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "photos" ADD CONSTRAINT "fk_rails_c79d76afc0"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mALTER TABLE "profile_interests" ADD CONSTRAINT "fk_rails_05f7d11076"
+FOREIGN KEY ("interest_id")
+  REFERENCES "interests" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "profile_interests" ADD CONSTRAINT "fk_rails_7eecbe160b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260811022343) /*application='Qingyu'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20260811020122),
+(20260811020121),
+(20260811020120),
+(20260811020111),
+(20260811020110),
+(20260811020101),
+(20260811020100),
+(20260811020059),
+(20260811020048); /*application='Qingyu'*/[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-08-11 02:24:11.373130', '2026-08-11 02:24:11.373140') RETURNING "key" /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2026-08-11 02:24:11.385620' WHERE "ar_internal_metadata"."key" = 'environment' /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '5eac4145a8768853bf18d0f19f9ac93a20bbc580', '2026-08-11 02:24:11.392789', '2026-08-11 02:24:11.392794') RETURNING "key" /*application='Qingyu'*/[0m
+Started GET "/profile/edit" for ::1 at 2026-08-11 10:24:15 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+Processing by ProfilesController#edit as */*
+  [1m[36mSession Load (1.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering profiles/edit.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mPhoto Load (0.9ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 2 ORDER BY "photos"."position" ASC, "photos"."id" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:4
+  Rendered profiles/_photos.html.erb (Duration: 37.7ms | GC: 0.0ms)
+  [1m[36mInterest Load (0.8ms)[0m  [1m[34mSELECT "interests".* FROM "interests" ORDER BY "interests"."category" ASC, "interests"."name" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:90
+  [1m[36mInterest Pluck (0.9ms)[0m  [1m[34mSELECT "interests"."id" FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:92
+  Rendered profiles/edit.html.erb within layouts/application (Duration: 97.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 109.3ms | GC: 0.0ms)
+Completed 200 OK in 176ms (Views: 107.4ms | ActiveRecord: 19.5ms (5 queries, 0 cached) | GC: 15.6ms)
+
+
+Started POST "/photos" for ::1 at 2026-08-11 10:24:16 +0800
+Processing by PhotosController#create as */*
+  Parameters: {"photo" => {"file" => #<ActionDispatch::Http::UploadedFile:0x000001d2dd5c87b0 @tempfile=#<Tempfile:C:/Users/Manfr/AppData/Local/Temp/RackMultipart20260811-44760-x2sc1x.png>, @content_type="image/png", @original_filename="tmp_test.png", @headers="Content-Disposition: form-data; name=\"photo[file]\"; filename=\"tmp_test.png\"\r\nContent-Type: image/png\r\n">}}
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mPhoto Create (2.3ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "position", "status", "primary", "rejection_reason", "reviewed_by", "reviewed_at", "created_at", "updated_at") VALUES (2, 0, 0, FALSE, NULL, NULL, NULL, '2026-08-11 02:24:16.249949', '2026-08-11 02:24:16.249949') RETURNING "id" /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mActiveStorage::Attachment Load (1.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mActiveStorage::Blob Create (2.4ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('i7vh676rvoc6mhg5kt3cdzipobdf', 'tmp_test.png', 'image/png', '{"identified":true}', 'local', 70, '+Cm5FPxHz8nAdHwRnCfPGw==', '2026-08-11 02:24:16.263149') RETURNING "id" /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mActiveStorage::Attachment Create (2.3ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('file', 'Photo', 1, 1, '2026-08-11 02:24:16.269621') RETURNING "id" /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mPhoto Update (0.8ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 02:24:16.275473' WHERE "photos"."id" = 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+[36m  Disk Storage (3.6ms) [0m[32mUploaded file to key: i7vh676rvoc6mhg5kt3cdzipobdf (checksum: +Cm5FPxHz8nAdHwRnCfPGw==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: a80d99c0-8773-4598-81b1-94b66f073844) to Async(default) with arguments: #<GlobalID:0x000001d2dd21f870 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/1>>
+[ActiveJob] ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+Redirected to http://localhost:3000/profile/edit
+↳ app/controllers/photos_controller.rb:5:in 'PhotosController#create'
+Completed 302 Found in 276ms (ActiveRecord: 19.7ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844]   [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844] Performing ActiveStorage::AnalyzeJob (Job ID: a80d99c0-8773-4598-81b1-94b66f073844) from Async(default) enqueued at 2026-08-11T02:24:16.445280400Z with arguments: #<GlobalID:0x000001d2dcfe62e8 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844] [36m  Disk Storage (5.3ms) [0m[34mDownloaded file from key: i7vh676rvoc6mhg5kt3cdzipobdf[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844]   [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844]   [1m[36mActiveStorage::Blob Update (5.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = '{"identified":true,"width":1,"height":1,"analyzed":true}' WHERE "active_storage_blobs"."id" = 1 /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844]   [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = 1 /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+Started GET "/profile/edit" for ::1 at 2026-08-11 10:24:16 +0800
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844]   [1m[36mPhoto Load (1.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 1 /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844]   [1m[36mPhoto Update (1.0ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 02:24:16.659370' WHERE "photos"."id" = 1 /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844]   [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a80d99c0-8773-4598-81b1-94b66f073844] Performed ActiveStorage::AnalyzeJob (Job ID: a80d99c0-8773-4598-81b1-94b66f073844) from Async(default) in 168.86ms
+Processing by ProfilesController#edit as */*
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering profiles/edit.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mPhoto Load (0.5ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 2 ORDER BY "photos"."position" ASC, "photos"."id" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:7
+  Rendered profiles/_photos.html.erb (Duration: 32.2ms | GC: 0.0ms)
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" ORDER BY "interests"."category" ASC, "interests"."name" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:90
+  [1m[36mInterest Pluck (0.6ms)[0m  [1m[34mSELECT "interests"."id" FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:92
+  Rendered profiles/edit.html.erb within layouts/application (Duration: 46.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 47.7ms | GC: 0.0ms)
+Completed 200 OK in 65ms (Views: 44.5ms | ActiveRecord: 4.4ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/profile/edit" for ::1 at 2026-08-11 10:24:22 +0800
+Processing by ProfilesController#edit as */*
+  [1m[36mSession Load (1.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering profiles/edit.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 2 ORDER BY "photos"."position" ASC, "photos"."id" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:7
+  Rendered profiles/_photos.html.erb (Duration: 13.5ms | GC: 0.0ms)
+  [1m[36mInterest Load (1.1ms)[0m  [1m[34mSELECT "interests".* FROM "interests" ORDER BY "interests"."category" ASC, "interests"."name" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:90
+  [1m[36mInterest Pluck (1.0ms)[0m  [1m[34mSELECT "interests"."id" FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:92
+  Rendered profiles/edit.html.erb within layouts/application (Duration: 35.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 36.9ms | GC: 0.0ms)
+Completed 200 OK in 76ms (Views: 33.1ms | ActiveRecord: 6.1ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/profile" for ::1 at 2026-08-11 10:24:23 +0800
+Processing by ProfilesController#update as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"nickname" => "Zoe", "gender" => "female", "birthdate" => "1998-05-20", "city" => "Beijing", "height_cm" => "165", "education_level" => "bachelor", "job" => "Designer", "bio" => "Hello", "interest_ids" => ["1", "2"], "pref_gender" => "male", "pref_age_min" => "25", "pref_age_max" => "35"}}
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+  [1m[36mInterest Load (3.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."id" IN (1, 2) /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+  [1m[36mInterest Load (0.8ms)[0m  [1m[34mSELECT "interests".* FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+  [1m[36mProfileInterest Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "profile_interests" WHERE "profile_interests"."interest_id" = 1 AND "profile_interests"."user_id" = 2 LIMIT 1 /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+  [1m[36mProfileInterest Create (2.8ms)[0m  [1m[32mINSERT INTO "profile_interests" ("user_id", "interest_id", "created_at", "updated_at") VALUES (2, 1, '2026-08-11 02:24:23.239629', '2026-08-11 02:24:23.239629') RETURNING "id" /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+  [1m[36mProfileInterest Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "profile_interests" WHERE "profile_interests"."interest_id" = 2 AND "profile_interests"."user_id" = 2 LIMIT 1 /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+  [1m[36mProfileInterest Create (1.3ms)[0m  [1m[32mINSERT INTO "profile_interests" ("user_id", "interest_id", "created_at", "updated_at") VALUES (2, 2, '2026-08-11 02:24:23.252614', '2026-08-11 02:24:23.252614') RETURNING "id" /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "nickname" = 'Zoe', "gender" = 2, "birthdate" = '1998-05-20', "city" = 'Beijing', "height_cm" = 165, "education_level" = 3, "job" = 'Designer', "bio" = 'Hello', "pref_gender" = 1, "pref_age_min" = 25, "pref_age_max" = 35, "updated_at" = '2026-08-11 02:24:23.263708' WHERE "users"."id" = 2 /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*action='update',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/profiles_controller.rb:6:in 'ProfilesController#update'
+Redirected to http://localhost:3000/profile/edit
+↳ app/controllers/profiles_controller.rb:7:in 'ProfilesController#update'
+Completed 302 Found in 82ms (ActiveRecord: 16.9ms (9 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/profile/edit" for ::1 at 2026-08-11 10:24:23 +0800
+Processing by ProfilesController#edit as */*
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering profiles/edit.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 2 ORDER BY "photos"."position" ASC, "photos"."id" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:7
+  Rendered profiles/_photos.html.erb (Duration: 15.7ms | GC: 0.0ms)
+  [1m[36mInterest Load (0.9ms)[0m  [1m[34mSELECT "interests".* FROM "interests" ORDER BY "interests"."category" ASC, "interests"."name" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:90
+  [1m[36mInterest Pluck (1.3ms)[0m  [1m[34mSELECT "interests"."id" FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:92
+  Rendered profiles/edit.html.erb within layouts/application (Duration: 38.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 40.7ms | GC: 0.0ms)
+Completed 200 OK in 67ms (Views: 36.1ms | ActiveRecord: 6.3ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mPhoto Create (1.3ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "position", "status", "primary", "rejection_reason", "reviewed_by", "reviewed_at", "created_at", "updated_at") VALUES (1, 0, 1, TRUE, NULL, NULL, NULL, '2026-08-11 02:27:02.021785', '2026-08-11 02:27:02.021785') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (2.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Blob Create (0.9ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('v7nws78y84m3r181gtzwg160rkk6', 'a.png', 'image/png', '{"identified":true}', 'local', 1, 'DMF1ucDxtqgxw5niaXcmYQ==', '2026-08-11 02:27:02.034103') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Create (1.0ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('file', 'Photo', 2, 2, '2026-08-11 02:27:02.039575') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update (1.0ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 02:27:02.044237' WHERE "photos"."id" = 2 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+[36m  Disk Storage (2.9ms) [0m[32mUploaded file to key: v7nws78y84m3r181gtzwg160rkk6 (checksum: DMF1ucDxtqgxw5niaXcmYQ==)[0m
+  [1m[36mPhoto Update All (0.7ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 2 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 88595895-f5b9-4c78-95aa-c9cd013ef10f) to Async(default) with arguments: #<GlobalID:0x00000239fb4d31e0 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/2>>
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mPhoto Create (4.7ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "position", "status", "primary", "rejection_reason", "reviewed_by", "reviewed_at", "created_at", "updated_at") VALUES (1, 0, 1, FALSE, NULL, NULL, NULL, '2026-08-11 02:27:02.142701', '2026-08-11 02:27:02.142701') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Blob Create (1.0ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('6qkf89dw0tddeuro0fhro55h7fzr', 'b.png', 'image/png', '{"identified":true}', 'local', 1, 'kutf/uauL+w61xx3dTFXjw==', '2026-08-11 02:27:02.155938') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Create (1.6ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('file', 'Photo', 3, 3, '2026-08-11 02:27:02.162795') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update (1.0ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 02:27:02.168258' WHERE "photos"."id" = 3 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+[36m  Disk Storage (9.8ms) [0m[32mUploaded file to key: 6qkf89dw0tddeuro0fhro55h7fzr (checksum: kutf/uauL+w61xx3dTFXjw==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: fe2440f0-6822-45db-b212-e020ba982bfd) to Async(default) with arguments: #<GlobalID:0x00000239fac9ff28 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/3>>
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Destroy (9.8ms)[0m  [1m[31mDELETE FROM "active_storage_attachments" WHERE "active_storage_attachments"."id" = 2 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Destroy (2.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = 2 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.9ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:36:in 'Photo#reassign_primary'
+  [1m[36mActiveStorage::Attachment Load (2.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Blob Load (2.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:24:in 'Photo#validate_file'
+  [1m[36mPhoto Update (2.0ms)[0m  [1m[33mUPDATE "photos" SET "primary" = TRUE, "updated_at" = '2026-08-11 02:27:02.231073' WHERE "photos"."id" = 3 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:36:in 'Photo#reassign_primary'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update All (1.3ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 2 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+[ActiveJob] Enqueued ActiveStorage::PurgeJob (Job ID: f0430207-b59e-403a-845c-19b45fc2e527) to Async(default) with arguments: #<GlobalID:0x00000239f86af7f0 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/2>>
+  [1m[36mPhoto Update All (1.1ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 3 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+  [1m[36mPhoto Load (1.5ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 /*application='Qingyu'*/[0m
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+>>> photo.id=3 primary=false
+  [1m[36mPhoto Load (0.8ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+>>> candidate=3
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Attachment Load (1.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:24:in 'Photo#validate_file'
+  [1m[36mPhoto Update (0.9ms)[0m  [1m[33mUPDATE "photos" SET "primary" = TRUE, "updated_at" = '2026-08-11 02:27:21.385909' WHERE "photos"."id" = 3 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update All (0.5ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 3 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+  [1m[36mPhoto Load (1.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+>>> after manual update: candidate.primary=true
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:24:in 'Photo#validate_file'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update All (0.7ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 3 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+  [1m[36mPhoto Load (0.4ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT primary FROM photos WHERE id = 3 /*application='Qingyu'*/[0m
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (1.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Destroy (0.8ms)[0m  [1m[31mDELETE FROM "active_storage_attachments" WHERE "active_storage_attachments"."id" = 3 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Destroy (1.4ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = 3 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update All (0.9ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 3 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] Enqueued ActiveStorage::PurgeJob (Job ID: d77d6982-e540-4c70-9f1e-4088e3e6e319) to Async(default) with arguments: #<GlobalID:0x000001feca7b34f8 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/3>>
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mPhoto Create (6.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "position", "status", "primary", "rejection_reason", "reviewed_by", "reviewed_at", "created_at", "updated_at") VALUES (1, 0, 1, TRUE, NULL, NULL, NULL, '2026-08-11 02:28:07.139970', '2026-08-11 02:28:07.139970') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (3.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Blob Create (1.3ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('1cl2nfjmdi0wngduh818eqkl1qx3', 'a.png', 'image/png', '{"identified":true}', 'local', 1, 'DMF1ucDxtqgxw5niaXcmYQ==', '2026-08-11 02:28:07.159023') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Create (1.6ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('file', 'Photo', 4, 4, '2026-08-11 02:28:07.165344') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update (1.9ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 02:28:07.170840' WHERE "photos"."id" = 4 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+[36m  Disk Storage (5.4ms) [0m[32mUploaded file to key: 1cl2nfjmdi0wngduh818eqkl1qx3 (checksum: DMF1ucDxtqgxw5niaXcmYQ==)[0m
+  [1m[36mPhoto Update All (0.6ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 4 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 820e4965-5be4-43d3-bd47-f5e67db7fd97) to Async(default) with arguments: #<GlobalID:0x000001fecabc6b80 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/4>>
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mPhoto Create (5.7ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "position", "status", "primary", "rejection_reason", "reviewed_by", "reviewed_at", "created_at", "updated_at") VALUES (1, 0, 1, FALSE, NULL, NULL, NULL, '2026-08-11 02:28:07.195492', '2026-08-11 02:28:07.195492') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Blob Create (1.9ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('fav4d7ucjhweisl0spuwvemcx08e', 'b.png', 'image/png', '{"identified":true}', 'local', 1, 'kutf/uauL+w61xx3dTFXjw==', '2026-08-11 02:28:07.208935') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Create (1.4ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('file', 'Photo', 5, 5, '2026-08-11 02:28:07.215289') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update (2.1ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 02:28:07.220671' WHERE "photos"."id" = 5 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+[36m  Disk Storage (10.7ms) [0m[32mUploaded file to key: fav4d7ucjhweisl0spuwvemcx08e (checksum: kutf/uauL+w61xx3dTFXjw==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: f599d69d-a0b0-48cd-9d44-0d3f9b01bb91) to Async(default) with arguments: #<GlobalID:0x000001fecae26f88 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/5>>
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Destroy (9.6ms)[0m  [1m[31mDELETE FROM "active_storage_attachments" WHERE "active_storage_attachments"."id" = 4 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Destroy (0.8ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = 4 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (0.9ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Blob Load (2.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 5 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:24:in 'Photo#validate_file'
+  [1m[36mPhoto Update (1.6ms)[0m  [1m[33mUPDATE "photos" SET "primary" = TRUE, "updated_at" = '2026-08-11 02:28:07.287998' WHERE "photos"."id" = 5 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 5 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update All (0.9ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 4 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+[ActiveJob] Enqueued ActiveStorage::PurgeJob (Job ID: 1d716aad-c4c2-4e5d-b2ea-393e670e5c10) to Async(default) with arguments: #<GlobalID:0x000001fecb0c6928 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/4>>
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+  [1m[36mPhoto Update All (1.3ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 5 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:31:in 'Photo#ensure_single_primary'
+  [1m[36mPhoto Load (1.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 5 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] [ActiveStorage::PurgeJob] [d77d6982-e540-4c70-9f1e-4088e3e6e319]   [1m[36mActiveStorage::Blob Load (3.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] [ActiveStorage::PurgeJob] [d77d6982-e540-4c70-9f1e-4088e3e6e319] Performing ActiveStorage::PurgeJob (Job ID: d77d6982-e540-4c70-9f1e-4088e3e6e319) from Async(default) enqueued at 2026-08-11T02:28:07.109972000Z with arguments: #<GlobalID:0x000001fecb6d64a8 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/3>>
+[ActiveJob] [ActiveStorage::PurgeJob] [d77d6982-e540-4c70-9f1e-4088e3e6e319]   [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mBEGIN /*application='Qingyu',job='ActiveStorage%3A%3APurgeJob'*/[0m
+[ActiveJob] [ActiveStorage::PurgeJob] [d77d6982-e540-4c70-9f1e-4088e3e6e319]   [1m[36mActiveStorage::Attachment Exists? (10.1ms)[0m  [1m[34mSELECT 1 AS one FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = 3 LIMIT 1 /*application='Qingyu',job='ActiveStorage%3A%3APurgeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [820e4965-5be4-43d3-bd47-f5e67db7fd97]   [1m[36mActiveStorage::Blob Load (35.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 4 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [820e4965-5be4-43d3-bd47-f5e67db7fd97] Performed ActiveStorage::AnalyzeJob (Job ID: 820e4965-5be4-43d3-bd47-f5e67db7fd97) from Async(default) in 45.93ms
+[ActiveJob] [ActiveStorage::PurgeJob] [d77d6982-e540-4c70-9f1e-4088e3e6e319]   [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK /*application='Qingyu',job='ActiveStorage%3A%3APurgeJob'*/[0m
+[ActiveJob] [ActiveStorage::PurgeJob] [d77d6982-e540-4c70-9f1e-4088e3e6e319] Performed ActiveStorage::PurgeJob (Job ID: d77d6982-e540-4c70-9f1e-4088e3e6e319) from Async(default) in 197.8ms
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (1.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Destroy (0.8ms)[0m  [1m[31mDELETE FROM "active_storage_attachments" WHERE "active_storage_attachments"."id" = 5 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Destroy (0.5ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = 5 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 5 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] Enqueued ActiveStorage::PurgeJob (Job ID: 51d27149-0b1c-4972-aa41-b30b4f8797ca) to Async(default) with arguments: #<GlobalID:0x000001cf90fddf20 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/5>>
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mPhoto Create (4.6ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "position", "status", "primary", "rejection_reason", "reviewed_by", "reviewed_at", "created_at", "updated_at") VALUES (1, 0, 1, TRUE, NULL, NULL, NULL, '2026-08-11 02:28:34.562749', '2026-08-11 02:28:34.562749') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Blob Create (0.9ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('wcpv8tru43lymmnrjfhy3r3x3oa3', 'a.png', 'image/png', '{"identified":true}', 'local', 1, 'DMF1ucDxtqgxw5niaXcmYQ==', '2026-08-11 02:28:34.575449') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Create (1.7ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('file', 'Photo', 6, 6, '2026-08-11 02:28:34.580532') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update (0.9ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 02:28:34.586628' WHERE "photos"."id" = 6 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+[36m  Disk Storage (4.4ms) [0m[32mUploaded file to key: wcpv8tru43lymmnrjfhy3r3x3oa3 (checksum: DMF1ucDxtqgxw5niaXcmYQ==)[0m
+  [1m[36mPhoto Pluck (1.0ms)[0m  [1m[34mSELECT "photos"."id" FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 6 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update All (0.8ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 6 /*application='Qingyu'*/[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: ef5631be-d747-4739-aa36-4be6008d7670) to Async(default) with arguments: #<GlobalID:0x000001cf913ec198 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/6>>
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mPhoto Create (4.0ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "position", "status", "primary", "rejection_reason", "reviewed_by", "reviewed_at", "created_at", "updated_at") VALUES (1, 0, 1, FALSE, NULL, NULL, NULL, '2026-08-11 02:28:34.614570', '2026-08-11 02:28:34.614570') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Blob Create (1.4ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('1dw6tprdnarzaqk5530u0m6uxlyn', 'b.png', 'image/png', '{"identified":true}', 'local', 1, 'kutf/uauL+w61xx3dTFXjw==', '2026-08-11 02:28:34.627925') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Create (1.2ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('file', 'Photo', 7, 7, '2026-08-11 02:28:34.633474') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update (1.7ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 02:28:34.638316' WHERE "photos"."id" = 7 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+[36m  Disk Storage (12.0ms) [0m[32mUploaded file to key: 1dw6tprdnarzaqk5530u0m6uxlyn (checksum: kutf/uauL+w61xx3dTFXjw==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 4bf663fc-aeef-436c-bb86-84a859a84efa) to Async(default) with arguments: #<GlobalID:0x000001cf9167b878 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/7>>
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Destroy (8.6ms)[0m  [1m[31mDELETE FROM "active_storage_attachments" WHERE "active_storage_attachments"."id" = 6 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Destroy (2.1ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = 6 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (1.8ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveStorage::Attachment Load (2.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Blob Load (3.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 7 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/photo.rb:24:in 'Photo#validate_file'
+  [1m[36mPhoto Update (2.3ms)[0m  [1m[33mUPDATE "photos" SET "primary" = TRUE, "updated_at" = '2026-08-11 02:28:34.705006' WHERE "photos"."id" = 7 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Load (2.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 7 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mPhoto Pluck (1.1ms)[0m  [1m[34mSELECT "photos"."id" FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 6 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update All (1.1ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 6 /*application='Qingyu'*/[0m
+[ActiveJob] Enqueued ActiveStorage::PurgeJob (Job ID: 83d8be7f-d00e-49e0-9dd0-492030641da3) to Async(default) with arguments: #<GlobalID:0x000001cf91e3b1a8 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/6>>
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Pluck (2.3ms)[0m  [1m[34mSELECT "photos"."id" FROM "photos" WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 7 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Update All (0.7ms)[0m  [1m[33mUPDATE "photos" SET "primary" = FALSE WHERE "photos"."user_id" = 1 AND "photos"."primary" = TRUE AND "photos"."id" != 7 /*application='Qingyu'*/[0m
+  [1m[36mPhoto Pluck (1.6ms)[0m  [1m[34mSELECT "photos"."id", "photos"."primary" FROM "photos" /*application='Qingyu'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ef5631be-d747-4739-aa36-4be6008d7670]   [1m[36mActiveStorage::Blob Load (48.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 6 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ef5631be-d747-4739-aa36-4be6008d7670] Performed ActiveStorage::AnalyzeJob (Job ID: ef5631be-d747-4739-aa36-4be6008d7670) from Async(default) in 52.55ms
+[ActiveJob] [ActiveStorage::PurgeJob] [51d27149-0b1c-4972-aa41-b30b4f8797ca]   [1m[36mActiveStorage::Blob Load (94.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 5 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] [ActiveStorage::PurgeJob] [51d27149-0b1c-4972-aa41-b30b4f8797ca] Performed ActiveStorage::PurgeJob (Job ID: 51d27149-0b1c-4972-aa41-b30b4f8797ca) from Async(default) in 118.41ms
