@@ -115,7 +115,8 @@ EDUCATION_PROVIDER=mock    # mock | xuexin | aliyun
 
 **APK 连接哪个后端？**
 
-- 默认 `http://10.0.2.2:3000`（Android 模拟器 → 开发机 localhost）
+- 真机/模拟器均可：App 启动会先进入「服务器地址」页，直接输入 `http://192.168.x.x:3000` 即可（地址保存在手机，换网络只需在此修改）
+- 构建时默认地址 `http://10.0.2.2:3000`（Android 模拟器 → 开发机 localhost），仅作初始默认值
 - 真机调试：手机与电脑同一局域网，用电脑局域网 IP 覆盖：
   ```bash
   gradle -p android :app:assembleDebug -PQINGYU_BASE_URL=http://192.168.x.x:3000

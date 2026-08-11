@@ -20,7 +20,7 @@ class QingyuApplication : Application() {
         Hotwire.loadPathConfiguration(
             context = this,
             location = PathConfiguration.Location(
-                remoteFileUrl = "${BuildConfig.BASE_URL}/hotwire_native/v1/android/path_configuration"
+                remoteFileUrl = "${ServerConfig.getBaseUrl(this)}/hotwire_native/v1/android/path_configuration"
             )
         )
     }

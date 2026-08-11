@@ -11,8 +11,8 @@ android {
         applicationId = "com.qingyu.app"
         minSdk = 28
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         // 后端地址：默认指向模拟器宿主机（Android 模拟器中 10.0.2.2 = 开发机 localhost）
         // 真机调试时用开发机局域网 IP 覆盖，如：-PQINGYU_BASE_URL=http://192.168.1.100:3000

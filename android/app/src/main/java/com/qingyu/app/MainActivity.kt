@@ -20,7 +20,7 @@ class MainActivity : HotwireActivity() {
 
     // 三个原生 Tab 的目标地址对应服务端 /hotwire_native/tab1|2|3（再重定向到真实页面）
     private val tabs: List<HotwireBottomTab> by lazy {
-        val baseUrl = BuildConfig.BASE_URL
+        val baseUrl = ServerConfig.getBaseUrl(this)
         listOf(
             HotwireBottomTab(
                 title = getString(R.string.tab_feed),
