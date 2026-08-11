@@ -8,6 +8,14 @@
     <%= link_to "更换手机号", new_session_path, class: "shrink-0 text-sm text-teal-600 hover:text-teal-500" %>
   </div>
 
+  <% if mock_code %>
+    <div class="mt-4 rounded-xl border border-dashed border-amber-300 bg-amber-50 p-3 text-center">
+      <p class="text-xs text-amber-600">开发模式演示：本次验证码为</p>
+      <p class="mt-1 text-2xl font-bold tracking-[0.3em] text-amber-700"><%= mock_code %></p>
+      <p class="mt-1 text-[10px] text-amber-500">真实环境通过短信下发，此处不显示</p>
+    </div>
+  <% end %>
+
   <%= form_with url: session_path, method: :post, data: { turbo_frame: "_top" }, class: "mt-6" do |f| %>
     <%= f.hidden_field :phone, value: phone %>
     <%= f.label :code, "验证码", class: "block text-sm font-medium text-gray-700" %>

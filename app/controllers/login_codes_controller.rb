@@ -9,6 +9,8 @@ class LoginCodesController < ApplicationController
     if SmsCode.new(phone: @phone, purpose: :login).valid?
       plaintext, = SmsCode.issue_for_login(@phone)
       MockSmsService.send_login_code(@phone, plaintext)
+      # 开发模式：把 Mock 验证码直接显示在页面（真实环境由短信下发，不会走到这里）
+      @mock_code = plaintext if Rails.env.local?
 
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("login-card", partial: "sessions/login_card") }
