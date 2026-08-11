@@ -1,6 +1,6 @@
 class IdentityVerification < ApplicationRecord
   belongs_to :user
-  belongs_to :reviewer, class_name: "AdminUser", optional: true
+  belongs_to :reviewer, class_name: "AdminUser", foreign_key: :reviewed_by, optional: true
 
   has_one_attached :id_card_photo
 

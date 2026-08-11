@@ -1,0 +1,54 @@
+<% content_for(:title) { "用户管理 · 管理后台" } %>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-xl font-bold text-gray-900">用户管理</h1>
+  <div class="flex gap-2 text-sm">
+    <%= link_to "全部", admin_users_path, class: "rounded-lg px-3 py-1.5 #{params[:verification_level].blank? ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+    <%= link_to "已实名", admin_users_path(verification_level: :id_verified), class: "rounded-lg px-3 py-1.5 #{params[:verification_level] == "id_verified" ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+    <%= link_to "完全认证", admin_users_path(verification_level: :fully_verified), class: "rounded-lg px-3 py-1.5 #{params[:verification_level] == "fully_verified" ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+  </div>
+</div>
+
+<div class="overflow-hidden rounded-2xl bg-white shadow-sm">
+  <table class="w-full text-sm">
+    <thead class="border-b border-gray-100 bg-gray-50 text-left text-xs text-gray-400">
+      <tr>
+        <th class="px-4 py-3">用户</th>
+        <th class="px-4 py-3">性别/年龄</th>
+        <th class="px-4 py-3">城市</th>
+        <th class="px-4 py-3">认证等级</th>
+        <th class="px-4 py-3">状态</th>
+        <th class="px-4 py-3">注册时间</th>
+        <th class="px-4 py-3"></th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-50">
+      <% @users.each do |u| %>
+        <tr>
+          <td class="px-4 py-3">
+            <span class="font-medium text-gray-900"><%= link_to u.display_name, admin_user_path(u), class: "hover:text-teal-600" %></span>
+            <span class="ml-1 text-xs text-gray-400"><%= u.phone %></span>
+          </td>
+          <td class="px-4 py-3 text-gray-600"><%= u.gender_label %><%= u.age ? " · #{u.age}岁" : "" %></td>
+          <td class="px-4 py-3 text-gray-600"><%= u.city.presence || "—" %></td>
+          <td class="px-4 py-3">
+            <span class="rounded-full px-2.5 py-1 text-xs font-medium <%= status_badge(u.verification_level) %>">
+              <%= { "unverified" => "未认证", "id_verified" => "V1 已实名", "fully_verified" => "V2 完全认证" }[u.verification_level] %>
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <span class="rounded-full px-2.5 py-1 text-xs font-medium <%= u.active? ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-600" %>"><%= u.active? ? "正常" : "封禁" %></span>
+          </td>
+          <td class="px-4 py-3 text-gray-400"><%= l(u.created_at, format: :short) %></td>
+          <td class="px-4 py-3">
+            <% if u.active? %>
+              <%= button_to "封禁", suspend_admin_user_path(u), method: :patch, data: { turbo_confirm: "确定封禁 #{u.display_name}？" }, class: "cursor-pointer rounded-lg bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-100" %>
+            <% else %>
+              <%= button_to "解封", unsuspend_admin_user_path(u), method: :patch, class: "cursor-pointer rounded-lg bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-600 hover:bg-emerald-100" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

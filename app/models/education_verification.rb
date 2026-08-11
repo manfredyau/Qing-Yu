@@ -1,6 +1,6 @@
 class EducationVerification < ApplicationRecord
   belongs_to :user
-  belongs_to :reviewer, class_name: "AdminUser", optional: true
+  belongs_to :reviewer, class_name: "AdminUser", foreign_key: :reviewed_by, optional: true
 
   enum :status, { pending: 0, verified: 1, rejected: 2 }, default: :pending, validate: true
   enum :education_level, User.education_levels, default: :not_disclosed, validate: true

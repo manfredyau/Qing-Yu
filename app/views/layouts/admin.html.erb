@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "轻遇 · 管理后台" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= yield :head %>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen bg-gray-100 font-sans text-gray-800 antialiased">
+    <%= render "shared/flash" %>
+    <div class="flex min-h-screen">
+      <!-- 侧边导航 -->
+      <aside class="hidden w-56 shrink-0 bg-gray-900 p-5 text-gray-300 md:block">
+        <div class="mb-6 flex items-center gap-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-teal-400 to-emerald-500 text-sm font-bold text-white">轻</div>
+          <span class="font-bold text-white">轻遇后台</span>
+        </div>
+        <nav class="space-y-1 text-sm">
+          <%= link_to "概览", admin_root_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+          <%= link_to "身份认证队列", admin_identity_verifications_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+          <%= link_to "学信网队列", admin_education_verifications_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+          <%= link_to "照片审核", admin_photos_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+          <%= link_to "用户管理", admin_users_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+        </nav>
+      </aside>
+
+      <!-- 主内容 -->
+      <div class="flex-1">
+        <header class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-3">
+          <p class="text-sm text-gray-400"><%= admin_user&.name || "管理员" %></p>
+          <%= button_to "退出", admin_session_path, method: :delete, class: "cursor-pointer rounded-lg px-3 py-1.5 text-sm text-gray-500 hover:bg-gray-100" %>
+        </header>
+        <main class="p-6">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

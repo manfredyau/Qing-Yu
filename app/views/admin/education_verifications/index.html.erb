@@ -1,0 +1,57 @@
+<% content_for(:title) { "学信网队列 · 管理后台" } %>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-xl font-bold text-gray-900">学信网学历审核</h1>
+  <div class="flex gap-2 text-sm">
+    <%= link_to "全部", admin_education_verifications_path, class: "rounded-lg px-3 py-1.5 #{params[:status].blank? ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+    <%= link_to "待处理", admin_education_verifications_path(status: :pending), class: "rounded-lg px-3 py-1.5 #{params[:status] == "pending" ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+    <%= link_to "已通过", admin_education_verifications_path(status: :verified), class: "rounded-lg px-3 py-1.5 #{params[:status] == "verified" ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+  </div>
+</div>
+
+<div class="overflow-hidden rounded-2xl bg-white shadow-sm">
+  <table class="w-full text-sm">
+    <thead class="border-b border-gray-100 bg-gray-50 text-left text-xs text-gray-400">
+      <tr>
+        <th class="px-4 py-3">用户</th>
+        <th class="px-4 py-3">验证码</th>
+        <th class="px-4 py-3">报告编号</th>
+        <th class="px-4 py-3">核验结果</th>
+        <th class="px-4 py-3">状态</th>
+        <th class="px-4 py-3">操作</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-50">
+      <% @verifications.each do |v| %>
+        <tr>
+          <td class="px-4 py-3">
+            <span class="font-medium text-gray-900"><%= v.user.display_name %></span>
+            <span class="ml-1 text-xs text-gray-400"><%= v.user.phone %></span>
+          </td>
+          <td class="px-4 py-3 text-gray-500"><%= v.verify_code %></td>
+          <td class="px-4 py-3 text-gray-500"><%= v.report_no %></td>
+          <td class="px-4 py-3 text-gray-700"><%= v.school ? "#{v.school} · #{v.degree}" : "—" %></td>
+          <td class="px-4 py-3">
+            <span class="rounded-full px-2.5 py-1 text-xs font-medium <%= status_badge(v.status) %>"><%= { "pending" => "待处理", "verified" => "已通过", "rejected" => "已驳回" }[v.status] %></span>
+          </td>
+          <td class="px-4 py-3">
+            <% if v.pending? %>
+              <div class="flex items-center gap-2">
+                <%= button_to "通过", approve_admin_education_verification_path(v), method: :patch, class: "cursor-pointer rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-500" %>
+                <%= form_with url: reject_admin_education_verification_path(v), method: :patch, class: "flex items-center gap-1" do |f| %>
+                  <%= f.text_field :reason, placeholder: "驳回原因", class: "w-32 rounded-lg border border-gray-200 px-2 py-1.5 text-xs" %>
+                  <%= f.submit "驳回", class: "cursor-pointer rounded-lg bg-red-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-red-500" %>
+                <% end %>
+              </div>
+            <% elsif v.rejected? %>
+              <span class="text-xs text-gray-400"><%= v.rejection_reason %></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <% if @verifications.empty? %>
+        <tr><td colspan="6" class="px-4 py-10 text-center text-gray-400">暂无记录</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

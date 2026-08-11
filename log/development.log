@@ -3008,3 +3008,821 @@ Completed 200 OK in 90ms (Views: 0.1ms | ActiveRecord: 13.8ms (5 queries, 0 cach
   ↳ app/models/match.rb:27:in 'Match#membership_for'
   [1m[36mMessage Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "messages" WHERE "messages"."match_id" = 1 AND "messages"."sender_id" != 3 /*application='Qingyu'*/[0m
   ↳ app/models/match.rb:33:in 'Match#unread_count_for'
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (1.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '旅行' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '美食' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '音乐' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '电影' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '运动' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '健身' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.9ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '阅读' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '摄影' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '宠物' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '咖啡' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '游戏' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '桌游' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '露营' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '滑雪' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '潜水' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '骑行' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '烘焙' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '动漫' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '追剧' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '剧本杀' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '徒步' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.5ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '登山' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '游泳' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '羽毛球' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '艺术' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '手作' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.6ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '直播' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mInterest Load (0.8ms)[0m  [1m[34mSELECT "interests".* FROM "interests" WHERE "interests"."name" = '科技' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mAdminUser Load (2.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email_address" = 'admin@qingyu.local' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[36mAdminUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "admin_users" WHERE "admin_users"."email_address" = 'admin@qingyu.local' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mAdminUser Create (2.0ms)[0m  [1m[32mINSERT INTO "admin_users" ("email_address", "password_digest", "name", "created_at", "updated_at") VALUES ('admin@qingyu.local', '$2a$12$kC3u6/XJwVU.TcHT/oCdWeShWu8HqKHwnBspgFm7lsWcDqQpA4u0C', '超级管理员', '2026-08-11 03:07:18.976697', '2026-08-11 03:07:18.976697') RETURNING "id" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[36mInterest Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "interests" /*application='Qingyu'*/[0m
+  [1m[36mAdminUser Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "admin_users" /*application='Qingyu'*/[0m
+Started GET "/admin/session/new" for ::1 at 2026-08-11 11:07:19 +0800
+  
+ArgumentError (Wrong number of arguments (expect 1, got 2)):
+  
+config/routes.rb:29:in 'block (3 levels) in <main>'
+config/routes.rb:28:in 'block (2 levels) in <main>'
+config/routes.rb:25:in 'block in <main>'
+config/routes.rb:1:in '<main>'
+Started POST "/admin/session" for ::1 at 2026-08-11 11:07:20 +0800
+Processing by Admin::SessionsController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "email_address" => "[FILTERED]", "password" => "[FILTERED]"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Content in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (8.1.3.1) lib/action_controller/metal/request_forgery_protection.rb:321:in 'ActionController::RequestForgeryProtection::ProtectionMethods::Exception#handle_unverified_request'
+actionpack (8.1.3.1) lib/action_controller/metal/request_forgery_protection.rb:415:in 'ActionController::RequestForgeryProtection#handle_unverified_request'
+actionpack (8.1.3.1) lib/action_controller/metal/request_forgery_protection.rb:404:in 'ActionController::RequestForgeryProtection#verify_authenticity_token'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:362:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:179:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+actionpack (8.1.3.1) lib/abstract_controller/callbacks.rb:36:in 'block (2 levels) in <module:Callbacks>'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:180:in 'ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'Array#each'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.1.3.1) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.1.3.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.1.3.1) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3.1) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.3.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.6) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.6) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.6) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+rack (3.2.6) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.3.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+activerecord (8.1.3.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3.1) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/admin" for ::1 at 2026-08-11 11:07:20 +0800
+Processing by Admin::DashboardController#index as */*
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method 'require_admin_authentication' for an instance of Admin::DashboardController):
+  
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:96:in 'method_missing'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:362:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:179:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+actionpack (8.1.3.1) lib/abstract_controller/callbacks.rb:36:in 'block (2 levels) in <module:Callbacks>'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:180:in 'ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'Array#each'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.23) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.23) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (8.1.3.1) lib/action_text/rendering.rb:24:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (8.1.3.1) lib/action_text/engine.rb:72:in 'block (4 levels) in <class:Engine>'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.1.3.1) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.1.3.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.1.3.1) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3.1) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.3.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.6) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.6) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.6) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.2.6) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.3.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+activerecord (8.1.3.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3.1) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/admin/session/new" for ::1 at 2026-08-11 11:07:35 +0800
+Processing by Admin::SessionsController#new as */*
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/sessions/new.html.erb within layouts/admin
+  Rendered admin/sessions/new.html.erb within layouts/admin (Duration: 28.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/admin.html.erb (Duration: 50.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 78ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method 'admin_identity_verifications_path' for an instance of #<Class:0x000001829e6162d8>)
+Caused by: NameError (undefined local variable or method 'admin_identity_verifications_path' for an instance of #<Class:0x000001829e6162d8>)
+
+Information for: ActionView::Template::Error (undefined local variable or method 'admin_identity_verifications_path' for an instance of #<Class:0x000001829e6162d8>):
+    23:         <nav class="space-y-1 text-sm">
+    24:           <%= link_to "概览", admin_root_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+    25:           <%= link_to "身份认证队列", admin_identity_verifications_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+    26:           <%= link_to "学信网队列", admin_education_verifications_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+    27:           <%= link_to "照片审核", admin_photos_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+    28:           <%= link_to "用户管理", admin_users_path, class: "block rounded-lg px-3 py-2 hover:bg-gray-800 hover:text-white" %>
+    29:         </nav>
+  
+app/views/layouts/admin.html.erb:26
+
+Information for cause: NameError (undefined local variable or method 'admin_identity_verifications_path' for an instance of #<Class:0x000001829e6162d8>):
+  
+app/views/layouts/admin.html.erb:26
+Started GET "/admin/session/new" for ::1 at 2026-08-11 11:08:08 +0800
+Processing by Admin::SessionsController#new as */*
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/sessions/new.html.erb within layouts/admin
+  Rendered admin/sessions/new.html.erb within layouts/admin (Duration: 2.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/admin.html.erb (Duration: 38.7ms | GC: 0.0ms)
+Completed 200 OK in 69ms (Views: 43.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/admin/session" for ::1 at 2026-08-11 11:08:08 +0800
+Processing by Admin::SessionsController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "email_address" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mAdminUser Load (1.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email_address" = 'admin@qingyu.local' LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/admin/sessions_controller.rb:11:in 'Admin::SessionsController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:21:in 'AdminAuthentication#start_admin_session_for'
+  [1m[36mSession Create (4.3ms)[0m  [1m[32mINSERT INTO "sessions" ("sessionable_type", "sessionable_id", "ip_address", "user_agent", "created_at", "updated_at") VALUES ('AdminUser', 1, '::1', 'curl/8.12.1', '2026-08-11 03:08:09.310181', '2026-08-11 03:08:09.310181') RETURNING "id" /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:21:in 'AdminAuthentication#start_admin_session_for'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:21:in 'AdminAuthentication#start_admin_session_for'
+Redirected to http://localhost:3000/admin
+↳ app/controllers/admin/sessions_controller.rb:13:in 'Admin::SessionsController#create'
+Completed 302 Found in 286ms (ActiveRecord: 13.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admin" for ::1 at 2026-08-11 11:08:09 +0800
+Processing by Admin::DashboardController#index as */*
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method 'require_admin_authentication' for an instance of Admin::DashboardController):
+  
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:96:in 'method_missing'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:362:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:179:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+actionpack (8.1.3.1) lib/abstract_controller/callbacks.rb:36:in 'block (2 levels) in <module:Callbacks>'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:180:in 'ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'Array#each'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.23) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.23) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (8.1.3.1) lib/action_text/rendering.rb:24:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (8.1.3.1) lib/action_text/engine.rb:72:in 'block (4 levels) in <class:Engine>'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.1.3.1) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.1.3.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.1.3.1) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3.1) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.3.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.6) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.6) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.6) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.2.6) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.3.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+activerecord (8.1.3.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3.1) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/admin" for ::1 at 2026-08-11 11:08:22 +0800
+Processing by Admin::DashboardController#index as */*
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant AdminAuthentication::AdminSession):
+  
+app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+app/controllers/concerns/admin_authentication.rb:13:in 'AdminAuthentication#require_admin_authentication'
+Started GET "/admin/identity_verifications" for ::1 at 2026-08-11 11:08:23 +0800
+Processing by Admin::IdentityVerificationsController#index as */*
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant AdminAuthentication::AdminSession):
+  
+app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+app/controllers/concerns/admin_authentication.rb:13:in 'AdminAuthentication#require_admin_authentication'
+Started GET "/admin/education_verifications" for ::1 at 2026-08-11 11:08:23 +0800
+Processing by Admin::EducationVerificationsController#index as */*
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant AdminAuthentication::AdminSession):
+  
+app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+app/controllers/concerns/admin_authentication.rb:13:in 'AdminAuthentication#require_admin_authentication'
+Started GET "/admin/photos" for ::1 at 2026-08-11 11:08:24 +0800
+Processing by Admin::PhotosController#index as */*
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant AdminAuthentication::AdminSession):
+  
+app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+app/controllers/concerns/admin_authentication.rb:13:in 'AdminAuthentication#require_admin_authentication'
+Started GET "/admin/users" for ::1 at 2026-08-11 11:08:24 +0800
+Processing by Admin::UsersController#index as */*
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant AdminAuthentication::AdminSession):
+  
+app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+app/controllers/concerns/admin_authentication.rb:13:in 'AdminAuthentication#require_admin_authentication'
+Started GET "/admin" for ::1 at 2026-08-11 11:08:40 +0800
+Processing by Admin::DashboardController#index as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  [1m[36mUser Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:5:in 'Admin::DashboardController#index'
+  [1m[36mUser Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."verification_level" IN (1, 2) /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:6:in 'Admin::DashboardController#index'
+  [1m[36mIdentityVerification Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "identity_verifications" WHERE "identity_verifications"."status" = 0 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:7:in 'Admin::DashboardController#index'
+  [1m[36mEducationVerification Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "education_verifications" WHERE "education_verifications"."status" = 0 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:8:in 'Admin::DashboardController#index'
+  [1m[36mPhoto Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" WHERE "photos"."status" = 0 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:9:in 'Admin::DashboardController#index'
+  [1m[36mMatch Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:10:in 'Admin::DashboardController#index'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/dashboard/index.html.erb within layouts/admin
+  Rendered admin/dashboard/index.html.erb within layouts/admin (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/admin.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 164ms (ActiveRecord: 20.1ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'stringify_keys' for an instance of String)
+Caused by: NoMethodError (undefined method 'stringify_keys' for an instance of String)
+
+Information for: ActionView::Template::Error (undefined method 'stringify_keys' for an instance of String):
+    15: 
+    16: <div class="mt-8 grid gap-4 md:grid-cols-3">
+    17:   <%= link_to "身份认证队列", admin_identity_verifications_path, class: "rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md" do %>
+    18:     <p class="font-semibold text-gray-900">身份证实名审核</p>
+    19:     <p class="mt-1 text-sm text-gray-400">待处理 <%= @stats[:pending_identity] %> 条</p>
+    20:   <% end %>
+    21:   <%= link_to "学信网队列", admin_education_verifications_path, class: "rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md" do %>
+  
+app/views/admin/dashboard/index.html.erb:18
+
+Information for cause: NoMethodError (undefined method 'stringify_keys' for an instance of String):
+  
+app/views/admin/dashboard/index.html.erb:18
+Started GET "/admin/identity_verifications" for ::1 at 2026-08-11 11:08:42 +0800
+Processing by Admin::IdentityVerificationsController#index as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/identity_verifications/index.html.erb within layouts/admin
+  [1m[36mIdentityVerification Load (0.7ms)[0m  [1m[34mSELECT "identity_verifications".* FROM "identity_verifications" ORDER BY "identity_verifications"."created_at" DESC LIMIT 100 /*action='index',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/views/admin/identity_verifications/index.html.erb:27
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (2, 1) /*action='index',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/views/admin/identity_verifications/index.html.erb:27
+  Rendered admin/identity_verifications/index.html.erb within layouts/admin (Duration: 74.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 112.1ms | GC: 15.6ms)
+Completed 200 OK in 135ms (Views: 107.0ms | ActiveRecord: 6.7ms (4 queries, 0 cached) | GC: 15.6ms)
+
+
+Started GET "/admin/education_verifications" for ::1 at 2026-08-11 11:08:42 +0800
+Processing by Admin::EducationVerificationsController#index as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/education_verifications/index.html.erb within layouts/admin
+  [1m[36mEducationVerification Load (0.9ms)[0m  [1m[34mSELECT "education_verifications".* FROM "education_verifications" ORDER BY "education_verifications"."created_at" DESC LIMIT 100 /*action='index',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/views/admin/education_verifications/index.html.erb:26
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (2, 1) /*action='index',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/views/admin/education_verifications/index.html.erb:26
+  Rendered admin/education_verifications/index.html.erb within layouts/admin (Duration: 19.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (1.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 27.6ms | GC: 0.0ms)
+Completed 200 OK in 57ms (Views: 25.4ms | ActiveRecord: 4.4ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admin/photos" for ::1 at 2026-08-11 11:08:42 +0800
+Processing by Admin::PhotosController#index as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/photos/index.html.erb within layouts/admin
+  [1m[36mPhoto Load (0.6ms)[0m  [1m[34mSELECT "photos".* FROM "photos" ORDER BY "photos"."created_at" DESC LIMIT 100 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:14
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2) /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 7 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  Rendered admin/photos/index.html.erb within layouts/admin (Duration: 69.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 75.7ms | GC: 0.0ms)
+Completed 200 OK in 104ms (Views: 66.9ms | ActiveRecord: 10.4ms (8 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admin/users" for ::1 at 2026-08-11 11:08:42 +0800
+Processing by Admin::UsersController#index as */*
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/users/index.html.erb within layouts/admin
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."created_at" DESC LIMIT 100 /*action='index',application='Qingyu',controller='users'*/[0m
+  ↳ app/views/admin/users/index.html.erb:27
+  Rendered admin/users/index.html.erb within layouts/admin (Duration: 12.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='users'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 17.6ms | GC: 0.0ms)
+Completed 200 OK in 43ms (Views: 17.5ms | ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admin" for ::1 at 2026-08-11 11:09:13 +0800
+Processing by Admin::DashboardController#index as */*
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  [1m[36mUser Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:5:in 'Admin::DashboardController#index'
+  [1m[36mUser Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."verification_level" IN (1, 2) /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:6:in 'Admin::DashboardController#index'
+  [1m[36mIdentityVerification Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "identity_verifications" WHERE "identity_verifications"."status" = 0 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:7:in 'Admin::DashboardController#index'
+  [1m[36mEducationVerification Count (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "education_verifications" WHERE "education_verifications"."status" = 0 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:8:in 'Admin::DashboardController#index'
+  [1m[36mPhoto Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" WHERE "photos"."status" = 0 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:9:in 'Admin::DashboardController#index'
+  [1m[36mMatch Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/controllers/admin/dashboard_controller.rb:10:in 'Admin::DashboardController#index'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/dashboard/index.html.erb within layouts/admin
+  Rendered admin/dashboard/index.html.erb within layouts/admin (Duration: 1.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='dashboard'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 37.4ms | GC: 0.0ms)
+Completed 200 OK in 180ms (Views: 38.1ms | ActiveRecord: 22.3ms (8 queries, 0 cached) | GC: 15.6ms)
+
+
+Started GET "/admin/photos" for ::1 at 2026-08-11 11:09:19 +0800
+Processing by Admin::PhotosController#index as */*
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/photos/index.html.erb within layouts/admin
+  [1m[36mPhoto Load (1.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" ORDER BY "photos"."created_at" DESC LIMIT 100 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:14
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2) /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 7 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  Rendered admin/photos/index.html.erb within layouts/admin (Duration: 87.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (0.8ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 96.9ms | GC: 0.0ms)
+Completed 200 OK in 130ms (Views: 84.3ms | ActiveRecord: 14.4ms (8 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mPhoto Load (2.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."status" = 0 ORDER BY "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+Started PATCH "/admin/photos//approve" for ::1 at 2026-08-11 11:09:32 +0800
+  
+ActionController::RoutingError (No route matches [PATCH] "/admin/photos/approve"):
+  
+Started GET "/profile/edit" for ::1 at 2026-08-11 11:09:52 +0800
+Processing by ProfilesController#edit as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering profiles/edit.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/models/current.rb:5:in 'Current#user'
+  [1m[36mPhoto Load (1.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 2 ORDER BY "photos"."position" ASC, "photos"."id" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/_photos.html.erb:7
+  Rendered profiles/_photos.html.erb (Duration: 32.4ms | GC: 0.0ms)
+  [1m[36mInterest Load (1.7ms)[0m  [1m[34mSELECT "interests".* FROM "interests" ORDER BY "interests"."category" ASC, "interests"."name" ASC /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:90
+  [1m[36mInterest Pluck (1.8ms)[0m  [1m[34mSELECT "interests"."id" FROM "interests" INNER JOIN "profile_interests" ON "interests"."id" = "profile_interests"."interest_id" WHERE "profile_interests"."user_id" = 2 /*action='edit',application='Qingyu',controller='profiles'*/[0m
+  ↳ app/views/profiles/edit.html.erb:92
+  Rendered profiles/edit.html.erb within layouts/application (Duration: 219.8ms | GC: 15.6ms)
+  Rendered shared/_flash.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 225.2ms | GC: 15.6ms)
+Completed 200 OK in 303ms (Views: 237.4ms | ActiveRecord: 16.2ms (7 queries, 0 cached) | GC: 15.6ms)
+
+
+Started POST "/photos" for ::1 at 2026-08-11 11:09:53 +0800
+Processing by PhotosController#create as */*
+  Parameters: {"photo" => {"file" => #<ActionDispatch::Http::UploadedFile:0x000001829e006b40 @tempfile=#<Tempfile:C:/Users/Manfr/AppData/Local/Temp/RackMultipart20260811-35404-x01xix.png>, @content_type="image/png", @original_filename="tmp_test.png", @headers="Content-Disposition: form-data; name=\"photo[file]\"; filename=\"tmp_test.png\"\r\nContent-Type: image/png\r\n">}}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:5:in 'Current#user'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mPhoto Create (5.3ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "position", "status", "primary", "rejection_reason", "reviewed_by", "reviewed_at", "created_at", "updated_at") VALUES (2, 0, 0, FALSE, NULL, NULL, NULL, '2026-08-11 03:09:53.468394', '2026-08-11 03:09:53.468394') RETURNING "id" /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mActiveStorage::Blob Create (1.3ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('ku0csv0juzhmdy4g6zbry1csv9sx', 'tmp_test.png', 'image/png', '{"identified":true}', 'local', 70, '+Cm5FPxHz8nAdHwRnCfPGw==', '2026-08-11 03:09:53.488439') RETURNING "id" /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mActiveStorage::Attachment Create (1.5ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('file', 'Photo', 8, 8, '2026-08-11 03:09:53.497268') RETURNING "id" /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mPhoto Update (1.2ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 03:09:53.503313' WHERE "photos"."id" = 8 /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+[36m  Disk Storage (5.1ms) [0m[32mUploaded file to key: ku0csv0juzhmdy4g6zbry1csv9sx (checksum: +Cm5FPxHz8nAdHwRnCfPGw==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 74a66010-ff9c-4abb-ba40-286f17c242d3) to Async(default) with arguments: #<GlobalID:0x000001829e5f6780 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/8>>
+[ActiveJob] ↳ app/controllers/photos_controller.rb:4:in 'PhotosController#create'
+Redirected to http://localhost:3000/profile/edit
+↳ app/controllers/photos_controller.rb:5:in 'PhotosController#create'
+Completed 302 Found in 281ms (ActiveRecord: 12.9ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3]   [1m[36mActiveStorage::Blob Load (1.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 8 LIMIT 1 /*application='Qingyu'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3] Performing ActiveStorage::AnalyzeJob (Job ID: 74a66010-ff9c-4abb-ba40-286f17c242d3) from Async(default) enqueued at 2026-08-11T03:09:53.690658300Z with arguments: #<GlobalID:0x000001829e85a300 @uri=#<URI::GID gid://qingyu/ActiveStorage::Blob/8>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3] [36m  Disk Storage (7.7ms) [0m[34mDownloaded file from key: ku0csv0juzhmdy4g6zbry1csv9sx[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3]   [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3]   [1m[36mActiveStorage::Blob Update (7.4ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = '{"identified":true,"width":1,"height":1,"analyzed":true}' WHERE "active_storage_blobs"."id" = 8 /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3]   [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = 8 /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3]   [1m[36mPhoto Load (0.8ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 8 /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3]   [1m[36mPhoto Update (1.0ms)[0m  [1m[33mUPDATE "photos" SET "updated_at" = '2026-08-11 03:09:53.871299' WHERE "photos"."id" = 8 /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3]   [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [74a66010-ff9c-4abb-ba40-286f17c242d3] Performed ActiveStorage::AnalyzeJob (Job ID: 74a66010-ff9c-4abb-ba40-286f17c242d3) from Async(default) in 81.81ms
+  [1m[36mPhoto Load (1.5ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."status" = 0 ORDER BY "photos"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+Started GET "/admin/photos" for ::1 at 2026-08-11 11:10:07 +0800
+Processing by Admin::PhotosController#index as */*
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/photos/index.html.erb within layouts/admin
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" ORDER BY "photos"."created_at" DESC LIMIT 100 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:14
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (2, 1) /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 8 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 7 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  Rendered admin/photos/index.html.erb within layouts/admin (Duration: 34.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (0.6ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 39.7ms | GC: 0.0ms)
+Completed 200 OK in 67ms (Views: 34.5ms | ActiveRecord: 7.0ms (10 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/admin/photos/8/approve" for ::1 at 2026-08-11 11:10:08 +0800
+Processing by Admin::PhotosController#approve as */*
+  Parameters: {"id" => "8"}
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 8 LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/admin/photos_controller.rb:10:in 'Admin::PhotosController#approve'
+  [1m[36mAdminUser Load (0.6ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 2.0ms (3 queries, 0 cached) | GC: 15.6ms)
+
+
+  
+ActiveModel::MissingAttributeError (can't write unknown attribute `reviewer_id`):
+  
+app/controllers/admin/photos_controller.rb:11:in 'Admin::PhotosController#approve'
+  [1m[36mPhoto Load (1.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 8 LIMIT 1 /*application='Qingyu'*/[0m
+Started GET "/admin/photos" for ::1 at 2026-08-11 11:10:36 +0800
+Processing by Admin::PhotosController#index as */*
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/photos/index.html.erb within layouts/admin
+  [1m[36mPhoto Load (0.9ms)[0m  [1m[34mSELECT "photos".* FROM "photos" ORDER BY "photos"."created_at" DESC LIMIT 100 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:14
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (2, 1) /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 8 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 7 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/views/admin/photos/index.html.erb:18
+  Rendered admin/photos/index.html.erb within layouts/admin (Duration: 90.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 1.3ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (0.9ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 123.1ms | GC: 0.0ms)
+Completed 200 OK in 214ms (Views: 108.8ms | ActiveRecord: 25.6ms (10 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/admin/photos/8/approve" for ::1 at 2026-08-11 11:10:37 +0800
+Processing by Admin::PhotosController#approve as */*
+  Parameters: {"id" => "8"}
+  [1m[36mSession Load (1.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 8 LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/admin/photos_controller.rb:10:in 'Admin::PhotosController#approve'
+  [1m[36mAdminUser Load (0.6ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Attachment Load (3.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Photo' AND "active_storage_attachments"."name" = 'file' LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/photo.rb:22:in 'Photo#validate_file'
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 8 LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/models/photo.rb:24:in 'Photo#validate_file'
+  [1m[36mPhoto Update (0.8ms)[0m  [1m[33mUPDATE "photos" SET "status" = 1, "reviewed_by" = 1, "reviewed_at" = '2026-08-11 03:10:37.441422', "updated_at" = '2026-08-11 03:10:37.454418' WHERE "photos"."id" = 8 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/admin/photos_controller.rb:11:in 'Admin::PhotosController#approve'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/admin/photos_controller.rb:11:in 'Admin::PhotosController#approve'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/admin/photos_controller.rb:13:in 'Admin::PhotosController#approve'
+  [1m[36mPhoto Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "photos" WHERE "photos"."user_id" = 2 AND "photos"."status" = 1 AND "photos"."primary" = TRUE LIMIT 1 /*action='approve',application='Qingyu',controller='photos'*/[0m
+  ↳ app/controllers/admin/photos_controller.rb:13:in 'Admin::PhotosController#approve'
+Redirected to http://localhost:3000/admin/photos
+↳ app/controllers/admin/photos_controller.rb:16:in 'Admin::PhotosController#approve'
+Completed 302 Found in 68ms (ActiveRecord: 11.2ms (8 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mPhoto Load (2.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = 8 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mAdminUser Load (1.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+Started GET "/admin/users" for ::1 at 2026-08-11 11:10:49 +0800
+Processing by Admin::UsersController#index as */*
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='index',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  Rendering layout layouts/admin.html.erb
+  Rendering admin/users/index.html.erb within layouts/admin
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."created_at" DESC LIMIT 100 /*action='index',application='Qingyu',controller='users'*/[0m
+  ↳ app/views/admin/users/index.html.erb:27
+  Rendered admin/users/index.html.erb within layouts/admin (Duration: 13.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='users'*/[0m
+  ↳ app/models/current.rb:10:in 'Current#admin_user'
+  Rendered layout layouts/admin.html.erb (Duration: 18.7ms | GC: 0.0ms)
+Completed 200 OK in 46ms (Views: 18.5ms | ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/admin/users/2/suspend" for ::1 at 2026-08-11 11:10:50 +0800
+Processing by Admin::UsersController#suspend as */*
+  Parameters: {"id" => "2"}
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='suspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='suspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/admin/users_controller.rb:14:in 'Admin::UsersController#suspend'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='suspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/admin/users_controller.rb:15:in 'Admin::UsersController#suspend'
+  [1m[36mUser Update (1.2ms)[0m  [1m[33mUPDATE "users" SET "status" = 2, "updated_at" = '2026-08-11 03:10:50.198102' WHERE "users"."id" = 2 /*action='suspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/admin/users_controller.rb:15:in 'Admin::UsersController#suspend'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*action='suspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/admin/users_controller.rb:15:in 'Admin::UsersController#suspend'
+Redirected to http://localhost:3000/admin/users/2
+↳ app/controllers/admin/users_controller.rb:16:in 'Admin::UsersController#suspend'
+Completed 302 Found in 43ms (ActiveRecord: 10.7ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/admin/users/2/unsuspend" for ::1 at 2026-08-11 11:10:50 +0800
+Processing by Admin::UsersController#unsuspend as */*
+  Parameters: {"id" => "2"}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 4 AND "sessions"."sessionable_type" = 'AdminUser' LIMIT 1 /*action='unsuspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/concerns/admin_authentication.rb:17:in 'AdminAuthentication#resume_admin_session'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='unsuspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/admin/users_controller.rb:20:in 'Admin::UsersController#unsuspend'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='unsuspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/admin/users_controller.rb:21:in 'Admin::UsersController#unsuspend'
+  [1m[36mUser Update (3.3ms)[0m  [1m[33mUPDATE "users" SET "status" = 1, "updated_at" = '2026-08-11 03:10:50.406219' WHERE "users"."id" = 2 /*action='unsuspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/admin/users_controller.rb:21:in 'Admin::UsersController#unsuspend'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*action='unsuspend',application='Qingyu',controller='users'*/[0m
+  ↳ app/controllers/admin/users_controller.rb:21:in 'Admin::UsersController#unsuspend'
+Redirected to http://localhost:3000/admin/users/2
+↳ app/controllers/admin/users_controller.rb:22:in 'Admin::UsersController#unsuspend'
+Completed 302 Found in 33ms (ActiveRecord: 5.9ms (3 queries, 0 cached) | GC: 0.0ms)
+
+

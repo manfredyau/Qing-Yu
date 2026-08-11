@@ -1,0 +1,45 @@
+<% content_for(:title) { "照片审核 · 管理后台" } %>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-xl font-bold text-gray-900">照片审核</h1>
+  <div class="flex gap-2 text-sm">
+    <%= link_to "全部", admin_photos_path, class: "rounded-lg px-3 py-1.5 #{params[:status].blank? ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+    <%= link_to "待处理", admin_photos_path(status: :pending), class: "rounded-lg px-3 py-1.5 #{params[:status] == "pending" ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+    <%= link_to "已通过", admin_photos_path(status: :approved), class: "rounded-lg px-3 py-1.5 #{params[:status] == "approved" ? "bg-gray-900 text-white" : "bg-white text-gray-600"}" %>
+  </div>
+</div>
+
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <% @photos.each do |photo| %>
+    <div class="overflow-hidden rounded-2xl bg-white shadow-sm">
+      <div class="aspect-square bg-gray-100">
+        <% if photo.file.attached? %>
+          <%= image_tag photo.file.variant(resize_to_fill: [ 400, 400 ]), class: "h-full w-full object-cover" %>
+        <% end %>
+      </div>
+      <div class="p-4">
+        <p class="text-sm font-medium text-gray-900">
+          <%= photo.user.display_name %>
+          <span class="ml-1 text-xs font-normal text-gray-400"><%= photo.user.phone %></span>
+        </p>
+        <p class="mt-1 text-xs text-gray-400">上传于 <%= l(photo.created_at, format: :short) %></p>
+
+        <div class="mt-3 flex items-center gap-2">
+          <% if photo.pending? %>
+            <%= button_to "通过", approve_admin_photo_path(photo), method: :patch, class: "cursor-pointer rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-500" %>
+            <%= form_with url: reject_admin_photo_path(photo), method: :patch, class: "flex flex-1 items-center gap-1" do |f| %>
+              <%= f.text_field :reason, placeholder: "原因（如：含个人信息）", class: "w-full rounded-lg border border-gray-200 px-2 py-1.5 text-xs" %>
+              <%= f.submit "驳回", class: "cursor-pointer rounded-lg bg-red-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-red-500" %>
+            <% end %>
+          <% else %>
+            <span class="rounded-full px-2.5 py-1 text-xs font-medium <%= status_badge(photo.status) %>"><%= { "approved" => "已通过", "rejected" => "已驳回" }[photo.status] %></span>
+            <% if photo.rejected? %><span class="text-xs text-gray-400"><%= photo.rejection_reason %></span><% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% if @photos.empty? %>
+    <div class="col-span-full rounded-2xl bg-white py-16 text-center text-gray-400 shadow-sm">暂无照片</div>
+  <% end %>
+</div>

@@ -1,0 +1,54 @@
+<% content_for(:title) { "#{@user.display_name} · 管理后台" } %>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-xl font-bold text-gray-900"><%= @user.display_name %></h1>
+  <div class="flex gap-2">
+    <% if @user.active? %>
+      <%= button_to "封禁用户", suspend_admin_user_path(@user), method: :patch, data: { turbo_confirm: "确定封禁？" }, class: "cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-500" %>
+    <% else %>
+      <%= button_to "解封用户", unsuspend_admin_user_path(@user), method: :patch, class: "cursor-pointer rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-500" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="grid gap-4 lg:grid-cols-2">
+  <div class="rounded-2xl bg-white p-6 shadow-sm">
+    <h2 class="mb-4 font-semibold text-gray-900">基本信息</h2>
+    <dl class="space-y-2 text-sm">
+      <div class="flex justify-between"><dt class="text-gray-400">手机号</dt><dd class="text-gray-800"><%= @user.phone %></dd></div>
+      <div class="flex justify-between"><dt class="text-gray-400">性别</dt><dd class="text-gray-800"><%= @user.gender_label %></dd></div>
+      <div class="flex justify-between"><dt class="text-gray-400">年龄</dt><dd class="text-gray-800"><%= @user.age || "—" %></dd></div>
+      <div class="flex justify-between"><dt class="text-gray-400">城市</dt><dd class="text-gray-800"><%= @user.city || "—" %></dd></div>
+      <div class="flex justify-between"><dt class="text-gray-400">职业</dt><dd class="text-gray-800"><%= @user.job || "—" %></dd></div>
+      <div class="flex justify-between"><dt class="text-gray-400">认证等级</dt><dd class="text-gray-800"><%= { "unverified" => "未认证", "id_verified" => "V1 已实名", "fully_verified" => "V2 完全认证" }[@user.verification_level] %></dd></div>
+      <div class="flex justify-between"><dt class="text-gray-400">状态</dt><dd class="text-gray-800"><%= @user.active? ? "正常" : "封禁" %></dd></div>
+    </dl>
+  </div>
+
+  <div class="rounded-2xl bg-white p-6 shadow-sm">
+    <h2 class="mb-4 font-semibold text-gray-900">认证记录</h2>
+    <% @user.identity_verifications.order(created_at: :desc).each do |v| %>
+      <div class="mb-3 rounded-xl bg-gray-50 p-4 text-sm">
+        <p class="flex items-center gap-2">
+          <span class="rounded-full px-2 py-0.5 text-xs font-medium <%= status_badge(v.status) %>"><%= { "pending" => "待处理", "verified" => "身份证已通过", "rejected" => "身份证已驳回" }[v.status] %></span>
+          <span class="text-xs text-gray-400"><%= l(v.created_at, format: :short) %></span>
+        </p>
+        <p class="mt-1 text-gray-600"><%= v.full_name %> · <%= v.masked_id_number %></p>
+        <% if v.rejected? %><p class="text-xs text-red-500">原因：<%= v.rejection_reason %></p><% end %>
+      </div>
+    <% end %>
+    <% @user.education_verifications.order(created_at: :desc).each do |v| %>
+      <div class="mb-3 rounded-xl bg-gray-50 p-4 text-sm">
+        <p class="flex items-center gap-2">
+          <span class="rounded-full px-2 py-0.5 text-xs font-medium <%= status_badge(v.status) %>"><%= { "pending" => "待处理", "verified" => "学信网已通过", "rejected" => "学信网已驳回" }[v.status] %></span>
+          <span class="text-xs text-gray-400"><%= l(v.created_at, format: :short) %></span>
+        </p>
+        <p class="mt-1 text-gray-600"><%= v.school ? "#{v.school} · #{v.degree}" : "验证码 #{v.verify_code}" %></p>
+        <% if v.rejected? %><p class="text-xs text-red-500">原因：<%= v.rejection_reason %></p><% end %>
+      </div>
+    <% end %>
+    <% if @user.identity_verifications.none? && @user.education_verifications.none? %>
+      <p class="text-sm text-gray-400">暂无认证记录</p>
+    <% end %>
+  </div>
+</div>

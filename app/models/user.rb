@@ -97,6 +97,16 @@ class User < ApplicationRecord
     end
   end
 
+  # 依据已通过的认证记录重算认证等级（后台人工复核后调用）
+  def sync_verification_level!
+    level = identity_verifications.verified.exists? ? :id_verified : :unverified
+    level = :fully_verified if level == :id_verified && education_verifications.verified.exists?
+
+    attrs = { verification_level: level }
+    attrs[:verified_at] = level == :unverified ? nil : Time.current
+    update!(attrs)
+  end
+
   private
     def must_be_adult
       errors.add(:birthdate, "必须年满 18 周岁") unless adult?

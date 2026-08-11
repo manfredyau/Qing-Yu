@@ -1,0 +1,22 @@
+<% content_for(:title) { "后台登录 · 轻遇" } %>
+
+<div class="flex min-h-screen items-center justify-center bg-gray-100 px-4">
+  <div class="w-full max-w-sm rounded-2xl bg-white p-8 shadow-sm">
+    <div class="mb-6 text-center">
+      <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 text-xl font-bold text-white">轻</div>
+      <h1 class="mt-3 text-lg font-bold text-gray-900">轻遇 · 管理后台</h1>
+    </div>
+
+    <%= form_with url: admin_session_path, class: "space-y-4" do |f| %>
+      <div>
+        <%= f.label :email_address, "管理员邮箱", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.email_field :email_address, required: true, autofocus: true, autocomplete: "username", class: field_class %>
+      </div>
+      <div>
+        <%= f.label :password, "密码", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.password_field :password, required: true, autocomplete: "current-password", class: field_class %>
+      </div>
+      <%= f.submit "登录", class: "w-full cursor-pointer rounded-xl bg-gray-900 px-4 py-3 font-semibold text-white hover:bg-gray-800" %>
+    <% end %>
+  </div>
+</div>

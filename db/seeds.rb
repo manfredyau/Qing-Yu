@@ -7,4 +7,10 @@ INTERESTS = %w[
 
 INTERESTS.each { |name| Interest.find_or_create_by!(name: name) }
 
-puts "Seeded #{Interest.count} interests"
+# 后台管理员（开发默认账号，生产环境请修改密码）
+AdminUser.find_or_create_by!(email_address: "admin@qingyu.local") do |admin|
+  admin.name = "超级管理员"
+  admin.password = "Qingyu@2026"
+end
+
+puts "Seeded #{Interest.count} interests, #{AdminUser.count} admin(s)"

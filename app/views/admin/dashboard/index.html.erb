@@ -1,0 +1,29 @@
+<% content_for(:title) { "概览 · 管理后台" } %>
+
+<h1 class="mb-6 text-xl font-bold text-gray-900">概览</h1>
+
+<div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+  <% { "注册用户" => @stats[:users], "已实名" => @stats[:verified_users],
+       "待审身份证" => @stats[:pending_identity], "待审学信网" => @stats[:pending_education],
+       "待审照片" => @stats[:pending_photos], "配对对数" => @stats[:matches] }.each do |label, value| %>
+    <div class="rounded-2xl bg-white p-5 shadow-sm">
+      <p class="text-sm text-gray-400"><%= label %></p>
+      <p class="mt-1 text-3xl font-bold text-gray-900"><%= value %></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-8 grid gap-4 md:grid-cols-3">
+  <%= link_to admin_identity_verifications_path, class: "rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md" do %>
+    <p class="font-semibold text-gray-900">身份证实名审核</p>
+    <p class="mt-1 text-sm text-gray-400">待处理 <%= @stats[:pending_identity] %> 条</p>
+  <% end %>
+  <%= link_to admin_education_verifications_path, class: "rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md" do %>
+    <p class="font-semibold text-gray-900">学信网学历审核</p>
+    <p class="mt-1 text-sm text-gray-400">待处理 <%= @stats[:pending_education] %> 条</p>
+  <% end %>
+  <%= link_to admin_photos_path, class: "rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md" do %>
+    <p class="font-semibold text-gray-900">照片审核</p>
+    <p class="mt-1 text-sm text-gray-400">待处理 <%= @stats[:pending_photos] %> 张</p>
+  <% end %>
+</div>
