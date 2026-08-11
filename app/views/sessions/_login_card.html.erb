@@ -1,0 +1,7 @@
+<turbo-frame id="login-card">
+  <% if @phone.present? %>
+    <%= render "sessions/code_step", phone: @phone %>
+  <% else %>
+    <%= render "sessions/phone_step" %>
+  <% end %>
+</turbo-frame>

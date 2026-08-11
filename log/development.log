@@ -1,0 +1,127 @@
+  [1m[35mSQL (2.8ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35m (2149.8ms)[0m  [1m[35mCREATE DATABASE "qingyu_development" ENCODING = 'unicode' /*application='Qingyu'*/[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35m (1141.1ms)[0m  [1m[35mCREATE DATABASE "qingyu_test" ENCODING = 'unicode' /*application='Qingyu'*/[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Qingyu'*/[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-08-11 02:05:05.871175', '2026-08-11 02:05:05.871180') RETURNING "key" /*application='Qingyu'*/[0m
+Migrating to CreateUsers (20260811020048)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (10.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "phone" character varying NOT NULL, "password_digest" character varying, "nickname" character varying, "gender" integer DEFAULT 0 NOT NULL, "birthdate" date, "city" character varying, "height_cm" integer, "education_level" integer DEFAULT 0 NOT NULL, "job" character varying, "bio" text, "avatar_photo_id" bigint, "verification_level" integer DEFAULT 0 NOT NULL, "verified_at" timestamp(6), "pref_gender" integer DEFAULT 2 NOT NULL, "pref_age_min" integer DEFAULT 18 NOT NULL, "pref_age_max" integer DEFAULT 45 NOT NULL, "pref_distance_km" integer DEFAULT 50 NOT NULL, "pref_show_distance" boolean DEFAULT TRUE NOT NULL, "status" integer DEFAULT 1 NOT NULL, "last_active_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='Qingyu'*/[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_gender_and_verification_level_and_status" ON "users" ("gender", "verification_level", "status") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020048') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+Migrating to CreateSessions (20260811020059)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" bigserial primary key, "sessionable_type" character varying NOT NULL, "sessionable_id" bigint NOT NULL, "ip_address" character varying, "user_agent" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_sessions_on_sessionable" ON "sessions" ("sessionable_type", "sessionable_id") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020059') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+Migrating to CreateSmsCodes (20260811020100)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "sms_codes" ("id" bigserial primary key, "phone" character varying NOT NULL, "code_digest" character varying NOT NULL, "purpose" integer DEFAULT 0 NOT NULL, "attempts" integer DEFAULT 0 NOT NULL, "expires_at" timestamp(6) NOT NULL, "consumed_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE INDEX "index_sms_codes_on_phone_and_purpose_and_expires_at" ON "sms_codes" ("phone", "purpose", "expires_at") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020100') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+Migrating to CreateAdminUsers (20260811020101)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE TABLE "admin_users" ("id" bigserial primary key, "email_address" character varying NOT NULL, "password_digest" character varying NOT NULL, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admin_users_on_email_address" ON "admin_users" ("email_address") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020101') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+Started GET "/session/new" for ::1 at 2026-08-11 10:06:14 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 32.9ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 35.4ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 38.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 69.9ms | GC: 0.0ms)
+Completed 200 OK in 447ms (Views: 116.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2026-08-11 10:06:19 +0800
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 1.4ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 1.7ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 4.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2026-08-11 10:06:47 +0800
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 5.8ms | GC: 15.6ms)
+  Rendered sessions/_login_card.html.erb (Duration: 6.1ms | GC: 15.6ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 7.5ms | GC: 15.6ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | GC: 15.6ms)
+Completed 200 OK in 33ms (Views: 14.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 15.6ms)
+
+
+Started GET "/session/new" for ::1 at 2026-08-11 10:06:47 +0800
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 8.2ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 9.5ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 9.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | GC: 0.0ms)
+Completed 200 OK in 34ms (Views: 14.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35m (396.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "qingyu_test" /*application='Qingyu'*/[0m
+  [1m[35m (547.6ms)[0m  [1m[35mCREATE DATABASE "qingyu_test" ENCODING = 'unicode' /*application='Qingyu'*/[0m
+  [1m[35mSQL (238.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "admin_users" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (16.0ms)[0m  [1m[35mCREATE TABLE "admin_users" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "email_address" character varying NOT NULL, "name" character varying, "password_digest" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admin_users_on_email_address" ON "admin_users" ("email_address") /*application='Qingyu'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "sessions" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (13.4ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "ip_address" character varying, "sessionable_id" bigint NOT NULL, "sessionable_type" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_agent" character varying) /*application='Qingyu'*/[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE INDEX "index_sessions_on_sessionable" ON "sessions" ("sessionable_type", "sessionable_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "sms_codes" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "sms_codes" ("id" bigserial primary key, "attempts" integer DEFAULT 0 NOT NULL, "code_digest" character varying NOT NULL, "consumed_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "expires_at" timestamp(6) NOT NULL, "phone" character varying NOT NULL, "purpose" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE INDEX "index_sms_codes_on_phone_and_purpose_and_expires_at" ON "sms_codes" ("phone", "purpose", "expires_at") /*application='Qingyu'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "avatar_photo_id" bigint, "bio" text, "birthdate" date, "city" character varying, "created_at" timestamp(6) NOT NULL, "education_level" integer DEFAULT 0 NOT NULL, "gender" integer DEFAULT 0 NOT NULL, "height_cm" integer, "job" character varying, "last_active_at" timestamp(6), "nickname" character varying, "password_digest" character varying, "phone" character varying NOT NULL, "pref_age_max" integer DEFAULT 45 NOT NULL, "pref_age_min" integer DEFAULT 18 NOT NULL, "pref_distance_km" integer DEFAULT 50 NOT NULL, "pref_gender" integer DEFAULT 2 NOT NULL, "pref_show_distance" boolean DEFAULT TRUE NOT NULL, "status" integer DEFAULT 1 NOT NULL, "updated_at" timestamp(6) NOT NULL, "verification_level" integer DEFAULT 0 NOT NULL, "verified_at" timestamp(6)) /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_gender_and_verification_level_and_status" ON "users" ("gender", "verification_level", "status") /*application='Qingyu'*/[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='Qingyu'*/[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260811020101) /*application='Qingyu'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20260811020100),
+(20260811020059),
+(20260811020048); /*application='Qingyu'*/[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-08-11 02:07:36.825538', '2026-08-11 02:07:36.825544') RETURNING "key" /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.9ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2026-08-11 02:07:36.836707' WHERE "ar_internal_metadata"."key" = 'environment' /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'b62d0f0cf3cfdf20e963acadd1c3261a3c27c808', '2026-08-11 02:07:36.844598', '2026-08-11 02:07:36.844603') RETURNING "key" /*application='Qingyu'*/[0m

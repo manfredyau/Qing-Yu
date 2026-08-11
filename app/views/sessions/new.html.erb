@@ -1,0 +1,16 @@
+<% content_for(:title) { "登录 · 轻遇" } %>
+
+<div class="mx-auto flex min-h-screen w-full max-w-md flex-col px-6 py-12">
+  <div class="mb-10 flex flex-col items-center text-center">
+    <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-400 to-emerald-500 text-3xl font-bold text-white shadow-lg shadow-teal-200/60">轻</div>
+    <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900">轻遇</h1>
+    <p class="mt-2 text-sm leading-relaxed text-gray-500">实名制交友 · 每天只推荐几位<br>不刷屏，不海选，减少信息过载</p>
+  </div>
+
+  <%= render "sessions/login_card" %>
+
+  <p class="mt-10 text-center text-xs leading-relaxed text-gray-400">
+    登录即代表你已年满 18 周岁，并同意《用户协议》与《隐私政策》<br>
+    本应用实行实名认证，请确保信息真实
+  </p>
+</div>

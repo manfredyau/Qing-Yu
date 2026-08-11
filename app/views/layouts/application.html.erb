@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "轻遇 · 实名交友，轻一点" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="轻遇">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="description" content="实名制交友 App——每天只推荐几位，不刷屏，不信息过载">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen bg-[#f7faf9] font-sans text-gray-800 antialiased">
+    <%= render "shared/flash" %>
+    <%= yield %>
+  </body>
+</html>

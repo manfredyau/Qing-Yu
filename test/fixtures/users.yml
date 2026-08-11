@@ -1,0 +1,13 @@
+one:
+  phone: "13800000001"
+  nickname: "轻友测试1"
+  gender: female
+  status: active
+  verification_level: unverified
+
+two:
+  phone: "13800000002"
+  nickname: "轻友测试2"
+  gender: male
+  status: active
+  verification_level: unverified

@@ -1,0 +1,13 @@
+valid:
+  phone: "13800000001"
+  code_digest: <%= Digest::SHA256.hexdigest("123456") %>
+  purpose: login
+  expires_at: <%= 5.minutes.from_now %>
+  attempts: 0
+
+expired:
+  phone: "13800000001"
+  code_digest: <%= Digest::SHA256.hexdigest("654321") %>
+  purpose: login
+  expires_at: <%= 1.minute.ago %>
+  attempts: 0
