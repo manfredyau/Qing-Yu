@@ -32,12 +32,17 @@ jobs:
         with:
           gradle-version: 8.13
 
-      - name: Accept Android SDK licenses
+      - name: Set up Android SDK components
         run: |
-          yes | sudo "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls "$ANDROID_HOME/cmdline-tools/latest/bin/" | head -5
+          # 接受许可 + 安装 compileSdk 35 所需组件（缺失时 AGP 无法自动下载会直接失败）
+          yes | "$SDKMANAGER" --licenses > /dev/null 2>&1 || echo "licenses: 已接受或无需处理"
+          "$SDKMANAGER" --install "platforms;android-35" "build-tools;35.0.0" || echo "SDK 组件已存在"
 
       - name: Build debug APK
-        run: gradle -p android :app:assembleDebug
+        run: gradle -p android :app:assembleDebug --no-daemon --console=plain
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
