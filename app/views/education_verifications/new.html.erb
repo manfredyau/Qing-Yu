@@ -1,0 +1,51 @@
+<% content_for(:title) { "学信网学历认证 · 轻遇" } %>
+
+<div class="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 py-8">
+  <header class="mb-6 flex items-center gap-3">
+    <%= link_to verification_path, class: "flex h-9 w-9 items-center justify-center rounded-xl bg-white text-gray-500 shadow-sm" do %>
+      <span aria-hidden="true">←</span>
+    <% end %>
+    <div>
+      <h1 class="text-xl font-bold text-gray-900">学信网学历认证</h1>
+      <p class="text-sm text-gray-400">通过在线验证报告核验学籍/学历</p>
+    </div>
+  </header>
+
+  <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+    <div class="rounded-xl bg-teal-50 p-4 text-xs leading-relaxed text-teal-800">
+      <p class="font-medium">如何获取验证码？</p>
+      <p class="mt-1">1. 登录学信网 → 在线验证 → 申请《教育部学籍/学历在线验证报告》</p>
+      <p class="mt-1">2. 报告页面含 12 位「在线验证码」与 16 位「报告编号」</p>
+    </div>
+
+    <%= form_with model: @verification, url: education_verification_path, class: "mt-5 space-y-5" do |f| %>
+      <% if @verification.errors.any? %>
+        <div class="rounded-xl bg-red-50 p-4 text-sm text-red-600">
+          <%= @verification.errors.full_messages.first %>
+        </div>
+      <% end %>
+
+      <div>
+        <%= f.label :verify_code, "在线验证码", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :verify_code, required: true, autocomplete: "off", maxlength: 12,
+              inputmode: "numeric", placeholder: "12 位在线验证码", class: field_class %>
+      </div>
+
+      <div>
+        <%= f.label :report_no, "报告编号", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :report_no, required: true, autocomplete: "off", maxlength: 16,
+              placeholder: "16 位报告编号", class: field_class %>
+      </div>
+
+      <%= f.submit "提交核验", class: "w-full cursor-pointer rounded-xl bg-teal-600 px-4 py-3.5 font-semibold text-white shadow-sm hover:bg-teal-500" %>
+    <% end %>
+
+    <div class="mt-5 rounded-xl bg-gray-50 p-4 text-xs leading-relaxed text-gray-500">
+      <p class="font-medium text-gray-600">开发演示学籍库（Mock 模式）</p>
+      <p class="mt-1">验证码 100000000001 → 北京大学·本科</p>
+      <p class="mt-1">验证码 200000000002 → 清华大学·硕士</p>
+      <p class="mt-1">验证码 300000000003 → 浙江大学·博士</p>
+      <p class="mt-1">其余格式合法的验证码将模拟「未查询到学籍信息」</p>
+    </div>
+  </div>
+</div>

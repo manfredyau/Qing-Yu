@@ -50,4 +50,9 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # 实名信息加密（身份证号/手机号）——测试环境使用内置密钥
+  config.active_record.encryption.primary_key = "2JfTEUhQyUL55X7uwihgyLgtCmXCyfVZ"
+  config.active_record.encryption.deterministic_key = "mjzZ4fh0cf3x9Lej91IbAwuOP1Murrvc"
+  config.active_record.encryption.key_derivation_salt = "9g7en3IKKNl0JXNJEeFhemWhatnMBNVp"
 end

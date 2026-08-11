@@ -125,3 +125,972 @@ Completed 200 OK in 34ms (Views: 14.5ms | ActiveRecord: 0.0ms (0 queries, 0 cach
   [1m[36mActiveRecord::InternalMetadata Update (1.9ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2026-08-11 02:07:36.836707' WHERE "ar_internal_metadata"."key" = 'environment' /*application='Qingyu'*/[0m
   [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
   [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'b62d0f0cf3cfdf20e963acadd1c3261a3c27c808', '2026-08-11 02:07:36.844598', '2026-08-11 02:07:36.844603') RETURNING "key" /*application='Qingyu'*/[0m
+Started POST "/login_code" for ::1 at 2026-08-11 10:11:02 +0800
+Processing by LoginCodesController#create as */*
+  Parameters: {"phone" => "13800009999"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Content in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (8.1.3.1) lib/action_controller/metal/request_forgery_protection.rb:321:in 'ActionController::RequestForgeryProtection::ProtectionMethods::Exception#handle_unverified_request'
+actionpack (8.1.3.1) lib/action_controller/metal/request_forgery_protection.rb:415:in 'ActionController::RequestForgeryProtection#handle_unverified_request'
+actionpack (8.1.3.1) lib/action_controller/metal/request_forgery_protection.rb:404:in 'ActionController::RequestForgeryProtection#verify_authenticity_token'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:362:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:179:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+actionpack (8.1.3.1) lib/abstract_controller/callbacks.rb:36:in 'block (2 levels) in <module:Callbacks>'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:180:in 'ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'Array#each'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:560:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.1.3.1) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.1.3.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.1.3.1) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3.1) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.3.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.6) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.6) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.6) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+rack (3.2.6) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.3.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+activerecord (8.1.3.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3.1) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/session/new" for ::1 at 2026-08-11 10:11:07 +0800
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 2.5ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 5.3ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 9.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.2ms | GC: 0.0ms)
+Completed 200 OK in 68ms (Views: 37.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login_code" for ::1 at 2026-08-11 10:11:08 +0800
+Processing by LoginCodesController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "phone" => "13800009999"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+  [1m[36mSmsCode Create (5.2ms)[0m  [1m[32mINSERT INTO "sms_codes" ("phone", "code_digest", "purpose", "attempts", "expires_at", "consumed_at", "created_at", "updated_at") VALUES ('13800009999', '39e401826621baa507fc196c25bd429de47f5c8c389f24f08914cd7c2035b06b', 0, 0, '2026-08-11 02:16:08.328558', NULL, '2026-08-11 02:11:08.328929', '2026-08-11 02:11:08.328929') RETURNING "id" /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+[MOCK-SMS] 登录验证码 077532 已发送至 13800009999（5 分钟内有效）
+  Rendered sessions/_code_step.html.erb (Duration: 9.1ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 12.1ms | GC: 0.0ms)
+Completed 200 OK in 288ms (Views: 0.1ms | ActiveRecord: 20.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2026-08-11 10:11:12 +0800
+Processing by SessionsController#new as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 1.3ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 1.6ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | GC: 0.0ms)
+Completed 200 OK in 24ms (Views: 4.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2026-08-11 10:11:12 +0800
+Processing by SessionsController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "phone" => "13800009999", "code" => "077532"}
+  [1m[36mSmsCode Load (1.6ms)[0m  [1m[34mSELECT "sms_codes".* FROM "sms_codes" WHERE "sms_codes"."consumed_at" IS NULL AND "sms_codes"."phone" = '13800009999' AND "sms_codes"."purpose" = 0 ORDER BY "sms_codes"."expires_at" DESC LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:13:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mSmsCode Update (6.8ms)[0m  [1m[33mUPDATE "sms_codes" SET "consumed_at" = '2026-08-11 02:11:12.984248', "updated_at" = '2026-08-11 02:11:12.985119' WHERE "sms_codes"."id" = 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mUser Load (4.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13800009999' LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."phone" = '13800009999' LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("phone", "password_digest", "nickname", "gender", "birthdate", "city", "height_cm", "education_level", "job", "bio", "avatar_photo_id", "verification_level", "verified_at", "pref_gender", "pref_age_min", "pref_age_max", "pref_distance_km", "pref_show_distance", "status", "last_active_at", "created_at", "updated_at") VALUES ('13800009999', NULL, '轻友9999', 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 2, 18, 45, 50, TRUE, 1, NULL, '2026-08-11 02:11:13.053550', '2026-08-11 02:11:13.053550') RETURNING "id" /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+  [1m[36mSession Create (5.0ms)[0m  [1m[32mINSERT INTO "sessions" ("sessionable_type", "sessionable_id", "ip_address", "user_agent", "created_at", "updated_at") VALUES ('User', 1, '::1', 'curl/8.12.1', '2026-08-11 02:11:13.119184', '2026-08-11 02:11:13.119184') RETURNING "id" /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+Redirected to http://localhost:3000/
+↳ app/controllers/sessions_controller.rb:19:in 'SessionsController#create'
+Completed 302 Found in 216ms (ActiveRecord: 33.2ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-08-11 10:11:15 +0800
+Processing by HomeController#index as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='home'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'user' for an instance of Session)
+Caused by: NoMethodError (undefined method 'user' for an instance of Session)
+
+Information for: ActionView::Template::Error (undefined method 'user' for an instance of Session):
+    12: 
+    13:   <main class="mt-10 flex-1">
+    14:     <h1 class="text-2xl font-bold text-gray-900">Hi，<%= current_user.display_name %> 👋</h1>
+    15:     <p class="mt-2 text-gray-500">这里将是你的实名认证与每日精选推荐入口。</p>
+    16: 
+    17:     <div class="mt-8 rounded-2xl border border-dashed border-gray-200 bg-white p-6 text-center">
+    18:       <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-600">🔒</div>
+  
+app/models/current.rb:4:in 'Current#user'
+app/controllers/application_controller.rb:13:in 'ApplicationController#current_user'
+app/controllers/application_controller.rb:9:in 'ApplicationController::HelperMethods#current_user'
+app/views/home/index.html.erb:15
+
+Information for cause: NoMethodError (undefined method 'user' for an instance of Session):
+  
+app/models/current.rb:4:in 'Current#user'
+app/controllers/application_controller.rb:13:in 'ApplicationController#current_user'
+app/controllers/application_controller.rb:9:in 'ApplicationController::HelperMethods#current_user'
+app/views/home/index.html.erb:15
+Started GET "/" for ::1 at 2026-08-11 10:11:25 +0800
+Processing by HomeController#index as */*
+  [1m[36mSession Load (1.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='home'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Qingyu',controller='home'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendered home/index.html.erb within layouts/application (Duration: 33.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 53.5ms | GC: 15.6ms)
+Completed 200 OK in 142ms (Views: 67.8ms | ActiveRecord: 8.8ms (2 queries, 0 cached) | GC: 15.6ms)
+
+
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+Migrating to CreateIdentityVerifications (20260811020110)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (17.7ms)[0m  [1m[35mCREATE TABLE "identity_verifications" ("id" bigserial primary key, "user_id" bigint NOT NULL, "full_name" character varying NOT NULL, "id_number" character varying NOT NULL, "provider" character varying DEFAULT 'mock' NOT NULL, "status" integer DEFAULT 0 NOT NULL, "rejection_reason" character varying, "response" jsonb, "reviewed_by" integer, "reviewed_at" timestamp(6), "verified_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_3890a13c8b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='Qingyu'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_identity_verifications_on_user_id" ON "identity_verifications" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE INDEX "index_identity_verifications_on_user_id_and_status" ON "identity_verifications" ("user_id", "status") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020110') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+Migrating to CreateEducationVerifications (20260811020111)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (15.1ms)[0m  [1m[35mCREATE TABLE "education_verifications" ("id" bigserial primary key, "user_id" bigint NOT NULL, "verify_code" character varying NOT NULL, "report_no" character varying NOT NULL, "school" character varying, "degree" character varying, "education_level" integer DEFAULT 0 NOT NULL, "provider" character varying DEFAULT 'mock' NOT NULL, "status" integer DEFAULT 0 NOT NULL, "rejection_reason" character varying, "response" jsonb, "reviewed_by" integer, "reviewed_at" timestamp(6), "verified_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_d113bc5df9"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='Qingyu'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_education_verifications_on_user_id" ON "education_verifications" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE INDEX "index_education_verifications_on_user_id_and_status" ON "education_verifications" ("user_id", "status") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020111') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13800009999' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:29:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mIdentityVerification Create (4.8ms)[0m  [1m[32mINSERT INTO "identity_verifications" ("user_id", "full_name", "id_number", "provider", "status", "rejection_reason", "response", "reviewed_by", "reviewed_at", "verified_at", "created_at", "updated_at") VALUES (1, '张三', '{"p":"eCaBL3NQ9JbZWF00Ve2uNakc","h":{"iv":"5xZM1wMBQWwmmF/1","at":"xg5amqRGJfRGTcr4IYb1qw=="}}', 'mock', 1, NULL, '{"masked_id_number":"1101**********002X"}', NULL, NULL, '2026-08-11 02:15:57.745787', '2026-08-11 02:15:57.746498', '2026-08-11 02:15:57.746498') RETURNING "id" /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:29:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:29:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mEducationVerification Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "education_verifications" WHERE "education_verifications"."user_id" = 1 AND "education_verifications"."status" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:32:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:33:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mUser Update (1.2ms)[0m  [1m[33mUPDATE "users" SET "verification_level" = 1, "verified_at" = '2026-08-11 02:15:57.863732', "updated_at" = '2026-08-11 02:15:57.870189' WHERE "users"."id" = 1 /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:33:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:33:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:28:in 'Verification::EducationVerificationService#verify'
+  [1m[36mEducationVerification Create (4.1ms)[0m  [1m[32mINSERT INTO "education_verifications" ("user_id", "verify_code", "report_no", "school", "degree", "education_level", "provider", "status", "rejection_reason", "response", "reviewed_by", "reviewed_at", "verified_at", "created_at", "updated_at") VALUES (1, '100000000001', 'ABCDEF1234567890', '北京大学', '本科', 3, 'mock', 1, NULL, '{"school":"北京大学","degree":"本科","education_level":3}', NULL, NULL, '2026-08-11 02:15:57.910328', '2026-08-11 02:15:57.910766', '2026-08-11 02:15:57.910766') RETURNING "id" /*application='Qingyu'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:28:in 'Verification::EducationVerificationService#verify'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:28:in 'Verification::EducationVerificationService#verify'
+  [1m[36mIdentityVerification Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "identity_verifications" WHERE "identity_verifications"."user_id" = 1 AND "identity_verifications"."status" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:31:in 'Verification::EducationVerificationService#verify'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:31:in 'Verification::EducationVerificationService#verify'
+  [1m[36mUser Update (2.7ms)[0m  [1m[33mUPDATE "users" SET "verification_level" = 2, "verified_at" = '2026-08-11 02:15:57.923682', "updated_at" = '2026-08-11 02:15:57.924359' WHERE "users"."id" = 1 /*application='Qingyu'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:31:in 'Verification::EducationVerificationService#verify'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:31:in 'Verification::EducationVerificationService#verify'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:38:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mIdentityVerification Create (3.6ms)[0m  [1m[32mINSERT INTO "identity_verifications" ("user_id", "full_name", "id_number", "provider", "status", "rejection_reason", "response", "reviewed_by", "reviewed_at", "verified_at", "created_at", "updated_at") VALUES (1, '李四', '{"p":"+qCb1vVjf+FRELdKQmXbKvWy","h":{"iv":"6laT+oLtaICrNVBd","at":"Z4bBNK95KRYcDTlk6IXczw=="}}', 'mock', 2, '姓名与证件号不匹配（Mock 拒绝）', NULL, NULL, NULL, NULL, '2026-08-11 02:15:57.935043', '2026-08-11 02:15:57.935043') RETURNING "id" /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:38:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:38:in 'Verification::IdCardVerificationService#verify'
+  [1m[35m (212.7ms)[0m  [1m[34mSELECT id_number FROM identity_verifications ORDER BY id DESC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mIdentityVerification Load (0.6ms)[0m  [1m[34mSELECT "identity_verifications".* FROM "identity_verifications" ORDER BY "identity_verifications"."id" DESC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35m (368.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "qingyu_test" /*application='Qingyu'*/[0m
+  [1m[35m (319.9ms)[0m  [1m[35mCREATE DATABASE "qingyu_test" ENCODING = 'unicode' /*application='Qingyu'*/[0m
+  [1m[35mSQL (177.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='Qingyu'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "admin_users" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (9.8ms)[0m  [1m[35mCREATE TABLE "admin_users" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "email_address" character varying NOT NULL, "name" character varying, "password_digest" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admin_users_on_email_address" ON "admin_users" ("email_address") /*application='Qingyu'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "education_verifications" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "education_verifications" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "degree" character varying, "education_level" integer DEFAULT 0 NOT NULL, "provider" character varying DEFAULT 'mock' NOT NULL, "rejection_reason" character varying, "report_no" character varying NOT NULL, "response" jsonb, "reviewed_at" timestamp(6), "reviewed_by" integer, "school" character varying, "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL, "verified_at" timestamp(6), "verify_code" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE INDEX "index_education_verifications_on_user_id_and_status" ON "education_verifications" ("user_id", "status") /*application='Qingyu'*/[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE INDEX "index_education_verifications_on_user_id" ON "education_verifications" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "identity_verifications" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "identity_verifications" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "full_name" character varying NOT NULL, "id_number" character varying NOT NULL, "provider" character varying DEFAULT 'mock' NOT NULL, "rejection_reason" character varying, "response" jsonb, "reviewed_at" timestamp(6), "reviewed_by" integer, "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL, "verified_at" timestamp(6)) /*application='Qingyu'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_identity_verifications_on_user_id_and_status" ON "identity_verifications" ("user_id", "status") /*application='Qingyu'*/[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE INDEX "index_identity_verifications_on_user_id" ON "identity_verifications" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "sessions" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "ip_address" character varying, "sessionable_id" bigint NOT NULL, "sessionable_type" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_agent" character varying) /*application='Qingyu'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE INDEX "index_sessions_on_sessionable" ON "sessions" ("sessionable_type", "sessionable_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "sms_codes" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "sms_codes" ("id" bigserial primary key, "attempts" integer DEFAULT 0 NOT NULL, "code_digest" character varying NOT NULL, "consumed_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "expires_at" timestamp(6) NOT NULL, "phone" character varying NOT NULL, "purpose" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_sms_codes_on_phone_and_purpose_and_expires_at" ON "sms_codes" ("phone", "purpose", "expires_at") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "avatar_photo_id" bigint, "bio" text, "birthdate" date, "city" character varying, "created_at" timestamp(6) NOT NULL, "education_level" integer DEFAULT 0 NOT NULL, "gender" integer DEFAULT 0 NOT NULL, "height_cm" integer, "job" character varying, "last_active_at" timestamp(6), "nickname" character varying, "password_digest" character varying, "phone" character varying NOT NULL, "pref_age_max" integer DEFAULT 45 NOT NULL, "pref_age_min" integer DEFAULT 18 NOT NULL, "pref_distance_km" integer DEFAULT 50 NOT NULL, "pref_gender" integer DEFAULT 2 NOT NULL, "pref_show_distance" boolean DEFAULT TRUE NOT NULL, "status" integer DEFAULT 1 NOT NULL, "updated_at" timestamp(6) NOT NULL, "verification_level" integer DEFAULT 0 NOT NULL, "verified_at" timestamp(6)) /*application='Qingyu'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_users_on_gender_and_verification_level_and_status" ON "users" ("gender", "verification_level", "status") /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='Qingyu'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mALTER TABLE "education_verifications" ADD CONSTRAINT "fk_rails_d113bc5df9"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "identity_verifications" ADD CONSTRAINT "fk_rails_3890a13c8b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260811020111) /*application='Qingyu'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20260811020110),
+(20260811020101),
+(20260811020100),
+(20260811020059),
+(20260811020048); /*application='Qingyu'*/[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-08-11 02:17:04.361818', '2026-08-11 02:17:04.361822') RETURNING "key" /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2026-08-11 02:17:04.370603' WHERE "ar_internal_metadata"."key" = 'environment' /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '5a02af05b8590e4c2e64e63ee8109013d0681fe8', '2026-08-11 02:17:04.377423', '2026-08-11 02:17:04.377427') RETURNING "key" /*application='Qingyu'*/[0m
+Started GET "/verification" for ::1 at 2026-08-11 10:19:35 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+Processing by VerificationsController#show as */*
+  [1m[36mSession Load (161.9ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 1 LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mIdentityVerification Load (1.8ms)[0m  [1m[34mSELECT "identity_verifications".* FROM "identity_verifications" WHERE "identity_verifications"."user_id" = 1 ORDER BY "identity_verifications"."created_at" DESC LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/verifications_controller.rb:3:in 'VerificationsController#show'
+  [1m[36mEducationVerification Load (1.4ms)[0m  [1m[34mSELECT "education_verifications".* FROM "education_verifications" WHERE "education_verifications"."user_id" = 1 ORDER BY "education_verifications"."created_at" DESC LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/verifications_controller.rb:4:in 'VerificationsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering verifications/show.html.erb within layouts/application
+  Rendered shared/_verification_badges.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered shared/_verification_badges.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered verifications/show.html.erb within layouts/application (Duration: 4.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.4ms | GC: 0.0ms)
+Completed 200 OK in 355ms (Views: 33.9ms | ActiveRecord: 183.2ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/identity_verification/new" for ::1 at 2026-08-11 10:19:36 +0800
+Processing by IdentityVerificationsController#new as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 1 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendering layout layouts/application.html.erb
+  Rendering identity_verifications/new.html.erb within layouts/application
+  Rendered identity_verifications/new.html.erb within layouts/application (Duration: 10.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | GC: 0.0ms)
+Completed 200 OK in 39ms (Views: 19.9ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/education_verification/new" for ::1 at 2026-08-11 10:19:37 +0800
+Processing by EducationVerificationsController#new as */*
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 1 LIMIT 1 /*action='new',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='new',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendering layout layouts/application.html.erb
+  Rendering education_verifications/new.html.erb within layouts/application
+  Rendered education_verifications/new.html.erb within layouts/application (Duration: 6.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | GC: 0.0ms)
+Completed 200 OK in 38ms (Views: 16.1ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2026-08-11 10:19:43 +0800
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 1.4ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 4.4ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | GC: 0.0ms)
+Completed 200 OK in 34ms (Views: 16.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login_code" for ::1 at 2026-08-11 10:19:43 +0800
+Processing by LoginCodesController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "phone" => "13700000001"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+  [1m[36mSmsCode Create (3.6ms)[0m  [1m[32mINSERT INTO "sms_codes" ("phone", "code_digest", "purpose", "attempts", "expires_at", "consumed_at", "created_at", "updated_at") VALUES ('13700000001', 'b86801dce221e8e6256d9cd0ac66e741f8667d9671555655f999d63b19d6798f', 0, 0, '2026-08-11 02:24:43.319696', NULL, '2026-08-11 02:19:43.320063', '2026-08-11 02:19:43.320063') RETURNING "id" /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+[MOCK-SMS] 登录验证码 524395 已发送至 13700000001（5 分钟内有效）
+  Rendered sessions/_code_step.html.erb (Duration: 3.4ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 5.6ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 0.1ms | ActiveRecord: 7.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2026-08-11 10:19:44 +0800
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 1.5ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 1.9ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 28ms (Views: 5.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2026-08-11 10:19:44 +0800
+Processing by SessionsController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "phone" => "13700000001", "code" => "524395"}
+  [1m[36mSmsCode Load (1.2ms)[0m  [1m[34mSELECT "sms_codes".* FROM "sms_codes" WHERE "sms_codes"."consumed_at" IS NULL AND "sms_codes"."phone" = '13700000001' AND "sms_codes"."purpose" = 0 ORDER BY "sms_codes"."expires_at" DESC LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:13:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mSmsCode Update (3.5ms)[0m  [1m[33mUPDATE "sms_codes" SET "consumed_at" = '2026-08-11 02:19:45.046901', "updated_at" = '2026-08-11 02:19:45.047703' WHERE "sms_codes"."id" = 2 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13700000001' LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mUser Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."phone" = '13700000001' LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("phone", "password_digest", "nickname", "gender", "birthdate", "city", "height_cm", "education_level", "job", "bio", "avatar_photo_id", "verification_level", "verified_at", "pref_gender", "pref_age_min", "pref_age_max", "pref_distance_km", "pref_show_distance", "status", "last_active_at", "created_at", "updated_at") VALUES ('13700000001', NULL, '轻友0001', 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 2, 18, 45, 50, TRUE, 1, NULL, '2026-08-11 02:19:45.066823', '2026-08-11 02:19:45.066823') RETURNING "id" /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+  [1m[36mSession Create (3.4ms)[0m  [1m[32mINSERT INTO "sessions" ("sessionable_type", "sessionable_id", "ip_address", "user_agent", "created_at", "updated_at") VALUES ('User', 2, '::1', 'curl/8.12.1', '2026-08-11 02:19:45.073782', '2026-08-11 02:19:45.073782') RETURNING "id" /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+Redirected to http://localhost:3000/
+↳ app/controllers/sessions_controller.rb:19:in 'SessionsController#create'
+Completed 302 Found in 54ms (ActiveRecord: 15.8ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/identity_verification/new" for ::1 at 2026-08-11 10:19:45 +0800
+Processing by IdentityVerificationsController#new as */*
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 2 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendering layout layouts/application.html.erb
+  Rendering identity_verifications/new.html.erb within layouts/application
+  Rendered identity_verifications/new.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 2.4ms | ActiveRecord: 1.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/identity_verification" for ::1 at 2026-08-11 10:19:45 +0800
+  
+ActionController::BadRequest (Invalid request parameters: Invalid encoding for parameter: ����)
+Caused by: ActionDispatch::InvalidParameterError (Invalid encoding for parameter: ����)
+
+Information for: ActionController::BadRequest (Invalid request parameters: Invalid encoding for parameter: ����):
+  
+
+Information for cause: ActionDispatch::InvalidParameterError (Invalid encoding for parameter: ����):
+  
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:125:in 'ActionDispatch::ParamBuilder#store_nested_param'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:54:in 'block in ActionDispatch::ParamBuilder#from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:49:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:49:in 'ActionDispatch::ParamBuilder#from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:23:in 'ActionDispatch::ParamBuilder.from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:420:in 'block (2 levels) in ActionDispatch::Request#POST'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'block in ActionDispatch::Http::Parameters#parse_formatted_parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'Hash#fetch'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'ActionDispatch::Http::Parameters#parse_formatted_parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:418:in 'block in ActionDispatch::Request#POST'
+rack (3.2.6) lib/rack/request.rb:112:in 'Hash#fetch'
+rack (3.2.6) lib/rack/request.rb:112:in 'Rack::Request::Env#fetch_header'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:414:in 'ActionDispatch::Request#POST'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:57:in 'ActionDispatch::Http::Parameters#parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/filter_parameters.rb:36:in 'ActionDispatch::Http::FilterParameters#filtered_parameters'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:66:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3.1) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.3.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.6) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.6) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.6) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+rack (3.2.6) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.3.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+activerecord (8.1.3.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3.1) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/education_verification/new" for ::1 at 2026-08-11 10:19:45 +0800
+Processing by EducationVerificationsController#new as */*
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 2 LIMIT 1 /*action='new',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='new',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendering layout layouts/application.html.erb
+  Rendering education_verifications/new.html.erb within layouts/application
+  Rendered education_verifications/new.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 4.0ms | ActiveRecord: 2.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/education_verification" for ::1 at 2026-08-11 10:19:46 +0800
+Processing by EducationVerificationsController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "education_verification" => {"verify_code" => "100000000001", "report_no" => "ABCDEF1234567890"}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 2 LIMIT 1 /*action='create',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='create',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ArgumentError (未知的学信网核验服务商: ):
+  
+app/services/verification/education_provider.rb:12:in 'Verification::EducationProvider.for'
+app/services/verification/education_verification_service.rb:44:in 'Verification::EducationVerificationService#provider'
+app/services/verification/education_verification_service.rb:18:in 'Verification::EducationVerificationService#verify'
+app/controllers/education_verifications_controller.rb:8:in 'EducationVerificationsController#create'
+Started GET "/session/new" for ::1 at 2026-08-11 10:20:15 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 13.0ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 16.6ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 20.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 62.5ms | GC: 0.0ms)
+Completed 200 OK in 180ms (Views: 87.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2026-08-11 10:20:22 +0800
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 1.6ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 2.0ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 4.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login_code" for ::1 at 2026-08-11 10:20:22 +0800
+Processing by LoginCodesController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "phone" => "[FILTERED]"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+  [1m[36mSmsCode Create (4.8ms)[0m  [1m[32mINSERT INTO "sms_codes" ("phone", "code_digest", "purpose", "attempts", "expires_at", "consumed_at", "created_at", "updated_at") VALUES ('13700000001', '176622051e1b8aa0d8b90e5f44d770b42b04ed476f9a5e2d763f5365eac9b8f6', 0, 0, '2026-08-11 02:25:22.809056', NULL, '2026-08-11 02:20:22.809656', '2026-08-11 02:20:22.809656') RETURNING "id" /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='login_codes'*/[0m
+  ↳ app/models/sms_code.rb:14:in 'SmsCode.issue_for_login'
+[MOCK-SMS] 登录验证码 018545 已发送至 13700000001（5 分钟内有效）
+  Rendered sessions/_code_step.html.erb (Duration: 10.5ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 14.4ms | GC: 0.0ms)
+Completed 200 OK in 354ms (Views: 0.1ms | ActiveRecord: 23.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2026-08-11 10:20:24 +0800
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 1.6ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 1.9ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | GC: 0.0ms)
+Completed 200 OK in 22ms (Views: 4.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2026-08-11 10:20:24 +0800
+Processing by SessionsController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "phone" => "[FILTERED]", "code" => "[FILTERED]"}
+  [1m[36mSmsCode Load (1.9ms)[0m  [1m[34mSELECT "sms_codes".* FROM "sms_codes" WHERE "sms_codes"."consumed_at" IS NULL AND "sms_codes"."phone" = '13700000001' AND "sms_codes"."purpose" = 0 ORDER BY "sms_codes"."expires_at" DESC LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:13:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mSmsCode Update (4.4ms)[0m  [1m[33mUPDATE "sms_codes" SET "consumed_at" = '2026-08-11 02:20:24.632311', "updated_at" = '2026-08-11 02:20:24.632936' WHERE "sms_codes"."id" = 3 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/models/sms_code.rb:39:in 'SmsCode#consume!'
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13700000001' LIMIT 1 /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:17:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+  [1m[36mSession Create (3.5ms)[0m  [1m[32mINSERT INTO "sessions" ("sessionable_type", "sessionable_id", "ip_address", "user_agent", "created_at", "updated_at") VALUES ('User', 2, '::1', 'curl/8.12.1', '2026-08-11 02:20:24.770464', '2026-08-11 02:20:24.770464') RETURNING "id" /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='sessions'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:42:in 'Authentication#start_new_session_for'
+Redirected to http://localhost:3000/
+↳ app/controllers/sessions_controller.rb:19:in 'SessionsController#create'
+Completed 302 Found in 201ms (ActiveRecord: 20.9ms (4 queries, 0 cached) | GC: 62.5ms)
+
+
+Started GET "/identity_verification/new" for ::1 at 2026-08-11 10:20:24 +0800
+Processing by IdentityVerificationsController#new as */*
+  [1m[36mSession Load (1.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendering layout layouts/application.html.erb
+  Rendering identity_verifications/new.html.erb within layouts/application
+  Rendered identity_verifications/new.html.erb within layouts/application (Duration: 12.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | GC: 0.0ms)
+Completed 200 OK in 161ms (Views: 31.0ms | ActiveRecord: 6.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/identity_verification" for ::1 at 2026-08-11 10:20:25 +0800
+  
+ActionController::BadRequest (Invalid request parameters: Invalid encoding for parameter: ����)
+Caused by: ActionDispatch::InvalidParameterError (Invalid encoding for parameter: ����)
+
+Information for: ActionController::BadRequest (Invalid request parameters: Invalid encoding for parameter: ����):
+  
+
+Information for cause: ActionDispatch::InvalidParameterError (Invalid encoding for parameter: ����):
+  
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:125:in 'ActionDispatch::ParamBuilder#store_nested_param'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:54:in 'block in ActionDispatch::ParamBuilder#from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:49:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:49:in 'ActionDispatch::ParamBuilder#from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:23:in 'ActionDispatch::ParamBuilder.from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:420:in 'block (2 levels) in ActionDispatch::Request#POST'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'block in ActionDispatch::Http::Parameters#parse_formatted_parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'Hash#fetch'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'ActionDispatch::Http::Parameters#parse_formatted_parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:418:in 'block in ActionDispatch::Request#POST'
+rack (3.2.6) lib/rack/request.rb:112:in 'Hash#fetch'
+rack (3.2.6) lib/rack/request.rb:112:in 'Rack::Request::Env#fetch_header'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:414:in 'ActionDispatch::Request#POST'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:57:in 'ActionDispatch::Http::Parameters#parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/filter_parameters.rb:36:in 'ActionDispatch::Http::FilterParameters#filtered_parameters'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:66:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3.1) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.3.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.6) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.6) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.6) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+rack (3.2.6) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.3.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+activerecord (8.1.3.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3.1) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/education_verification/new" for ::1 at 2026-08-11 10:20:25 +0800
+Processing by EducationVerificationsController#new as */*
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='new',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='new',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendering layout layouts/application.html.erb
+  Rendering education_verifications/new.html.erb within layouts/application
+  Rendered education_verifications/new.html.erb within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | GC: 0.0ms)
+Completed 200 OK in 70ms (Views: 15.8ms | ActiveRecord: 3.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/education_verification" for ::1 at 2026-08-11 10:20:26 +0800
+Processing by EducationVerificationsController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "education_verification" => {"verify_code" => "[FILTERED]", "report_no" => "[FILTERED]"}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='create',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='create',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:28:in 'Verification::EducationVerificationService#verify'
+  [1m[36mEducationVerification Create (3.6ms)[0m  [1m[32mINSERT INTO "education_verifications" ("user_id", "verify_code", "report_no", "school", "degree", "education_level", "provider", "status", "rejection_reason", "response", "reviewed_by", "reviewed_at", "verified_at", "created_at", "updated_at") VALUES (2, '100000000001', 'ABCDEF1234567890', '北京大学', '本科', 3, 'mock', 1, NULL, '{"school":"北京大学","degree":"本科","education_level":3}', NULL, NULL, '2026-08-11 02:20:26.300436', '2026-08-11 02:20:26.301048', '2026-08-11 02:20:26.301048') RETURNING "id" /*action='create',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:28:in 'Verification::EducationVerificationService#verify'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:28:in 'Verification::EducationVerificationService#verify'
+  [1m[36mIdentityVerification Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "identity_verifications" WHERE "identity_verifications"."user_id" = 2 AND "identity_verifications"."status" = 1 LIMIT 1 /*action='create',application='Qingyu',controller='education_verifications'*/[0m
+  ↳ app/services/verification/education_verification_service.rb:31:in 'Verification::EducationVerificationService#verify'
+Redirected to http://localhost:3000/verification
+↳ app/controllers/education_verifications_controller.rb:16:in 'EducationVerificationsController#create'
+Completed 302 Found in 62ms (ActiveRecord: 8.2ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/identity_verification/new" for ::1 at 2026-08-11 10:20:35 +0800
+Processing by IdentityVerificationsController#new as */*
+  [1m[36mSession Load (1.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendering layout layouts/application.html.erb
+  Rendering identity_verifications/new.html.erb within layouts/application
+  Rendered identity_verifications/new.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 3.0ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/identity_verification" for ::1 at 2026-08-11 10:20:35 +0800
+  
+ActionController::BadRequest (Invalid request parameters: Invalid encoding for parameter: ����)
+Caused by: ActionDispatch::InvalidParameterError (Invalid encoding for parameter: ����)
+
+Information for: ActionController::BadRequest (Invalid request parameters: Invalid encoding for parameter: ����):
+  
+
+Information for cause: ActionDispatch::InvalidParameterError (Invalid encoding for parameter: ����):
+  
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:125:in 'ActionDispatch::ParamBuilder#store_nested_param'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:54:in 'block in ActionDispatch::ParamBuilder#from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:49:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:49:in 'ActionDispatch::ParamBuilder#from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:23:in 'ActionDispatch::ParamBuilder.from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:420:in 'block (2 levels) in ActionDispatch::Request#POST'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'block in ActionDispatch::Http::Parameters#parse_formatted_parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'Hash#fetch'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'ActionDispatch::Http::Parameters#parse_formatted_parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:418:in 'block in ActionDispatch::Request#POST'
+rack (3.2.6) lib/rack/request.rb:112:in 'Hash#fetch'
+rack (3.2.6) lib/rack/request.rb:112:in 'Rack::Request::Env#fetch_header'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:414:in 'ActionDispatch::Request#POST'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:57:in 'ActionDispatch::Http::Parameters#parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/filter_parameters.rb:36:in 'ActionDispatch::Http::FilterParameters#filtered_parameters'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:66:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3.1) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.3.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.6) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.6) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.6) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+rack (3.2.6) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.3.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+activerecord (8.1.3.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3.1) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/verification" for ::1 at 2026-08-11 10:20:36 +0800
+Processing by VerificationsController#show as */*
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mIdentityVerification Load (0.8ms)[0m  [1m[34mSELECT "identity_verifications".* FROM "identity_verifications" WHERE "identity_verifications"."user_id" = 2 ORDER BY "identity_verifications"."created_at" DESC LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/verifications_controller.rb:3:in 'VerificationsController#show'
+  [1m[36mEducationVerification Load (1.2ms)[0m  [1m[34mSELECT "education_verifications".* FROM "education_verifications" WHERE "education_verifications"."user_id" = 2 ORDER BY "education_verifications"."created_at" DESC LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/verifications_controller.rb:4:in 'VerificationsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering verifications/show.html.erb within layouts/application
+  Rendered shared/_verification_badges.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered shared/_verification_badges.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered verifications/show.html.erb within layouts/application (Duration: 5.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | GC: 0.0ms)
+Completed 200 OK in 47ms (Views: 17.1ms | ActiveRecord: 3.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/identity_verification/new" for ::1 at 2026-08-11 10:20:45 +0800
+Processing by IdentityVerificationsController#new as */*
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='new',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  Rendering layout layouts/application.html.erb
+  Rendering identity_verifications/new.html.erb within layouts/application
+  Rendered identity_verifications/new.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | GC: 0.0ms)
+Completed 200 OK in 28ms (Views: 3.3ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/identity_verification" for ::1 at 2026-08-11 10:20:45 +0800
+Processing by IdentityVerificationsController#create as */*
+  Parameters: {"authenticity_token" => "[FILTERED]", "identity_verification" => {"full_name" => "[FILTERED]", "id_number" => "[FILTERED]"}}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:29:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mIdentityVerification Create (3.6ms)[0m  [1m[32mINSERT INTO "identity_verifications" ("user_id", "full_name", "id_number", "provider", "status", "rejection_reason", "response", "reviewed_by", "reviewed_at", "verified_at", "created_at", "updated_at") VALUES (2, 'WangWu', '{"p":"9nlH592C/diAJygPiZ/h7IhI","h":{"iv":"I8SuGTdhqRTMYJMx","at":"K8FufMstah54HPRVbano6Q=="}}', 'mock', 1, NULL, '{"masked_id_number":"1101**********002X"}', NULL, NULL, '2026-08-11 02:20:45.512941', '2026-08-11 02:20:45.513462', '2026-08-11 02:20:45.513462') RETURNING "id" /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:29:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:29:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mEducationVerification Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "education_verifications" WHERE "education_verifications"."user_id" = 2 AND "education_verifications"."status" = 1 LIMIT 1 /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:32:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:33:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "verification_level" = 2, "verified_at" = '2026-08-11 02:20:45.560931', "updated_at" = '2026-08-11 02:20:45.568810' WHERE "users"."id" = 2 /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:33:in 'Verification::IdCardVerificationService#verify'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='identity_verifications'*/[0m
+  ↳ app/services/verification/id_card_verification_service.rb:33:in 'Verification::IdCardVerificationService#verify'
+Redirected to http://localhost:3000/verification
+↳ app/controllers/identity_verifications_controller.rb:17:in 'IdentityVerificationsController#create'
+Completed 302 Found in 94ms (ActiveRecord: 17.8ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/verification" for ::1 at 2026-08-11 10:20:45 +0800
+Processing by VerificationsController#show as */*
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mIdentityVerification Load (0.8ms)[0m  [1m[34mSELECT "identity_verifications".* FROM "identity_verifications" WHERE "identity_verifications"."user_id" = 2 ORDER BY "identity_verifications"."created_at" DESC LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/verifications_controller.rb:3:in 'VerificationsController#show'
+  [1m[36mEducationVerification Load (1.1ms)[0m  [1m[34mSELECT "education_verifications".* FROM "education_verifications" WHERE "education_verifications"."user_id" = 2 ORDER BY "education_verifications"."created_at" DESC LIMIT 1 /*action='show',application='Qingyu',controller='verifications'*/[0m
+  ↳ app/controllers/verifications_controller.rb:4:in 'VerificationsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering verifications/show.html.erb within layouts/application
+  Rendered shared/_verification_badges.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_verification_badges.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered verifications/show.html.erb within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 33ms (Views: 3.1ms | ActiveRecord: 3.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+

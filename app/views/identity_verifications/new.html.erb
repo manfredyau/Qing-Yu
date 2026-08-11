@@ -1,0 +1,48 @@
+<% content_for(:title) { "身份证实名认证 · 轻遇" } %>
+
+<div class="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 py-8">
+  <header class="mb-6 flex items-center gap-3">
+    <%= link_to verification_path, class: "flex h-9 w-9 items-center justify-center rounded-xl bg-white text-gray-500 shadow-sm" do %>
+      <span aria-hidden="true">←</span>
+    <% end %>
+    <div>
+      <h1 class="text-xl font-bold text-gray-900">身份证实名认证</h1>
+      <p class="text-sm text-gray-400">仅用于真实身份核验，加密存储</p>
+    </div>
+  </header>
+
+  <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+    <%= form_with model: @verification, url: identity_verification_path, class: "space-y-5" do |f| %>
+      <% if @verification.errors.any? %>
+        <div class="rounded-xl bg-red-50 p-4 text-sm text-red-600">
+          <%= @verification.errors.full_messages.first %>
+        </div>
+      <% end %>
+
+      <div>
+        <%= f.label :full_name, "真实姓名", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :full_name, required: true, autocomplete: "name", maxlength: 30,
+              placeholder: "与身份证一致", class: field_class %>
+      </div>
+
+      <div>
+        <%= f.label :id_number, "身份证号", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :id_number, required: true, autocomplete: "off", maxlength: 18,
+              inputmode: "numeric", placeholder: "18 位身份证号码", class: field_class %>
+      </div>
+
+      <div>
+        <%= f.label :id_card_photo, "身份证照片（选填，加快人工复核）", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.file_field :id_card_photo, accept: "image/*", class: "mt-1.5 w-full rounded-xl border border-gray-200 text-sm text-gray-500 file:mr-3 file:cursor-pointer file:rounded-lg file:border-0 file:bg-teal-50 file:px-3 file:py-2 file:text-teal-700" %>
+      </div>
+
+      <%= f.submit "提交核验", class: "w-full cursor-pointer rounded-xl bg-teal-600 px-4 py-3.5 font-semibold text-white shadow-sm hover:bg-teal-500" %>
+    <% end %>
+
+    <div class="mt-5 rounded-xl bg-gray-50 p-4 text-xs leading-relaxed text-gray-500">
+      <p class="font-medium text-gray-600">开发演示说明（Mock 模式）</p>
+      <p class="mt-1">· 身份证需通过真实校验位算法校验（GB 11643-1999）</p>
+      <p class="mt-1">· 姓名含「李四 / 测试失败 / 无效」会模拟核验失败</p>
+    </div>
+  </div>
+</div>

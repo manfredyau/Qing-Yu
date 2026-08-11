@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_11_020101) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_11_020111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,6 +21,43 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_020101) do
     t.string "password_digest", null: false
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_admin_users_on_email_address", unique: true
+  end
+
+  create_table "education_verifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "degree"
+    t.integer "education_level", default: 0, null: false
+    t.string "provider", default: "mock", null: false
+    t.string "rejection_reason"
+    t.string "report_no", null: false
+    t.jsonb "response"
+    t.datetime "reviewed_at"
+    t.integer "reviewed_by"
+    t.string "school"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.datetime "verified_at"
+    t.string "verify_code", null: false
+    t.index ["user_id", "status"], name: "index_education_verifications_on_user_id_and_status"
+    t.index ["user_id"], name: "index_education_verifications_on_user_id"
+  end
+
+  create_table "identity_verifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "full_name", null: false
+    t.string "id_number", null: false
+    t.string "provider", default: "mock", null: false
+    t.string "rejection_reason"
+    t.jsonb "response"
+    t.datetime "reviewed_at"
+    t.integer "reviewed_by"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.datetime "verified_at"
+    t.index ["user_id", "status"], name: "index_identity_verifications_on_user_id_and_status"
+    t.index ["user_id"], name: "index_identity_verifications_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -71,4 +108,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_020101) do
     t.index ["gender", "verification_level", "status"], name: "index_users_on_gender_and_verification_level_and_status"
     t.index ["phone"], name: "index_users_on_phone", unique: true
   end
+
+  add_foreign_key "education_verifications", "users"
+  add_foreign_key "identity_verifications", "users"
 end

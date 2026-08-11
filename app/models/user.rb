@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   has_many :sessions, as: :sessionable, dependent: :destroy
+  has_many :identity_verifications, dependent: :destroy
+  has_many :education_verifications, dependent: :destroy
 
   normalizes :phone, with: ->(phone) { phone.to_s.strip.gsub(/\s+/, "") }
   normalizes :nickname, with: ->(nickname) { nickname.to_s.strip }
