@@ -1,119 +1,85 @@
-# Name of your application. Used to uniquely configure containers.
+# 轻遇 (Qingyu) · Kamal 2 部署配置
+#
+# 使用前需替换三处占位：
+#   1. image / registry —— 你的镜像仓库（GHCR / Docker Hub / 阿里云 ACR 等）
+#   2. servers.web —— 你的服务器 IP
+#   3. proxy.host —— 你的域名（启用 HTTPS 时）
+# 所有密码类配置只通过 .kamal/secrets 注入，不要写在这里。
+
 service: qingyu
 
-# Name of the container image (use your-user/app-name on external registries).
-image: qingyu
+# 容器镜像名（registry.server 已含 ghcr.io，这里只写 账号/镜像名）
+image: your-github-name/qingyu
 
-# Deploy to these servers.
+# 部署目标服务器（替换为你的真实 IP）
 servers:
   web:
-    - 192.168.0.1
+    - 1.2.3.4
+  # 多服务器/独立 Job 进程时启用：
   # job:
   #   hosts:
-  #     - 192.168.0.1
+  #     - 1.2.3.4
   #   cmd: bin/jobs
 
-# Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.
-# If used with Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
-#
-# Using an SSL proxy like this requires turning on config.assume_ssl and config.force_ssl in production.rb!
-#
-# Don't use this when deploying to multiple web servers (then you have to terminate SSL at your load balancer).
-#
-# proxy:
-#   ssl: true
-#   host: app.example.com
+# 启用 Let's Encrypt 自动 HTTPS + Traefik 反向代理
+# 使用前：替换 host 为你的域名，并在 production.rb 打开 config.assume_ssl / config.force_ssl
+proxy:
+  ssl: true
+  host: app.example.com
 
-# Where you keep your container images.
+# 镜像仓库（替换为你的实际仓库）
 registry:
-  # Alternatives: hub.docker.com / registry.digitalocean.com / ghcr.io / ...
-  server: localhost:5555
+  server: ghcr.io
+  username: your-github-name
+  # 从 .kamal/secrets 读取仓库访问令牌（GHCR 用 GitHub PAT，权限 packages:write）
+  password:
+    - KAMAL_REGISTRY_PASSWORD
 
-  # Needed for authenticated registries.
-  # username: your-user
-
-  # Always use an access token rather than real password when possible.
-  # password:
-  #   - KAMAL_REGISTRY_PASSWORD
-
-# Inject ENV variables into containers (secrets come from .kamal/secrets).
+# 注入容器的环境变量
 env:
   secret:
     - RAILS_MASTER_KEY
+    - QINGYU_DATABASE_PASSWORD
+    - ID_CARD_PROVIDER
+    - EDUCATION_PROVIDER
   clear:
-    # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
-    # When you start using multiple servers, you should split out job processing to a dedicated machine.
+    # Solid Queue 随 Puma 进程内运行（单机部署推荐；多机时拆出独立 job 服务器）
     SOLID_QUEUE_IN_PUMA: true
-
-    # Set number of processes dedicated to Solid Queue (default: 1)
-    # JOB_CONCURRENCY: 3
-
-    # Set number of cores available to the application on each server (default: 1).
-    # WEB_CONCURRENCY: 2
-
-    # Match this to any external database server to configure Active Record correctly
-    # Use qingyu-db for a db accessory server on same machine via local kamal docker network.
-    # DB_HOST: 192.168.0.2
-
-    # Log everything from Rails
+    # 数据库指向同机的 Postgres accessory（Kamal docker 网络内主机名）
+    DB_HOST: qingyu-db
+    DB_USERNAME: postgres
     # RAILS_LOG_LEVEL: debug
 
-# Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
-# "bin/kamal logs -r job" will tail logs from the first server in the job section.
+# 快捷命令：bin/kamal console / logs / dbc ...
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
   shell: app exec --interactive --reuse "bash"
   logs: app logs -f
   dbc: app exec --interactive --reuse "bin/rails dbconsole --include-password"
 
-# Use a persistent storage volume for sqlite database files and local Active Storage files.
-# Recommended to change this to a mounted volume path that is backed up off server.
+# 持久化 Active Storage 本地文件（生产推荐换 S3 等对象存储）
 volumes:
   - "qingyu_storage:/rails/storage"
 
-# Bridge fingerprinted assets, like JS and CSS, between versions to avoid
-# hitting 404 on in-flight requests. Combines all files from new and old
-# version inside the asset_path.
+# 新旧版本间桥接指纹资源，避免部署瞬间 404
 asset_path: /rails/public/assets
 
-# Configure the image builder.
+# 镜像构建
 builder:
   arch: amd64
 
-  # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
-  # remote: ssh://docker@docker-builder-server
-  #
-  # # Pass arguments and secrets to the Docker build process
-  # args:
-  #   RUBY_VERSION: ruby-4.0.6
-  # secrets:
-  #   - GITHUB_TOKEN
-  #   - RAILS_MASTER_KEY
-
-# Use a different ssh user than root
-# ssh:
-#   user: app
-
-# Use accessory services (secrets come from .kamal/secrets).
-# accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
-#     # Change to 3306 to expose port to the world instead of just local network.
-#     port: "127.0.0.1:3306:3306"
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
-#   redis:
-#     image: valkey/valkey:8
-#     host: 192.168.0.2
-#     port: 6379
-#     directories:
-#       - data:/data
+# PostgreSQL 数据库 accessory（与应用同机）
+accessories:
+  db:
+    image: postgres:17
+    host: 1.2.3.4   # 与应用同机，填服务器 IP
+    port: "127.0.0.1:5432:5432"   # 仅本机可连，不对外暴露
+    env:
+      clear:
+        POSTGRES_USER: postgres
+      secret:
+        - QINGYU_DATABASE_PASSWORD   # 即 POSTGRES_PASSWORD，与应用连接密码一致
+    files:
+      - config/init/production.sql:/docker-entrypoint-initdb.d/001_create_databases.sql
+    directories:
+      - data:/var/lib/postgresql/data

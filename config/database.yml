@@ -78,8 +78,10 @@ production:
   primary: &primary_production
     <<: *default
     database: qingyu_production
-    username: qingyu
-    password: <%= ENV["QINGYU_DATABASE_PASSWORD"] %>
+    username: <%= ENV.fetch("DB_USERNAME", "qingyu") %>
+    password: <%= ENV.fetch("QINGYU_DATABASE_PASSWORD", "qingyu_dev") %>
+    host: <%= ENV.fetch("DB_HOST", "localhost") %>
+    port: <%= ENV.fetch("DB_PORT", 5432) %>
   cache:
     <<: *primary_production
     database: qingyu_production_cache

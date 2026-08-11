@@ -150,20 +150,51 @@ bin/rails test
 79 个测试覆盖：认证校验/加密、Mock 服务商、推荐过滤、配对、聊天未读、后台审核、Native 端点。
 （Windows 下线程并行加载 fixtures 会触发 PG 死锁，已默认单线程；CI 可用 `PARALLEL_WORKERS` 覆盖。）
 
-## 🌍 部署
+## 🌍 部署（Kamal 2 · Rails 官方推荐）
 
-Rails 8 标配 Docker + Kamal：
+Rails 8 标配 **Kamal 2** + Docker + Solid Queue/Cache/Cable（生产无需 Redis）。
+`config/deploy.yml` 已针对本应用定制：Postgres 17 accessory（自动建 4 个库）、
+生产凭据、Active Storage 持久卷、Let's Encrypt HTTPS 模板。
 
-```bash
-docker build -t qingyu .
-bin/kamal setup   # 生产部署（需配置 config/deploy.yml 与 .kamal/secrets）
-```
-
-生产必配环境变量：
+### 一键部署流程
 
 ```bash
-SECRET_KEY_BASE=...                    RAILS_MASTER_KEY=...
-QINGYU_DATABASE_PASSWORD=...           RAILS_ENCRYPTION_PRIMARY_KEY=...
-RAILS_ENCRYPTION_DETERMINISTIC_KEY=... RAILS_ENCRYPTION_KEY_DERIVATION_SALT=...
-ID_CARD_PROVIDER=aliyun                EDUCATION_PROVIDER=xuexin   # 真实服务商
+# 0. 前置：一台 Linux 服务器（装好 Docker）+ 一个镜像仓库（如 GHCR）
+#    本机需安装 Docker 且已登录仓库（docker login ghcr.io）
+
+# 1. 修改 config/deploy.yml 三处占位：
+#    - image/registry  → 你的镜像仓库（如 ghcr.io/yourname/qingyu）
+#    - servers.web     → 你的服务器 IP
+#    - proxy.host      → 你的域名（HTTPS，需在 production.rb 打开 assume_ssl/force_ssl）
+
+# 2. 注入密钥（生产凭据 key 已生成，勿入库）：
+export QINGYU_DATABASE_PASSWORD='强密码'      # 应用 + Postgres 共用
+export KAMAL_REGISTRY_PASSWORD='仓库令牌'     # GHCR 用 GitHub PAT(packages:write)
+export ID_CARD_PROVIDER='mock'                # 生产换成 aliyun/tencent
+export EDUCATION_PROVIDER='mock'              # 生产换成 xuexin/aliyun
+
+# 3. 部署
+bin/kamal setup      # 首次：建服务器环境、启动 Postgres、构建镜像、部署
+bin/kamal deploy     # 以后每次发布
+bin/kamal logs -f    # 查看日志
+bin/kamal console    # 打开 Rails console
+bin/kamal dbc        # 打开数据库 console
 ```
+
+### 密钥管理
+
+| 密钥 | 位置 | 说明 |
+|---|---|---|
+| `RAILS_MASTER_KEY` | `.kamal/secrets` 自动读取 `config/credentials/production.key` | 生产凭据解密密钥（已生成，**严禁入库**） |
+| `secret_key_base` + 实名加密密钥 | `config/credentials/production.yml.enc`（已生成，可入库） | 由 production.rb 自动读取 |
+| `QINGYU_DATABASE_PASSWORD` | 环境变量 → `.kamal/secrets` | Postgres 与应用连接共用 |
+| `KAMAL_REGISTRY_PASSWORD` | 环境变量 → `.kamal/secrets` | 镜像仓库令牌 |
+
+> 首次部署后需执行 `bin/kamal app exec --reuse "bin/rails db:prepare"` 迁移建表
+> （`docker-entrypoint` 会自动执行 `db:prepare`，若未生效可手动执行）。
+
+### 说明
+
+- **HTTP 访问**：不配置域名时直接 `http://服务器IP`（Traefik 接管 80 端口）
+- **HTTPS**：配置 `proxy.ssl: true` + 域名后自动申请 Let's Encrypt 证书
+- **照片存储**：默认持久卷 `/rails/storage`；数据量大后建议切换 S3（改 `config/storage.yml` + `active_storage.service`）

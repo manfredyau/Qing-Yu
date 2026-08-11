@@ -3,6 +3,10 @@
 /.env.*
 !/.env.example
 
+# 凭据密钥（.enc 加密文件可入库，.key 严禁入库）
+/config/credentials/*.key
+/config/master.key
+
 # 依赖
 /vendor/bundle
 /node_modules
