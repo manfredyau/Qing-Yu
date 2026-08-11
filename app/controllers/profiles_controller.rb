@@ -1,4 +1,10 @@
 class ProfilesController < ApplicationController
+  # 「我的」页（原生 Tab 3）
+  def show
+    @identity = current_user.identity_verifications.order(created_at: :desc).first
+    @education = current_user.education_verifications.order(created_at: :desc).first
+  end
+
   def edit
   end
 

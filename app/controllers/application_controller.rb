@@ -1,12 +1,13 @@
 class ApplicationController < ActionController::Base
   include Authentication
+  include DeviceFormat
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
 
-  helper_method :current_user, :admin_user
+  helper_method :current_user, :admin_user, :turbo_native_app?
 
   private
     def current_user
@@ -15,5 +16,10 @@ class ApplicationController < ActionController::Base
 
     def admin_user
       Current.admin_user
+    end
+
+    # Hotwire Native 壳应用（iOS/Android）的 UA 含 "Turbo Native"
+    def turbo_native_app?
+      request.user_agent.to_s.match?(/Turbo Native/i)
     end
 end
