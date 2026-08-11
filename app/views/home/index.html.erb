@@ -37,9 +37,15 @@
       </div>
     <% end %>
 
-    <div class="mt-4 rounded-2xl border border-dashed border-gray-200 bg-white p-6 text-center">
-      <p class="text-sm font-medium text-gray-500">每日精选推荐</p>
-      <p class="mt-1 text-xs text-gray-400">M4 上线：每天只推荐几位，不刷屏</p>
+    <div class="mt-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-700">每日精选推荐</p>
+          <p class="mt-0.5 text-xs text-gray-400">每天只推荐 <%= RecommendationService::DAILY_LIMIT %> 位，不刷屏</p>
+        </div>
+        <%= link_to "开始推荐 →", feed_path,
+              class: "rounded-xl bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500" %>
+      </div>
     </div>
 
     <!-- 资料完整度 -->

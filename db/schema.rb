@@ -51,6 +51,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_022343) do
     t.index ["email_address"], name: "index_admin_users_on_email_address", unique: true
   end
 
+  create_table "blocks", force: :cascade do |t|
+    t.bigint "blocked_id", null: false
+    t.bigint "blocker_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blocked_id"], name: "index_blocks_on_blocked_id"
+    t.index ["blocker_id", "blocked_id"], name: "index_blocks_on_blocker_id_and_blocked_id", unique: true
+    t.index ["blocker_id"], name: "index_blocks_on_blocker_id"
+  end
+
   create_table "education_verifications", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "degree"
@@ -94,6 +104,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_022343) do
     t.string "name", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_interests_on_name", unique: true
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "last_message_at"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_a_id", null: false
+    t.bigint "user_b_id", null: false
+    t.index ["last_message_at"], name: "index_matches_on_last_message_at"
+    t.index ["user_a_id", "user_b_id"], name: "index_matches_on_user_a_id_and_user_b_id", unique: true
+    t.index ["user_a_id"], name: "index_matches_on_user_a_id"
+    t.index ["user_b_id"], name: "index_matches_on_user_b_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -142,6 +165,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_022343) do
     t.index ["phone", "purpose", "expires_at"], name: "index_sms_codes_on_phone_and_purpose_and_expires_at"
   end
 
+  create_table "swipes", force: :cascade do |t|
+    t.integer "action", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.bigint "liker_id", null: false
+    t.bigint "target_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["liker_id", "created_at"], name: "index_swipes_on_liker_id_and_created_at"
+    t.index ["liker_id", "target_id"], name: "index_swipes_on_liker_id_and_target_id", unique: true
+    t.index ["liker_id"], name: "index_swipes_on_liker_id"
+    t.index ["target_id"], name: "index_swipes_on_target_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.bigint "avatar_photo_id"
     t.text "bio"
@@ -171,9 +206,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_022343) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blocks", "users", column: "blocked_id"
+  add_foreign_key "blocks", "users", column: "blocker_id"
   add_foreign_key "education_verifications", "users"
   add_foreign_key "identity_verifications", "users"
+  add_foreign_key "matches", "users", column: "user_a_id"
+  add_foreign_key "matches", "users", column: "user_b_id"
   add_foreign_key "photos", "users"
   add_foreign_key "profile_interests", "interests"
   add_foreign_key "profile_interests", "users"
+  add_foreign_key "swipes", "users", column: "liker_id"
+  add_foreign_key "swipes", "users", column: "target_id"
 end

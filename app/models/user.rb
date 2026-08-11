@@ -8,6 +8,14 @@ class User < ApplicationRecord
   has_many :photos, dependent: :destroy
   has_many :profile_interests, dependent: :destroy
   has_many :interests, through: :profile_interests
+  has_many :swipes, foreign_key: :liker_id, dependent: :destroy, inverse_of: :liker
+  has_many :matches_a, class_name: "Match", foreign_key: :user_a_id, dependent: :destroy, inverse_of: :user_a
+  has_many :matches_b, class_name: "Match", foreign_key: :user_b_id, dependent: :destroy, inverse_of: :user_b
+  has_many :blocks, foreign_key: :blocker_id, dependent: :destroy, inverse_of: :blocker
+
+  def matches
+    Match.where("user_a_id = ? OR user_b_id = ?", id, id)
+  end
 
   normalizes :phone, with: ->(phone) { phone.to_s.strip.gsub(/\s+/, "") }
   normalizes :nickname, with: ->(nickname) { nickname.to_s.strip }

@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     patch :set_primary, on: :member
   end
 
+  # 轻量推荐（每日限额 + 滑卡）
+  resource :feed, only: :show, controller: "feeds"
+  resources :swipes, only: :create
+  resources :matches, only: :index
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

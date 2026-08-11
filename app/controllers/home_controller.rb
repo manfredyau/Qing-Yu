@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    # 登录后按完成度引导：实名认证 → 完善资料 → 进入推荐（各里程碑逐步接入）
+    # 已实名 + 资料完善 → 直接进入每日推荐；否则留在首页引导
+    redirect_to feed_path if current_user.verified? && current_user.profile_complete?
   end
 end
