@@ -16,6 +16,9 @@ class MatcherService
 
   def self.create_match(user_a, user_b)
     a, b = [ user_a, user_b ].sort_by(&:id)
-    Match.active.find_or_create_by!(user_a_id: a.id, user_b_id: b.id)
+    match = Match.active.find_or_create_by!(user_a_id: a.id, user_b_id: b.id)
+    MatchMembership.find_or_create_by!(match: match, user: a)
+    MatchMembership.find_or_create_by!(match: match, user: b)
+    match
   end
 end

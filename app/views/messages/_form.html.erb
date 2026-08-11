@@ -1,0 +1,10 @@
+<turbo-frame id="chat-form">
+  <%= form_with model: [ match, message ], url: match_messages_path(match), class: "flex items-center gap-2" do |f| %>
+    <% if message.errors.any? %>
+      <p class="text-xs text-red-500"><%= message.errors.full_messages.first %></p>
+    <% end %>
+    <%= f.text_field :body, placeholder: "输入消息…", autocomplete: "off", maxlength: 500,
+          class: "flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm focus:border-teal-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-100" %>
+    <%= f.submit "发送", class: "shrink-0 cursor-pointer rounded-full bg-teal-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-500" %>
+  <% end %>
+</turbo-frame>

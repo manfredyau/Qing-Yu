@@ -106,6 +106,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_022343) do
     t.index ["name"], name: "index_interests_on_name", unique: true
   end
 
+  create_table "match_memberships", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "last_read_at"
+    t.bigint "match_id", null: false
+    t.datetime "muted_at"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["match_id", "user_id"], name: "index_match_memberships_on_match_id_and_user_id", unique: true
+    t.index ["match_id"], name: "index_match_memberships_on_match_id"
+    t.index ["user_id"], name: "index_match_memberships_on_user_id"
+  end
+
   create_table "matches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "last_message_at"
@@ -117,6 +129,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_022343) do
     t.index ["user_a_id", "user_b_id"], name: "index_matches_on_user_a_id_and_user_b_id", unique: true
     t.index ["user_a_id"], name: "index_matches_on_user_a_id"
     t.index ["user_b_id"], name: "index_matches_on_user_b_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.bigint "match_id", null: false
+    t.bigint "sender_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id", "created_at"], name: "index_messages_on_match_id_and_created_at"
+    t.index ["match_id"], name: "index_messages_on_match_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -210,8 +233,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_11_022343) do
   add_foreign_key "blocks", "users", column: "blocker_id"
   add_foreign_key "education_verifications", "users"
   add_foreign_key "identity_verifications", "users"
+  add_foreign_key "match_memberships", "matches"
+  add_foreign_key "match_memberships", "users"
   add_foreign_key "matches", "users", column: "user_a_id"
   add_foreign_key "matches", "users", column: "user_b_id"
+  add_foreign_key "messages", "matches"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "photos", "users"
   add_foreign_key "profile_interests", "interests"
   add_foreign_key "profile_interests", "users"

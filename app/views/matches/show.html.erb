@@ -1,0 +1,37 @@
+<% content_for(:title) { "聊天 · 轻遇" } %>
+<% other = @match.other_user(current_user) %>
+
+<div class="mx-auto flex h-dvh w-full max-w-md flex-col">
+  <header class="flex items-center gap-3 border-b border-gray-100 bg-white px-4 py-3">
+    <%= link_to matches_path, class: "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-gray-500 hover:bg-gray-50" do %>
+      <span aria-hidden="true">←</span>
+    <% end %>
+    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-gray-100">
+      <% if other.avatar_photo&.file&.attached? %>
+        <%= image_tag other.avatar_photo.file.variant(resize_to_fill: [ 80, 80 ]), class: "h-full w-full object-cover" %>
+      <% else %>
+        <div class="flex h-full w-full items-center justify-center text-xl">👤</div>
+      <% end %>
+    </div>
+    <div class="min-w-0 flex-1">
+      <p class="truncate font-semibold text-gray-900">
+        <%= other.display_name %>
+        <span class="ml-1 text-sm font-normal text-gray-400"><%= other.age %> 岁</span>
+        <%= render "shared/verification_badges", verified: other.verified?, label: "已实名" %>
+      </p>
+      <p class="text-xs text-gray-400">请真诚交流，尊重彼此</p>
+    </div>
+  </header>
+
+  <%= turbo_stream_from [ @match, :messages ] %>
+
+  <div id="match_messages" data-controller="chat-messages" class="flex-1 space-y-3 overflow-y-auto bg-[#f7faf9] px-4 py-4">
+    <% @messages.each do |message| %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+  </div>
+
+  <div class="border-t border-gray-100 bg-white px-4 py-3">
+    <%= render "messages/form", match: @match, message: @match.messages.build %>
+  </div>
+</div>

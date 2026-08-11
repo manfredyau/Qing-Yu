@@ -2588,3 +2588,423 @@ Completed 200 OK in 51ms (Views: 24.5ms | ActiveRecord: 4.5ms (7 queries, 0 cach
   ↳ app/services/recommendation_service.rb:28:in 'RecommendationService#swipes_today'
   [1m[36mCACHE Swipe Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "swipes" WHERE "swipes"."liker_id" = 2 AND (created_at >= '2026-08-10 16:00:00')[0m
   ↳ app/services/recommendation_service.rb:28:in 'RecommendationService#swipes_today'
+Started GET "/session/new" for ::1 at 2026-08-11 11:00:57 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/_phone_step.html.erb (Duration: 14.1ms | GC: 0.0ms)
+  Rendered sessions/_login_card.html.erb (Duration: 17.4ms | GC: 0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 20.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 67.0ms | GC: 0.0ms)
+Completed 200 OK in 217ms (Views: 91.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+Migrating to CreateMessages (20260811020140)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (12.2ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "match_id" bigint NOT NULL, "sender_id" bigint NOT NULL, "body" text NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_88a76dcf4b"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+, CONSTRAINT "fk_rails_b8f26a382d"
+FOREIGN KEY ("sender_id")
+  REFERENCES "users" ("id")
+) /*application='Qingyu'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_messages_on_match_id" ON "messages" ("match_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_messages_on_sender_id" ON "messages" ("sender_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_messages_on_match_id_and_created_at" ON "messages" ("match_id", "created_at") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020140') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+Migrating to CreateMatchMemberships (20260811020141)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='Qingyu'*/[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE TABLE "match_memberships" ("id" bigserial primary key, "match_id" bigint NOT NULL, "user_id" bigint NOT NULL, "last_read_at" timestamp(6), "muted_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e14f6e09bc"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+, CONSTRAINT "fk_rails_53dfd411cd"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_match_memberships_on_match_id" ON "match_memberships" ("match_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_match_memberships_on_user_id" ON "match_memberships" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_match_memberships_on_match_id_and_user_id" ON "match_memberships" ("match_id", "user_id") /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260811020141') RETURNING "version" /*application='Qingyu'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Qingyu'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5161632461515394655) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mSET search_path TO public /*application='Qingyu'*/[0m
+  [1m[35m (402.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "qingyu_test" /*application='Qingyu'*/[0m
+  [1m[35m (341.3ms)[0m  [1m[35mCREATE DATABASE "qingyu_test" ENCODING = 'unicode' /*application='Qingyu'*/[0m
+  [1m[35mSQL (209.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (11.5ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "name" character varying NOT NULL, "record_id" bigint NOT NULL, "record_type" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "byte_size" bigint NOT NULL, "checksum" character varying, "content_type" character varying, "created_at" timestamp(6) NOT NULL, "filename" character varying NOT NULL, "key" character varying NOT NULL, "metadata" text, "service_name" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='Qingyu'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "admin_users" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "admin_users" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "email_address" character varying NOT NULL, "name" character varying, "password_digest" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admin_users_on_email_address" ON "admin_users" ("email_address") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "blocks" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "blocks" ("id" bigserial primary key, "blocked_id" bigint NOT NULL, "blocker_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE INDEX "index_blocks_on_blocked_id" ON "blocks" ("blocked_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_blocks_on_blocker_id_and_blocked_id" ON "blocks" ("blocker_id", "blocked_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_blocks_on_blocker_id" ON "blocks" ("blocker_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "education_verifications" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "education_verifications" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "degree" character varying, "education_level" integer DEFAULT 0 NOT NULL, "provider" character varying DEFAULT 'mock' NOT NULL, "rejection_reason" character varying, "report_no" character varying NOT NULL, "response" jsonb, "reviewed_at" timestamp(6), "reviewed_by" integer, "school" character varying, "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL, "verified_at" timestamp(6), "verify_code" character varying NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE INDEX "index_education_verifications_on_user_id_and_status" ON "education_verifications" ("user_id", "status") /*application='Qingyu'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_education_verifications_on_user_id" ON "education_verifications" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "identity_verifications" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "identity_verifications" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "full_name" character varying NOT NULL, "id_number" character varying NOT NULL, "provider" character varying DEFAULT 'mock' NOT NULL, "rejection_reason" character varying, "response" jsonb, "reviewed_at" timestamp(6), "reviewed_by" integer, "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL, "verified_at" timestamp(6)) /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_identity_verifications_on_user_id_and_status" ON "identity_verifications" ("user_id", "status") /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_identity_verifications_on_user_id" ON "identity_verifications" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "interests" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "interests" ("id" bigserial primary key, "category" character varying, "created_at" timestamp(6) NOT NULL, "name" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_interests_on_name" ON "interests" ("name") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "match_memberships" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "match_memberships" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "last_read_at" timestamp(6), "match_id" bigint NOT NULL, "muted_at" timestamp(6), "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_match_memberships_on_match_id_and_user_id" ON "match_memberships" ("match_id", "user_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_match_memberships_on_match_id" ON "match_memberships" ("match_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_match_memberships_on_user_id" ON "match_memberships" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "matches" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "matches" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "last_message_at" timestamp(6), "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_a_id" bigint NOT NULL, "user_b_id" bigint NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_matches_on_last_message_at" ON "matches" ("last_message_at") /*application='Qingyu'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_matches_on_user_a_id_and_user_b_id" ON "matches" ("user_a_id", "user_b_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE INDEX "index_matches_on_user_a_id" ON "matches" ("user_a_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_matches_on_user_b_id" ON "matches" ("user_b_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "messages" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "body" text NOT NULL, "created_at" timestamp(6) NOT NULL, "match_id" bigint NOT NULL, "sender_id" bigint NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_messages_on_match_id_and_created_at" ON "messages" ("match_id", "created_at") /*application='Qingyu'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_messages_on_match_id" ON "messages" ("match_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_messages_on_sender_id" ON "messages" ("sender_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "photos" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "photos" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "position" integer DEFAULT 0 NOT NULL, "primary" boolean DEFAULT FALSE NOT NULL, "rejection_reason" character varying, "reviewed_at" timestamp(6), "reviewed_by" integer, "status" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE INDEX "index_photos_on_user_id_and_status_and_position" ON "photos" ("user_id", "status", "position") /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_photos_on_user_id" ON "photos" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "profile_interests" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "profile_interests" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "interest_id" bigint NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_profile_interests_on_interest_id" ON "profile_interests" ("interest_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_profile_interests_on_user_id_and_interest_id" ON "profile_interests" ("user_id", "interest_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_profile_interests_on_user_id" ON "profile_interests" ("user_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "sessions" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "ip_address" character varying, "sessionable_id" bigint NOT NULL, "sessionable_type" character varying NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_agent" character varying) /*application='Qingyu'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE INDEX "index_sessions_on_sessionable" ON "sessions" ("sessionable_type", "sessionable_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "sms_codes" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "sms_codes" ("id" bigserial primary key, "attempts" integer DEFAULT 0 NOT NULL, "code_digest" character varying NOT NULL, "consumed_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "expires_at" timestamp(6) NOT NULL, "phone" character varying NOT NULL, "purpose" integer DEFAULT 0 NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_sms_codes_on_phone_and_purpose_and_expires_at" ON "sms_codes" ("phone", "purpose", "expires_at") /*application='Qingyu'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "swipes" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "swipes" ("id" bigserial primary key, "action" integer DEFAULT 0 NOT NULL, "created_at" timestamp(6) NOT NULL, "liker_id" bigint NOT NULL, "target_id" bigint NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_swipes_on_liker_id_and_created_at" ON "swipes" ("liker_id", "created_at") /*application='Qingyu'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_swipes_on_liker_id_and_target_id" ON "swipes" ("liker_id", "target_id") /*application='Qingyu'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_swipes_on_liker_id" ON "swipes" ("liker_id") /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_swipes_on_target_id" ON "swipes" ("target_id") /*application='Qingyu'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='Qingyu'*/[0m
+  [1m[35m (11.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "avatar_photo_id" bigint, "bio" text, "birthdate" date, "city" character varying, "created_at" timestamp(6) NOT NULL, "education_level" integer DEFAULT 0 NOT NULL, "gender" integer DEFAULT 0 NOT NULL, "height_cm" integer, "job" character varying, "last_active_at" timestamp(6), "nickname" character varying, "password_digest" character varying, "phone" character varying NOT NULL, "pref_age_max" integer DEFAULT 45 NOT NULL, "pref_age_min" integer DEFAULT 18 NOT NULL, "pref_distance_km" integer DEFAULT 50 NOT NULL, "pref_gender" integer DEFAULT 2 NOT NULL, "pref_show_distance" boolean DEFAULT TRUE NOT NULL, "status" integer DEFAULT 1 NOT NULL, "updated_at" timestamp(6) NOT NULL, "verification_level" integer DEFAULT 0 NOT NULL, "verified_at" timestamp(6)) /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_users_on_gender_and_verification_level_and_status" ON "users" ("gender", "verification_level", "status") /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_phone" ON "users" ("phone") /*application='Qingyu'*/[0m
+  [1m[35m (3.9ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" ADD CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "active_storage_variant_records" ADD CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mALTER TABLE "blocks" ADD CONSTRAINT "fk_rails_c7fbc30382"
+FOREIGN KEY ("blocked_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "blocks" ADD CONSTRAINT "fk_rails_c0ad31bb25"
+FOREIGN KEY ("blocker_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "education_verifications" ADD CONSTRAINT "fk_rails_d113bc5df9"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mALTER TABLE "identity_verifications" ADD CONSTRAINT "fk_rails_3890a13c8b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mALTER TABLE "match_memberships" ADD CONSTRAINT "fk_rails_e14f6e09bc"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "match_memberships" ADD CONSTRAINT "fk_rails_53dfd411cd"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_a2b3be1fd5"
+FOREIGN KEY ("user_a_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_c11e90748c"
+FOREIGN KEY ("user_b_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "messages" ADD CONSTRAINT "fk_rails_88a76dcf4b"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "messages" ADD CONSTRAINT "fk_rails_b8f26a382d"
+FOREIGN KEY ("sender_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (3.9ms)[0m  [1m[35mALTER TABLE "photos" ADD CONSTRAINT "fk_rails_c79d76afc0"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "profile_interests" ADD CONSTRAINT "fk_rails_05f7d11076"
+FOREIGN KEY ("interest_id")
+  REFERENCES "interests" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "profile_interests" ADD CONSTRAINT "fk_rails_7eecbe160b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mALTER TABLE "swipes" ADD CONSTRAINT "fk_rails_b7160bb678"
+FOREIGN KEY ("liker_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "swipes" ADD CONSTRAINT "fk_rails_0159f2b46d"
+FOREIGN KEY ("target_id")
+  REFERENCES "users" ("id")
+ /*application='Qingyu'*/[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260811022343) /*application='Qingyu'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20260811020141),
+(20260811020140),
+(20260811020132),
+(20260811020131),
+(20260811020130),
+(20260811020122),
+(20260811020121),
+(20260811020120),
+(20260811020111),
+(20260811020110),
+(20260811020101),
+(20260811020100),
+(20260811020059),
+(20260811020048); /*application='Qingyu'*/[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-08-11 03:02:46.418163', '2026-08-11 03:02:46.418168') RETURNING "key" /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2026-08-11 03:02:46.429055' WHERE "ar_internal_metadata"."key" = 'environment' /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '11414672b7b5849bb4576afd46891fed73c13a08', '2026-08-11 03:02:46.437973', '2026-08-11 03:02:46.437978') RETURNING "key" /*application='Qingyu'*/[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13700000001' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mMatch Load (1.8ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE (user_a_id = 2 OR user_b_id = 2) ORDER BY "matches"."id" ASC LIMIT 1 /*application='Qingyu'*/[0m
+Started GET "/matches/1" for ::1 at 2026-08-11 11:03:04 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Qingyu'*/[0m
+Processing by MatchesController#show as */*
+  Parameters: {"id" => "1"}
+  [1m[36mSession Load (1.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE (user_a_id = 2 OR user_b_id = 2) AND "matches"."status" = 0 AND "matches"."id" = 1 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/controllers/matches_controller.rb:7:in 'MatchesController#show'
+  [1m[36mMatchMembership Load (1.1ms)[0m  [1m[34mSELECT "match_memberships".* FROM "match_memberships" WHERE "match_memberships"."match_id" = 1 AND "match_memberships"."user_id" = 2 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/match.rb:27:in 'Match#membership_for'
+  Rendering layout layouts/application.html.erb
+  Rendering matches/show.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/match.rb:15:in 'Match#other_user'
+  [1m[36mPhoto Load (1.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 3 AND "photos"."status" = 1 AND "photos"."primary" = TRUE ORDER BY "photos"."id" ASC LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/user.rb:66:in 'User#avatar_photo'
+  [1m[36mPhoto Load (0.8ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 3 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/user.rb:66:in 'User#avatar_photo'
+  Rendered shared/_verification_badges.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  [1m[36mMessage Load (2.0ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."match_id" = 1 ORDER BY "messages"."created_at" ASC /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/views/matches/show.html.erb:30
+  Rendered messages/_form.html.erb (Duration: 1.9ms | GC: 0.0ms)
+  Rendered matches/show.html.erb within layouts/application (Duration: 133.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 159.1ms | GC: 0.0ms)
+Completed 200 OK in 610ms (Views: 166.2ms | ActiveRecord: 37.6ms (8 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/matches/1/messages" for ::1 at 2026-08-11 11:03:06 +0800
+  
+ActionController::BadRequest (Invalid request parameters: Invalid encoding for parameter: ��ã��ܸ�����ʶ��)
+Caused by: ActionDispatch::InvalidParameterError (Invalid encoding for parameter: ��ã��ܸ�����ʶ��)
+
+Information for: ActionController::BadRequest (Invalid request parameters: Invalid encoding for parameter: ��ã��ܸ�����ʶ��):
+  
+
+Information for cause: ActionDispatch::InvalidParameterError (Invalid encoding for parameter: ��ã��ܸ�����ʶ��):
+  
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:125:in 'ActionDispatch::ParamBuilder#store_nested_param'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:54:in 'block in ActionDispatch::ParamBuilder#from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:49:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:49:in 'ActionDispatch::ParamBuilder#from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/param_builder.rb:23:in 'ActionDispatch::ParamBuilder.from_pairs'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:420:in 'block (2 levels) in ActionDispatch::Request#POST'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'block in ActionDispatch::Http::Parameters#parse_formatted_parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'Hash#fetch'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:92:in 'ActionDispatch::Http::Parameters#parse_formatted_parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:418:in 'block in ActionDispatch::Request#POST'
+rack (3.2.6) lib/rack/request.rb:112:in 'Hash#fetch'
+rack (3.2.6) lib/rack/request.rb:112:in 'Rack::Request::Env#fetch_header'
+actionpack (8.1.3.1) lib/action_dispatch/http/request.rb:414:in 'ActionDispatch::Request#POST'
+actionpack (8.1.3.1) lib/action_dispatch/http/parameters.rb:57:in 'ActionDispatch::Http::Parameters#parameters'
+actionpack (8.1.3.1) lib/action_dispatch/http/filter_parameters.rb:36:in 'ActionDispatch::Http::FilterParameters#filtered_parameters'
+actionpack (8.1.3.1) lib/action_controller/metal/instrumentation.rb:66:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3.1) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3.1) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3.1) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.3.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3.1) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3.1) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3.1) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.6) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.6) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.6) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+rack (3.2.6) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.3.1) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+activerecord (8.1.3.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3.1) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/matches/1" for ::1 at 2026-08-11 11:03:15 +0800
+Processing by MatchesController#show as */*
+  Parameters: {"id" => "1"}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mMatch Load (0.7ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE (user_a_id = 2 OR user_b_id = 2) AND "matches"."status" = 0 AND "matches"."id" = 1 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/controllers/matches_controller.rb:7:in 'MatchesController#show'
+  [1m[36mMatchMembership Load (0.7ms)[0m  [1m[34mSELECT "match_memberships".* FROM "match_memberships" WHERE "match_memberships"."match_id" = 1 AND "match_memberships"."user_id" = 2 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/match.rb:27:in 'Match#membership_for'
+  Rendering layout layouts/application.html.erb
+  Rendering matches/show.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/match.rb:15:in 'Match#other_user'
+  [1m[36mPhoto Load (0.6ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 3 AND "photos"."status" = 1 AND "photos"."primary" = TRUE ORDER BY "photos"."id" ASC LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/user.rb:66:in 'User#avatar_photo'
+  [1m[36mPhoto Load (0.5ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = 3 AND "photos"."status" = 1 ORDER BY "photos"."position" ASC, "photos"."id" ASC LIMIT 1 /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/models/user.rb:66:in 'User#avatar_photo'
+  Rendered shared/_verification_badges.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mMessage Load (0.6ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."match_id" = 1 ORDER BY "messages"."created_at" ASC /*action='show',application='Qingyu',controller='matches'*/[0m
+  ↳ app/views/matches/show.html.erb:30
+  Rendered messages/_form.html.erb (Duration: 1.3ms | GC: 0.0ms)
+  Rendered matches/show.html.erb within layouts/application (Duration: 17.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | GC: 0.0ms)
+Completed 200 OK in 57ms (Views: 17.0ms | ActiveRecord: 5.1ms (8 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/matches/1/messages" for ::1 at 2026-08-11 11:03:16 +0800
+Processing by MessagesController#create as TURBO_STREAM
+  Parameters: {"message" => {"body" => "Hi Zhang Wei!"}, "match_id" => "1"}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = 3 LIMIT 1 /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/controllers/concerns/authentication.rb:29:in 'Authentication#find_session_by_cookie'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/models/current.rb:4:in 'Current#sessionable'
+  [1m[36mMatch Load (0.8ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE (user_a_id = 2 OR user_b_id = 2) AND "matches"."status" = 0 AND "matches"."id" = 1 LIMIT 1 /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/controllers/messages_controller.rb:22:in 'MessagesController#set_match'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/controllers/messages_controller.rb:7:in 'MessagesController#create'
+  [1m[36mMessage Create (5.3ms)[0m  [1m[32mINSERT INTO "messages" ("match_id", "sender_id", "body", "created_at", "updated_at") VALUES (1, 2, 'Hi Zhang Wei!', '2026-08-11 03:03:16.289693', '2026-08-11 03:03:16.289693') RETURNING "id" /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/controllers/messages_controller.rb:7:in 'MessagesController#create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/controllers/messages_controller.rb:7:in 'MessagesController#create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/models/message.rb:12:in 'Message#broadcast_and_touch'
+  [1m[36mMatch Update (3.7ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = '2026-08-11 03:03:16.304438', "last_message_at" = '2026-08-11 03:03:16.304438' WHERE "matches"."id" = 1 /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/models/message.rb:12:in 'Message#broadcast_and_touch'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='create',application='Qingyu',controller='messages'*/[0m
+  ↳ app/models/message.rb:12:in 'Message#broadcast_and_touch'
+  Rendered messages/_message.html.erb (Duration: 0.8ms | GC: 0.0ms)
+[ActionCable] Broadcasting to Z2lkOi8vcWluZ3l1L01hdGNoLzE:messages: "<turbo-stream action=\"prepend\" target=\"match_messages\"><template><!-- BEGIN app/views/messages/_message.html.erb\n--><div class=\"flex justify-end\">\n  <div class=\"max-w-[75%] whitespace-pre-wrap break-words rounded-2xl px-4 py-2.5 text-sm leading-relaxed\n    rounded-br-sm bg-teal-600 tex...
+  Rendered messages/_form.html.erb (Duration: 0.7ms | GC: 0.0ms)
+Completed 200 OK in 90ms (Views: 0.1ms | ActiveRecord: 13.8ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mMatch Load (2.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mMessage Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "messages" WHERE "messages"."match_id" = 1 /*application='Qingyu'*/[0m
+  [1m[36mMessage Load (1.0ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."match_id" = 1 ORDER BY "messages"."id" DESC LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13700000001' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13600000001' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mMatchMembership Load (1.0ms)[0m  [1m[34mSELECT "match_memberships".* FROM "match_memberships" WHERE "match_memberships"."match_id" = 1 AND "match_memberships"."user_id" = 2 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/match.rb:27:in 'Match#membership_for'
+  [1m[36mCACHE Message Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "messages" WHERE "messages"."match_id" = 1[0m
+  ↳ app/models/match.rb:32:in 'Match#unread_count_for'
+  [1m[36mMatchMembership Load (0.6ms)[0m  [1m[34mSELECT "match_memberships".* FROM "match_memberships" WHERE "match_memberships"."match_id" = 1 AND "match_memberships"."user_id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/match.rb:27:in 'Match#membership_for'
+  [1m[36mCACHE Message Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "messages" WHERE "messages"."match_id" = 1[0m
+  ↳ app/models/match.rb:32:in 'Match#unread_count_for'
+  [1m[36mMatch Load (1.7ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = 1 LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13700000001' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."phone" = '13600000001' LIMIT 1 /*application='Qingyu'*/[0m
+  [1m[36mMatchMembership Load (1.0ms)[0m  [1m[34mSELECT "match_memberships".* FROM "match_memberships" WHERE "match_memberships"."match_id" = 1 AND "match_memberships"."user_id" = 2 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/match.rb:27:in 'Match#membership_for'
+  [1m[36mMessage Count (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "messages" WHERE "messages"."match_id" = 1 AND "messages"."sender_id" != 2 /*application='Qingyu'*/[0m
+  ↳ app/models/match.rb:33:in 'Match#unread_count_for'
+  [1m[36mMatchMembership Load (0.6ms)[0m  [1m[34mSELECT "match_memberships".* FROM "match_memberships" WHERE "match_memberships"."match_id" = 1 AND "match_memberships"."user_id" = 3 LIMIT 1 /*application='Qingyu'*/[0m
+  ↳ app/models/match.rb:27:in 'Match#membership_for'
+  [1m[36mMessage Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "messages" WHERE "messages"."match_id" = 1 AND "messages"."sender_id" != 3 /*application='Qingyu'*/[0m
+  ↳ app/models/match.rb:33:in 'Match#unread_count_for'
