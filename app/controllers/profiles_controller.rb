@@ -1,4 +1,9 @@
 class ProfilesController < ApplicationController
+  # 「我的」页缓存 5 分钟（资料变化不频繁）；编辑表单不缓存
+  def page_cache_ttl
+    action_name == "show" ? 5.minutes.to_i : nil
+  end
+
   # 「我的」页（原生 Tab 3）
   def show
     @identity = current_user.identity_verifications.order(created_at: :desc).first
