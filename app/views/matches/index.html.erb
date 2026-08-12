@@ -18,10 +18,14 @@
         <%= link_to match_path(match), class: "flex items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-md" do %>
           <div class="relative h-14 w-14 shrink-0">
             <div class="h-14 w-14 overflow-hidden rounded-full bg-gray-100">
-              <% if other.avatar_photo&.file&.attached? %>
-                <%= image_tag other.avatar_photo.file.variant(resize_to_fill: [ 120, 120 ]), class: "h-full w-full object-cover" %>
+              <% avatar = other.avatar_photo %>
+              <% if avatar&.file&.attached? %>
+                <%= image_tag avatar.file.variant(resize_to_fill: [ 120, 120 ]), class: "h-full w-full object-cover" %>
               <% else %>
                 <div class="flex h-full w-full items-center justify-center text-2xl">👤</div>
+              <% end %>
+              <% if avatar&.pending? %>
+                <span class="absolute inset-x-0 bottom-0 bg-amber-500/80 py-0.5 text-center text-[8px] text-white">审核中</span>
               <% end %>
             </div>
             <% if unread > 0 %>

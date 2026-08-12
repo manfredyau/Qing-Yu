@@ -55,4 +55,15 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_profile_path
     assert_equal "资料已保存", flash[:notice]
   end
+
+  test "pending photo still completes the profile (moderation does not block)" do
+    @zoe.photos.create!(file: { io: StringIO.new("img"), filename: "p.png", content_type: "image/png" }, status: :pending)
+
+    patch profile_path, params: {
+      user: { nickname: "小轻", gender: "female", birthdate: 25.years.ago.to_date.to_s, city: "北京", interest_ids: [ interests(:one).id ] }
+    }
+
+    assert_redirected_to edit_profile_path
+    assert_equal "资料已保存", flash[:notice]
+  end
 end

@@ -22,28 +22,26 @@
         </ul>
       </div>
     <% elsif !current_user.profile_complete? %>
-      <div class="rounded-xl bg-amber-50 p-4 text-sm text-amber-700">
+      <!-- 缺项可点击跳转到对应区块；页面加载时自动滚动到第一个缺项 -->
+      <div class="rounded-xl bg-amber-50 p-4 text-sm text-amber-700" data-scroll-to="<%= section_id_for_part(current_user.missing_profile_parts.first) %>">
         <p class="font-semibold">资料还没完成，还差：</p>
         <ul class="mt-1 list-disc space-y-0.5 pl-4">
           <% current_user.missing_profile_parts.each do |part| %>
-            <li><%= part %></li>
+            <li><a href="#<%= section_id_for_part(part) %>" class="underline decoration-dotted underline-offset-2"><%= part %></a></li>
           <% end %>
         </ul>
-        <% if current_user.photos.pending.any? %>
-          <p class="mt-2 text-xs">📷 照片审核通过后自动补全</p>
-        <% end %>
       </div>
     <% end %>
 
     <!-- 照片 -->
-    <section class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+    <section id="section-photos" class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
       <h2 class="font-semibold text-gray-900">照片</h2>
       <p class="mt-1 text-xs text-gray-400">至少一张照片展示在资料中；新照片需审核通过后可见</p>
       <%= render "photos", user: current_user %>
     </section>
 
     <!-- 基本信息 -->
-    <section class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm space-y-5">
+    <section id="section-basic" class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm space-y-5">
       <h2 class="font-semibold text-gray-900">基本信息</h2>
 
       <div>
@@ -103,7 +101,7 @@
     </section>
 
     <!-- 兴趣标签 -->
-    <section class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+    <section id="section-interests" class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
       <h2 class="font-semibold text-gray-900">兴趣标签</h2>
       <p class="mt-1 text-xs text-gray-400">选择 3-6 个最能代表你的标签</p>
       <div class="mt-4 flex flex-wrap gap-2">

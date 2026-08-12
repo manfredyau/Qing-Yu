@@ -28,12 +28,20 @@ class UserProfileTest < ActiveSupport::TestCase
     assert_equal %w[照片 兴趣标签], @user.missing_profile_parts
   end
 
-  test "pending photos do not count toward profile completion" do
-    @user.update!(nickname: "小轻", gender: :female, birthdate: 25.years.ago, city: "北京")
-    @user.photos.create!(file: { io: StringIO.new("img"), filename: "p.png", content_type: "image/png" }, status: :pending)
+  test "pending photos count toward profile completion and avatar" do
+    @user.update!(birthdate: 25.years.ago, city: "北京", interest_ids: [ interests(:one).id ])
+    photo = @user.photos.create!(file: { io: StringIO.new("img"), filename: "p.png", content_type: "image/png" }, status: :pending)
 
-    assert_not @user.profile_complete?
-    assert_includes @user.missing_profile_parts, "照片"
+    # 照片审核不阻塞用户自己的资料完成；审核结果只影响他人可见性（视图标注「审核中」）
+    assert @user.profile_complete?
+    assert_not_includes @user.missing_profile_parts, "照片"
+    assert_equal photo, @user.avatar_photo
+  end
+
+  test "avatar_photo falls back to pending photo so the upload is visible" do
+    pending = @user.photos.create!(file: { io: StringIO.new("p"), filename: "p.png", content_type: "image/png" }, status: :pending)
+
+    assert_equal pending, @user.avatar_photo
   end
 
   test "avatar_photo returns primary approved photo" do

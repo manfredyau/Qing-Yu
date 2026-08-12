@@ -85,6 +85,16 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
     assert_not_equal etag_before, response.headers["ETag"]
   end
 
+  test "candidate with only a pending photo shows under-review badge on card" do
+    make_profile_complete(@zoe)
+    @jack.update!(nickname: "小杰", city: "上海", interest_ids: [ interests(:one).id ])
+    @jack.photos.create!(file: { io: StringIO.new("img"), filename: "p.png", content_type: "image/png" }, status: :pending)
+
+    get feed_path
+    assert_response :success
+    assert_match(/照片审核中/, response.body)
+  end
+
   private
     def make_profile_complete(user)
       user.update!(nickname: "小轻", city: "北京", interest_ids: [ interests(:one).id ])

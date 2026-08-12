@@ -4,11 +4,15 @@
 <div class="mx-auto min-h-screen w-full max-w-md px-5 py-8">
   <!-- 头像与昵称 -->
   <div class="flex items-center gap-4">
-    <div class="h-20 w-20 overflow-hidden rounded-full bg-gray-100 ring-2 ring-white shadow-md">
-      <% if current_user.avatar_photo&.file&.attached? %>
-        <%= image_tag current_user.avatar_photo.file.variant(resize_to_fill: [ 160, 160 ]), class: "h-full w-full object-cover" %>
+    <div class="relative h-20 w-20 overflow-hidden rounded-full bg-gray-100 ring-2 ring-white shadow-md">
+      <% avatar = current_user.avatar_photo %>
+      <% if avatar&.file&.attached? %>
+        <%= image_tag avatar.file.variant(resize_to_fill: [ 160, 160 ]), class: "h-full w-full object-cover" %>
       <% else %>
         <div class="flex h-full w-full items-center justify-center text-4xl">👤</div>
+      <% end %>
+      <% if avatar&.pending? %>
+        <span class="absolute inset-x-0 bottom-0 bg-amber-500/80 py-0.5 text-center text-[9px] text-white">审核中</span>
       <% end %>
     </div>
     <div class="min-w-0">

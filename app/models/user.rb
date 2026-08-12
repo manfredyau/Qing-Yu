@@ -62,28 +62,30 @@ class User < ApplicationRecord
 
   # ---- 资料 ----
 
+  # 头像/照片：优先已审核照片；仅有待审核照片时也返回（本人可见自己的上传，
+  # 其他用户查看时由视图标注「审核中」，审核不再阻塞用户提交资料）
   def avatar_photo
-    photos.approved.primary.first || photos.approved.ordered.first
+    photos.approved.primary.first || photos.approved.ordered.first || photos.pending.ordered.first
   end
 
   def has_avatar?
     avatar_photo.present?
   end
 
-  # 资料完整度：昵称/生日/性别/城市/照片/标签 齐备
+  # 资料完整度：昵称/生日/性别/城市/照片/标签 齐备（照片上传即可，审核结果只影响他人可见性）
   def profile_complete?
     nickname.present? && birthdate.present? && !undisclosed? && city.present? &&
-      photos.approved.any? && interests.any?
+      photos.any? && interests.any?
   end
 
-  # 资料还缺什么（面向用户的可读提示；照片需审核通过才计入）
+  # 资料还缺什么（面向用户的可读提示）
   def missing_profile_parts
     parts = []
     parts << "昵称" unless nickname.present?
     parts << "生日" unless birthdate.present?
     parts << "性别" if undisclosed?
     parts << "城市" unless city.present?
-    parts << "照片" unless photos.approved.any?
+    parts << "照片" unless photos.any?
     parts << "兴趣标签" unless interests.any?
     parts
   end

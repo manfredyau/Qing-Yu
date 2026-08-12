@@ -26,4 +26,12 @@ module ApplicationHelper
   def error_for(record, attribute)
     record.errors[attribute].first
   end
+
+  # 资料缺项 → 编辑页对应区块锚点（缺项可点击跳转，配合自动滚动）
+  def section_id_for_part(part)
+    {
+      "昵称" => "section-basic", "生日" => "section-basic", "性别" => "section-basic",
+      "城市" => "section-basic", "照片" => "section-photos", "兴趣标签" => "section-interests"
+    }[part]
+  end
 end

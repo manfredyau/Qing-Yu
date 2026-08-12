@@ -26,10 +26,8 @@ class ProfilesController < ApplicationController
       if current_user.profile_complete?
         redirect_to edit_profile_path, notice: "资料已保存"
       else
-        # 保存成功但资料仍不完整：明确告诉用户还缺什么（否则 feed 一直显示"完善资料"，用户会以为没保存上）
-        message = "资料已保存，还差：#{current_user.missing_profile_parts.join('、')}"
-        message += "。照片审核通过后自动完成" if current_user.photos.pending.any?
-        redirect_to edit_profile_path, alert: message
+        # 保存成功但资料仍不完整：明确告诉用户还差什么（避免 feed 显示"完善资料"时不明所以）
+        redirect_to edit_profile_path, alert: "资料已保存，还差：#{current_user.missing_profile_parts.join('、')}"
       end
     else
       render :edit, status: :unprocessable_entity

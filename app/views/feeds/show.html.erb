@@ -24,7 +24,6 @@
       <p class="mt-4 text-lg font-semibold text-gray-700">完善资料，让推荐更精准</p>
       <p class="mt-1 text-sm leading-relaxed text-gray-400">
         还差：<%= current_user.missing_profile_parts.join("、") %>
-        <% if current_user.photos.pending.any? %><br><span class="text-xs">照片审核中，通过后自动补全</span><% end %>
       </p>
       <%= link_to "去完善资料", edit_profile_path, class: "mt-6 rounded-xl bg-teal-600 px-8 py-3.5 font-semibold text-white shadow-sm hover:bg-teal-500" %>
     </div>
