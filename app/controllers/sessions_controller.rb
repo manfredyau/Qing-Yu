@@ -4,6 +4,9 @@ class SessionsController < ApplicationController
     with: -> { redirect_to new_session_path, alert: "尝试过于频繁，请稍后再试。" }
 
   def new
+    # 已登录用户访问登录页（如多 Tab 残留的旧页面）直接回首页
+    redirect_to(root_path) if authenticated?
+
     @phone = params[:phone]
   end
 

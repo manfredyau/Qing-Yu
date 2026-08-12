@@ -60,7 +60,8 @@ class MainActivity : HotwireActivity() {
 
         bottomNavigationController = HotwireBottomNavigationController(
             activity = this,
-            view = findViewById(R.id.bottom_nav)
+            view = findViewById(R.id.bottom_nav),
+            lazyLoadTabs = true   // 懒加载：Tab 首次选中才加载，避免登录前的旧页面残留
         )
         bottomNavigationController.load(tabs)
         // 每次进入 App 默认「推荐」Tab（而非恢复上次选中的 Tab）
