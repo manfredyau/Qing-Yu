@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
   include Authentication
   include DeviceFormat
+
+  # 表单令牌过期（长时间停留/多标签页导致）→ 友好提示并返回，而不是技术错误页
+  rescue_from ActionController::InvalidAuthenticityToken do
+    redirect_to request.referer.presence || root_path,
+                alert: "页面已过期，请刷新后重试。", status: :see_other
+  end
+
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   # 原生壳（Hotwire Native WebView）的 UA 会被 browser gem 误判为旧浏览器，故豁免
   allow_browser versions: :modern, if: -> { !turbo_native_app? }

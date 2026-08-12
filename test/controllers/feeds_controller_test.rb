@@ -23,6 +23,9 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_match(/完善资料，让推荐更精准/, response.body)
+    # 明确列出缺什么，而不是泛泛的"还差照片、兴趣标签等资料"
+    assert_match(/还差：/, response.body)
+    assert_match(/兴趣标签/, response.body)
   end
 
   test "verified user with complete profile sees the feed" do

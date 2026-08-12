@@ -19,6 +19,23 @@ class UserProfileTest < ActiveSupport::TestCase
     assert @user.profile_complete?
   end
 
+  test "missing_profile_parts lists exactly what is missing" do
+    # fixture users(:one) 已有昵称和性别
+    assert_equal %w[生日 城市 照片 兴趣标签], @user.missing_profile_parts
+
+    @user.update!(birthdate: 25.years.ago, city: "北京")
+
+    assert_equal %w[照片 兴趣标签], @user.missing_profile_parts
+  end
+
+  test "pending photos do not count toward profile completion" do
+    @user.update!(nickname: "小轻", gender: :female, birthdate: 25.years.ago, city: "北京")
+    @user.photos.create!(file: { io: StringIO.new("img"), filename: "p.png", content_type: "image/png" }, status: :pending)
+
+    assert_not @user.profile_complete?
+    assert_includes @user.missing_profile_parts, "照片"
+  end
+
   test "avatar_photo returns primary approved photo" do
     primary = @user.photos.create!(file: { io: StringIO.new("a"), filename: "a.png", content_type: "image/png" }, status: :approved, primary: true)
     @user.photos.create!(file: { io: StringIO.new("b"), filename: "b.png", content_type: "image/png" }, status: :pending)

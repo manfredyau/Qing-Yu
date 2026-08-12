@@ -18,11 +18,14 @@
       <%= link_to "去实名认证", verification_path, class: "mt-6 rounded-xl bg-teal-600 px-8 py-3.5 font-semibold text-white shadow-sm hover:bg-teal-500" %>
     </div>
   <% elsif !current_user.profile_complete? %>
-    <!-- 已实名但资料不完整：引导完善资料 -->
-    <div class="flex flex-col items-center justify-center py-24 text-center">
+    <!-- 已实名但资料不完整：明确列出缺什么（避免"保存了但没反应"的困惑） -->
+    <div class="flex flex-col items-center justify-center py-20 text-center">
       <div class="text-5xl">📝</div>
       <p class="mt-4 text-lg font-semibold text-gray-700">完善资料，让推荐更精准</p>
-      <p class="mt-1 text-sm leading-relaxed text-gray-400">还差照片、兴趣标签等资料<br>完成后立即开始每日精选推荐</p>
+      <p class="mt-1 text-sm leading-relaxed text-gray-400">
+        还差：<%= current_user.missing_profile_parts.join("、") %>
+        <% if current_user.photos.pending.any? %><br><span class="text-xs">照片审核中，通过后自动补全</span><% end %>
+      </p>
       <%= link_to "去完善资料", edit_profile_path, class: "mt-6 rounded-xl bg-teal-600 px-8 py-3.5 font-semibold text-white shadow-sm hover:bg-teal-500" %>
     </div>
   <% else %>

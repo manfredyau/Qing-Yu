@@ -24,4 +24,35 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     # 真正的不缓存契约是 Cache-Control: no-store（WebView 不会存储该响应）
     assert_match(/no-store/, response.headers["Cache-Control"])
   end
+
+  test "saving incomplete profile alerts exactly what is missing" do
+    patch profile_path, params: {
+      user: { nickname: "小轻", gender: "female", birthdate: 25.years.ago.to_date.to_s, city: "北京" }
+    }
+
+    assert_redirected_to edit_profile_path
+    assert_equal "资料已保存，还差：照片、兴趣标签", flash[:alert]
+  end
+
+  test "validation errors render all messages on the form" do
+    patch profile_path, params: {
+      user: { nickname: "小轻", gender: "female", birthdate: "2012-01-01", city: "北京" }
+    }
+
+    assert_response :unprocessable_entity
+    assert_match(/保存失败，请修正/, response.body)
+    assert_match(/必须年满 18 周岁/, response.body)
+  end
+
+  test "saving a complete profile redirects with notice" do
+    @zoe.update!(nickname: "小轻", gender: :female, birthdate: 25.years.ago, city: "北京")
+    @zoe.photos.create!(file: { io: StringIO.new("img"), filename: "p.png", content_type: "image/png" }, status: :approved)
+
+    patch profile_path, params: {
+      user: { nickname: "小轻", gender: "female", birthdate: 25.years.ago.to_date.to_s, city: "北京", interest_ids: [ interests(:one).id ] }
+    }
+
+    assert_redirected_to edit_profile_path
+    assert_equal "资料已保存", flash[:notice]
+  end
 end

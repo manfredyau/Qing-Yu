@@ -14,7 +14,24 @@
   <%= form_with model: current_user, url: profile_path, data: { turbo: false, controller: "form-errors" }, class: "space-y-6" do |f| %>
     <% if current_user.errors.any? %>
       <div class="rounded-xl bg-red-50 p-4 text-sm text-red-600">
-        <%= current_user.errors.full_messages.first %>
+        <p class="font-semibold">保存失败，请修正以下问题：</p>
+        <ul class="mt-1 list-disc space-y-0.5 pl-4">
+          <% current_user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% elsif !current_user.profile_complete? %>
+      <div class="rounded-xl bg-amber-50 p-4 text-sm text-amber-700">
+        <p class="font-semibold">资料还没完成，还差：</p>
+        <ul class="mt-1 list-disc space-y-0.5 pl-4">
+          <% current_user.missing_profile_parts.each do |part| %>
+            <li><%= part %></li>
+          <% end %>
+        </ul>
+        <% if current_user.photos.pending.any? %>
+          <p class="mt-2 text-xs">📷 照片审核通过后自动补全</p>
+        <% end %>
       </div>
     <% end %>
 

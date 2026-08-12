@@ -76,6 +76,18 @@ class User < ApplicationRecord
       photos.approved.any? && interests.any?
   end
 
+  # 资料还缺什么（面向用户的可读提示；照片需审核通过才计入）
+  def missing_profile_parts
+    parts = []
+    parts << "昵称" unless nickname.present?
+    parts << "生日" unless birthdate.present?
+    parts << "性别" if undisclosed?
+    parts << "城市" unless city.present?
+    parts << "照片" unless photos.approved.any?
+    parts << "兴趣标签" unless interests.any?
+    parts
+  end
+
   def verified_school
     education_verifications.verified.order(verified_at: :desc).first&.school
   end
