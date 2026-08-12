@@ -49,6 +49,6 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.5")
 
     // Hotwire Native（Maven Central）
-    implementation("dev.hotwire:core:1.2.0")
-    implementation("dev.hotwire:navigation-fragments:1.2.0")
+    implementation("dev.hotwire:core:1.3.1")
+    implementation("dev.hotwire:navigation-fragments:1.3.1")
 }
