@@ -12,6 +12,9 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
+    # 清空缓存：每日推荐队列/ETag 在测试间隔离
+    setup { Rails.cache.clear }
+
     # Add more helper methods to be used by all tests here...
   end
 end

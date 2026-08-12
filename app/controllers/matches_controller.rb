@@ -1,7 +1,11 @@
 class MatchesController < ApplicationController
-  # 消息列表缓存 60 秒（未读数/新消息变化快）；聊天室实时内容不缓存
-  def page_cache_ttl
-    action_name == "index" ? 60 : nil
+  # 消息列表缓存版本：新消息/已读状态变化 → ETag 失效 → 返回新列表；聊天室实时内容不缓存
+  def cache_version_key
+    return nil if action_name == "show"
+
+    last_message = current_user.matches.active.maximum(:last_message_at)
+    last_read = MatchMembership.where(user: current_user).maximum(:last_read_at)
+    "matches:#{current_user.id}:#{last_message.to_i}:#{last_read.to_i}"
   end
 
   def index

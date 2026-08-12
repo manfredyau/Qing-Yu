@@ -54,6 +54,34 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to feed_path
   end
 
+  test "feed is conditionally cached with ETag (304 on revalidation)" do
+    make_profile_complete(@zoe)
+
+    get feed_path
+    assert_response :success
+    etag = response.headers["ETag"]
+    assert etag.present?
+    assert_match(/private/, response.headers["Cache-Control"])
+
+    get feed_path, headers: { "If-None-Match" => etag }
+    assert_response :not_modified
+  end
+
+  test "feed ETag changes after a swipe consumes the daily queue" do
+    make_profile_complete(@zoe)
+
+    get feed_path
+    etag_before = response.headers["ETag"]
+
+    post swipes_path, params: { target_id: @jack.id, decision: "pass" },
+      headers: { "Accept" => "text/vnd.turbo-stream.html" }
+    assert_response :success
+
+    get feed_path
+    assert_response :success
+    assert_not_equal etag_before, response.headers["ETag"]
+  end
+
   private
     def make_profile_complete(user)
       user.update!(nickname: "小轻", city: "北京", interest_ids: [ interests(:one).id ])

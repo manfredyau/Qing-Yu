@@ -39,4 +39,24 @@ class SwipesControllerTest < ActionDispatch::IntegrationTest
       post swipes_path, params: { target_id: @jack.id, decision: "whatever" }
     end
   end
+
+  test "swiping consumes the candidate from today's recommendation queue" do
+    service = RecommendationService.new(@zoe)
+    assert_includes service.queue, @jack.id
+
+    post swipes_path, params: { target_id: @jack.id, decision: "pass" },
+      headers: { "Accept" => "text/vnd.turbo-stream.html" }
+    assert_response :success
+
+    assert_not_includes RecommendationService.new(@zoe).queue, @jack.id
+  end
+
+  test "unknown decision does not consume the queue" do
+    service = RecommendationService.new(@zoe)
+    assert_includes service.queue, @jack.id
+
+    post swipes_path, params: { target_id: @jack.id, decision: "whatever" }
+
+    assert_includes RecommendationService.new(@zoe).queue, @jack.id
+  end
 end

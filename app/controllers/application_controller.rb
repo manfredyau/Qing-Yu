@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
   # 原生壳（Hotwire Native WebView）的 UA 会被 browser gem 误判为旧浏览器，故豁免
   allow_browser versions: :modern, if: -> { !turbo_native_app? }
 
-  # 页面级 TTL 缓存：各控制器通过 page_cache_ttl 定制过期时间（秒）
+  # 页面缓存（牵手式：ETag/304 条件请求，而非固定 TTL）
+  # 子类覆写 cache_version_key 返回业务版本字符串 → 进入条件缓存：
+  # fresh_when 设置 weak ETag（自动叠加 importmap/template digest）+
+  # Cache-Control: private, max-age=0, must-revalidate，WebView 每次回源带
+  # If-None-Match，无变化 → 304 秒开，有变化 → 立即拿新页面，永不过时。
   before_action :set_page_cache
 
   # Changes to the importmap will invalidate the etag for HTML responses
@@ -14,18 +18,21 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :admin_user, :turbo_native_app?
 
   private
-    # 页面缓存有效期（秒）。子类覆盖此方法定制；返回 nil 表示不缓存（no-store）。
-    # 配合布局中的 turbo-cache-control no-cache 元标签：Turbo 不做快照缓存，
-    # 但 HTTP 层在 TTL 内的重复请求直接命中缓存（含返回导航），TTL 过后自动回源刷新。
-    def page_cache_ttl
+    # 页面缓存版本 key。子类覆盖此方法返回业务版本字符串；返回 nil 表示不缓存（no-store）。
+    # 版本必须覆盖所有会让页面内容变化的维度（如剩余额度、资料/认证/消息状态），
+    # 任何变化 → ETag 变化 → 304 失效 → 客户端立即拿到新页面。
+    def cache_version_key
       nil
     end
 
     def set_page_cache
-      return if request.format.turbo_stream?   # 流式响应（滑动/消息）不缓存
+      return if request.format.turbo_stream? # 流式响应（滑动/消息）不缓存
 
-      ttl = page_cache_ttl
-      response.headers["Cache-Control"] = ttl ? "private, max-age=#{ttl}" : "no-store"
+      if (version = cache_version_key)
+        fresh_when etag: version
+      else
+        response.headers["Cache-Control"] = "no-store"
+      end
     end
     def current_user
       Current.user
