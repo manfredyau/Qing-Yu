@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   include Authentication
   include DeviceFormat
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+  # 原生壳（Hotwire Native WebView）的 UA 会被 browser gem 误判为旧浏览器，故豁免
+  allow_browser versions: :modern, if: -> { !turbo_native_app? }
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
