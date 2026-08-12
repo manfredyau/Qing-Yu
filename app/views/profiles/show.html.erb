@@ -39,13 +39,15 @@
       <span class="font-medium text-gray-700">实名认证</span>
       <span class="text-xs text-gray-400"><%= current_user.fully_verified? ? "已完全认证" : "去认证 →" %></span>
     <% end %>
-    <%= link_to (turbo_native_app? ? hotwire_native_tab2_path : matches_path), class: "flex items-center justify-between rounded-2xl border border-gray-100 bg-white p-4 shadow-sm" do %>
-      <span class="font-medium text-gray-700">我的匹配</span>
-      <span class="text-gray-300">→</span>
-    <% end %>
-    <%= link_to (turbo_native_app? ? hotwire_native_tab1_path : feed_path), class: "flex items-center justify-between rounded-2xl border border-gray-100 bg-white p-4 shadow-sm" do %>
-      <span class="font-medium text-gray-700">每日推荐</span>
-      <span class="text-gray-300">→</span>
+    <% unless turbo_native_app? %>
+      <%= link_to matches_path, class: "flex items-center justify-between rounded-2xl border border-gray-100 bg-white p-4 shadow-sm" do %>
+        <span class="font-medium text-gray-700">我的匹配</span>
+        <span class="text-gray-300">→</span>
+      <% end %>
+      <%= link_to feed_path, class: "flex items-center justify-between rounded-2xl border border-gray-100 bg-white p-4 shadow-sm" do %>
+        <span class="font-medium text-gray-700">每日推荐</span>
+        <span class="text-gray-300">→</span>
+      <% end %>
     <% end %>
   </div>
 

@@ -6,10 +6,7 @@
       <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 text-lg font-bold text-white">轻</div>
       <span class="text-lg font-bold tracking-tight text-gray-900">消息</span>
     </div>
-    <% if turbo_native_app? %>
-      <!-- 原生壳：用 tab1 路径触发底部 Tab 切换到推荐，避免在消息 Tab 内部导航 -->
-      <%= link_to "去推荐", hotwire_native_tab1_path, class: "rounded-lg bg-teal-50 px-3 py-1.5 text-sm font-medium text-teal-700" %>
-    <% else %>
+    <% unless turbo_native_app? %>
       <%= link_to "去推荐", feed_path, class: "rounded-lg bg-teal-50 px-3 py-1.5 text-sm font-medium text-teal-700" %>
     <% end %>
   </header>
@@ -60,9 +57,7 @@
       <div class="text-5xl">💌</div>
       <p class="mt-4 font-semibold text-gray-700">还没有配对</p>
       <p class="mt-1 text-sm text-gray-400">去推荐里右滑喜欢，互相喜欢即可配对</p>
-      <% if turbo_native_app? %>
-        <%= link_to "开始今日推荐", hotwire_native_tab1_path, class: "mt-5 rounded-xl bg-teal-600 px-6 py-3 font-semibold text-white shadow-sm hover:bg-teal-500" %>
-      <% else %>
+      <% unless turbo_native_app? %>
         <%= link_to "开始今日推荐", feed_path, class: "mt-5 rounded-xl bg-teal-600 px-6 py-3 font-semibold text-white shadow-sm hover:bg-teal-500" %>
       <% end %>
     </div>
