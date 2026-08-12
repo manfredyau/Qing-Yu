@@ -22,8 +22,8 @@
         </ul>
       </div>
     <% elsif !current_user.profile_complete? %>
-      <!-- 缺项可点击跳转到对应区块；页面加载时自动滚动到第一个缺项 -->
-      <div class="rounded-xl bg-amber-50 p-4 text-sm text-amber-700" data-scroll-to="<%= section_id_for_part(current_user.missing_profile_parts.first) %>">
+      <!-- 缺项可点击锚点跳转到对应区块 -->
+      <div class="rounded-xl bg-amber-50 p-4 text-sm text-amber-700">
         <p class="font-semibold">资料还没完成，还差：</p>
         <ul class="mt-1 list-disc space-y-0.5 pl-4">
           <% current_user.missing_profile_parts.each do |part| %>
@@ -106,9 +106,9 @@
       <p class="mt-1 text-xs text-gray-400">选择 3-6 个最能代表你的标签</p>
       <div class="mt-4 flex flex-wrap gap-2">
         <% Interest.grouped.each do |interest| %>
-          <label class="cursor-pointer">
-            <%= f.check_box :interest_ids, { multiple: true, class: "peer sr-only" }, interest.id, nil %>
-            <span class="inline-block rounded-full border border-gray-200 px-3.5 py-1.5 text-sm text-gray-600 transition peer-checked:border-teal-500 peer-checked:bg-teal-50 peer-checked:text-teal-700"><%= interest.name %></span>
+          <label class="inline-flex cursor-pointer select-none items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-sm text-gray-600 transition hover:border-teal-300">
+            <%= f.check_box :interest_ids, { multiple: true, class: "peer size-4 rounded border-gray-300 accent-teal-600" }, interest.id, nil %>
+            <span class="peer-checked:font-semibold peer-checked:text-teal-700"><%= interest.name %></span>
           </label>
         <% end %>
       </div>
