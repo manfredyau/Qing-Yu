@@ -1,5 +1,19 @@
 <% content_for(:title) { "今日推荐 · 轻遇" } %>
 
+<% if turbo_native_app? %>
+  <script>
+    // WebView 缓存顽固时的兜底：无卡片元素说明加载了旧版页面，自动刷新一次
+    (function() {
+      if (document.querySelector("#feed-card")) return;
+      var key = "feed-reloaded-" + new Date().toDateString();
+      if (!sessionStorage.getItem(key)) {
+        sessionStorage.setItem(key, "1");
+        location.reload();
+      }
+    })();
+  </script>
+<% end %>
+
 <div class="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 py-6">
   <header class="mb-5 flex items-center justify-between">
     <div class="flex items-center gap-2">

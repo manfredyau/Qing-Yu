@@ -1,5 +1,19 @@
 <% content_for(:title) { "消息 · 轻遇" } %>
 
+<% if turbo_native_app? %>
+  <script>
+    // 检测 Tab 污染：如果消息页里渲染了推荐页内容，自动重载一次
+    (function() {
+      if (!document.querySelector("#feed-card")) return;
+      var key = "matches-uncontaminated";
+      if (!sessionStorage.getItem(key)) {
+        sessionStorage.setItem(key, "1");
+        location.reload();
+      }
+    })();
+  </script>
+<% end %>
+
 <div class="mx-auto min-h-screen w-full max-w-md px-5 py-8">
   <header class="mb-6 flex items-center justify-between">
     <div class="flex items-center gap-2">
