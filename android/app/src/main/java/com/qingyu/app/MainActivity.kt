@@ -61,21 +61,11 @@ class MainActivity : HotwireActivity() {
         bottomNavigationController = HotwireBottomNavigationController(
             activity = this,
             view = findViewById(R.id.bottom_nav),
-            lazyLoadTabs = true   // 懒加载：Tab 首次选中才加载，避免登录前的旧页面残留
+            lazyLoadTabs = true   // 懒加载：Tab 首次选中才加载，之后会话内保持缓存，切换秒开
         )
         bottomNavigationController.load(tabs)
         // 每次进入 App 默认「推荐」Tab（而非恢复上次选中的 Tab）
         bottomNavigationController.selectTab(0)
-
-        // 每次切换 Tab 都重新加载其起始页：
-        // 保证登录态与数据最新（如登录前后切换 Tab，避免看到登录前的旧页面）
-        bottomNavigationController.setOnTabSelectedListener { _, tab ->
-            android.os.Handler(android.os.Looper.getMainLooper()).post {
-                if (::bottomNavigationController.isInitialized) {
-                    bottomNavigationController.route(tab.configuration.startLocation)
-                }
-            }
-        }
     }
 
     // 从系统恢复（如从最近任务重新打开）时同样强制回到「推荐」
