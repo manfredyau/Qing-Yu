@@ -2,7 +2,7 @@
   <p class="text-xl font-bold">🎉 配对成功</p>
   <p class="mt-1 text-sm opacity-90">你和 <%= matched_user.display_name %> 互相喜欢了</p>
   <div class="mt-4 flex justify-center gap-3">
-    <%= link_to "开始聊天", matches_path, class: "rounded-xl bg-white px-4 py-2 text-sm font-semibold text-pink-600 shadow-sm" %>
+    <%= link_to "开始聊天", (turbo_native_app? ? hotwire_native_tab2_path : matches_path), class: "rounded-xl bg-white px-4 py-2 text-sm font-semibold text-pink-600 shadow-sm" %>
     <%= link_to "继续推荐", feed_path, class: "rounded-xl bg-white/20 px-4 py-2 text-sm font-semibold text-white backdrop-blur" %>
   </div>
 </div>
