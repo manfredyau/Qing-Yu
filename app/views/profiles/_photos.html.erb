@@ -26,15 +26,19 @@
       </div>
     <% end %>
 
-    <!-- 上传占位 -->
-    <label for="photo_upload" class="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-gray-200 text-gray-400 hover:border-teal-400 hover:text-teal-500">
-      <span class="text-2xl leading-none">+</span>
-      <span class="text-[10px]">添加照片</span>
-    </label>
-    <%= form_with url: photos_path, multipart: true, id: "photo-upload-form" do |f| %>
-      <%= f.file_field :file, id: "photo_upload", class: "hidden",
-            accept: "image/jpeg,image/png,image/webp", onchange: "this.form.requestSubmit()" %>
-    <% end %>
+    <!-- 上传占位（XHR 直传 + 进度条） -->
+    <div data-controller="photo-upload" class="flex flex-col gap-2">
+      <label for="photo_upload" class="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-gray-200 text-gray-400 hover:border-teal-400 hover:text-teal-500">
+        <span class="text-2xl leading-none">+</span>
+        <span class="text-[10px]">添加照片</span>
+      </label>
+      <input type="file" id="photo_upload" accept="image/jpeg,image/png,image/webp" class="hidden"
+             data-photo-upload-target="input" data-action="change->photo-upload#upload">
+      <div data-photo-upload-target="progress" class="hidden h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
+        <div data-photo-upload-target="bar" class="h-full rounded-full bg-teal-500 transition-all duration-200" style="width:0%"></div>
+      </div>
+      <p data-photo-upload-target="status" class="text-[10px] text-gray-400"></p>
+    </div>
   </div>
   <p class="mt-2 text-xs text-gray-400">最多 6 张 · JPG / PNG / WebP · 单张不超过 10MB</p>
 </div>

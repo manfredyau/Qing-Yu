@@ -9,7 +9,24 @@
     <%= render "feeds/remaining", remaining: @remaining, candidate: @candidate %>
   </header>
 
-  <%= render "feeds/card", candidate: @candidate, remaining: @remaining, matched_user: nil %>
-
-  <p class="mt-6 text-center text-xs text-gray-400">左滑/✗ 跳过 · 右滑/✓ 喜欢 · 互相喜欢即配对</p>
+  <% if !current_user.verified? %>
+    <!-- 未实名：引导认证 -->
+    <div class="flex flex-col items-center justify-center py-24 text-center">
+      <div class="text-5xl">🔒</div>
+      <p class="mt-4 text-lg font-semibold text-gray-700">完成实名认证，开启轻遇之旅</p>
+      <p class="mt-1 text-sm leading-relaxed text-gray-400">实名认证后，你才会出现在推荐中<br>身份证 + 学信网双重核验，保证真实</p>
+      <%= link_to "去实名认证", verification_path, class: "mt-6 rounded-xl bg-teal-600 px-8 py-3.5 font-semibold text-white shadow-sm hover:bg-teal-500" %>
+    </div>
+  <% elsif !current_user.profile_complete? %>
+    <!-- 已实名但资料不完整：引导完善资料 -->
+    <div class="flex flex-col items-center justify-center py-24 text-center">
+      <div class="text-5xl">📝</div>
+      <p class="mt-4 text-lg font-semibold text-gray-700">完善资料，让推荐更精准</p>
+      <p class="mt-1 text-sm leading-relaxed text-gray-400">还差照片、兴趣标签等资料<br>完成后立即开始每日精选推荐</p>
+      <%= link_to "去完善资料", edit_profile_path, class: "mt-6 rounded-xl bg-teal-600 px-8 py-3.5 font-semibold text-white shadow-sm hover:bg-teal-500" %>
+    </div>
+  <% else %>
+    <%= render "feeds/card", candidate: @candidate, remaining: @remaining, matched_user: nil %>
+    <p class="mt-6 text-center text-xs text-gray-400">左滑/✕ 跳过 · 右滑/♥ 喜欢 · 互相喜欢即配对</p>
+  <% end %>
 </div>

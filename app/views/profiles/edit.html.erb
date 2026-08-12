@@ -11,7 +11,7 @@
     </div>
   </header>
 
-  <%= form_with model: current_user, url: profile_path, class: "space-y-6" do |f| %>
+  <%= form_with model: current_user, url: profile_path, data: { turbo: false, controller: "form-errors" }, class: "space-y-6" do |f| %>
     <% if current_user.errors.any? %>
       <div class="rounded-xl bg-red-50 p-4 text-sm text-red-600">
         <%= current_user.errors.full_messages.first %>
@@ -31,7 +31,8 @@
 
       <div>
         <%= f.label :nickname, "昵称", class: "block text-sm font-medium text-gray-700" %>
-        <%= f.text_field :nickname, maxlength: 20, placeholder: "让大家怎么称呼你", class: field_class %>
+        <%= f.text_field :nickname, maxlength: 20, placeholder: "让大家怎么称呼你", class: field_class(current_user.errors[:nickname].any?) %>
+        <% if e = error_for(current_user, :nickname) %><p class="mt-1 text-xs text-red-500" data-field-error><%= e %></p><% end %>
       </div>
 
       <div>
@@ -47,16 +48,19 @@
             </label>
           <% end %>
         </div>
+        <% if e = error_for(current_user, :gender) %><p class="mt-1 text-xs text-red-500" data-field-error><%= e %></p><% end %>
       </div>
 
       <div>
         <%= f.label :birthdate, "生日（仅显示年龄）", class: "block text-sm font-medium text-gray-700" %>
-        <%= f.date_field :birthdate, max: 18.years.ago.to_date, class: field_class %>
+        <%= f.date_field :birthdate, max: 18.years.ago.to_date, class: field_class(current_user.errors[:birthdate].any?) %>
+        <% if e = error_for(current_user, :birthdate) %><p class="mt-1 text-xs text-red-500" data-field-error><%= e %></p><% end %>
       </div>
 
       <div>
         <%= f.label :city, "城市", class: "block text-sm font-medium text-gray-700" %>
-        <%= f.text_field :city, maxlength: 20, placeholder: "如：北京", class: field_class %>
+        <%= f.text_field :city, maxlength: 20, placeholder: "如：北京", class: field_class(current_user.errors[:city].any?) %>
+        <% if e = error_for(current_user, :city) %><p class="mt-1 text-xs text-red-500" data-field-error><%= e %></p><% end %>
       </div>
 
       <div class="grid grid-cols-2 gap-4">

@@ -21,4 +21,9 @@ module ApplicationHelper
       "unverified" => "bg-gray-100 text-gray-500"
     }[status.to_s] || "bg-gray-100 text-gray-500"
   end
+
+  # 字段级错误提示（配合 form-errors 控制器滚动定位）
+  def error_for(record, attribute)
+    record.errors[attribute].first
+  end
 end

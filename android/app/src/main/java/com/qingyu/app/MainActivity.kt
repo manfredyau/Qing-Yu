@@ -63,6 +63,16 @@ class MainActivity : HotwireActivity() {
             view = findViewById(R.id.bottom_nav)
         )
         bottomNavigationController.load(tabs)
+        // 每次进入 App 默认「推荐」Tab（而非恢复上次选中的 Tab）
+        bottomNavigationController.selectTab(0)
+    }
+
+    // 从系统恢复（如从最近任务重新打开）时同样强制回到「推荐」
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (::bottomNavigationController.isInitialized) {
+            bottomNavigationController.selectTab(0)
+        }
     }
 
     override fun navigatorConfigurations() = tabs.navigatorConfigurations

@@ -9,18 +9,20 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
     sign_in_as(@zoe)
   end
 
-  test "unverified user is redirected to verification" do
+  test "unverified user sees onboarding without redirect" do
     @zoe.update!(verification_level: :unverified)
 
     get feed_path
 
-    assert_redirected_to verification_path
+    assert_response :success
+    assert_match(/完成实名认证，开启轻遇之旅/, response.body)
   end
 
-  test "incomplete profile is redirected to profile edit" do
+  test "incomplete profile sees onboarding without redirect" do
     get feed_path
 
-    assert_redirected_to edit_profile_path
+    assert_response :success
+    assert_match(/完善资料，让推荐更精准/, response.body)
   end
 
   test "verified user with complete profile sees the feed" do
