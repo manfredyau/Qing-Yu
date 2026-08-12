@@ -16,7 +16,7 @@
     </div>
   <% end %>
 
-  <%= form_with url: session_path, method: :post, data: { turbo_frame: "_top" }, class: "mt-6" do |f| %>
+  <%= form_with url: session_path, method: :post, data: { turbo: false }, class: "mt-6" do |f| %>
     <%= f.hidden_field :phone, value: phone %>
     <%= f.label :code, "验证码", class: "block text-sm font-medium text-gray-700" %>
     <%= f.text_field :code, required: true, autofocus: true, autocomplete: "one-time-code",
