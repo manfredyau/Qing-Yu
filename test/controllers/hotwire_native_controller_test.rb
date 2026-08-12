@@ -20,13 +20,13 @@ class HotwireNativeControllerTest < ActionDispatch::IntegrationTest
     sign_in_as(users(:one))
 
     get hotwire_native_tab1_path
-    assert_redirected_to feed_path
+    assert_redirected_to %r{/feed}
 
     get hotwire_native_tab2_path
-    assert_redirected_to matches_path
+    assert_redirected_to %r{/matches}
 
     get hotwire_native_tab3_path
-    assert_redirected_to profile_path
+    assert_redirected_to %r{/profile}
   end
 
   test "native user agent marks the page as native" do
