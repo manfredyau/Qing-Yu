@@ -10,6 +10,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%# 登录后页面禁止 Turbo 快照缓存，避免显示过期状态（如认证等级） %>
+    <% if authenticated? %>
+      <meta name="turbo-cache-control" content="no-cache">
+    <% end %>
+
     <%= yield :head %>
 
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
