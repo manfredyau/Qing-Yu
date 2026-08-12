@@ -57,17 +57,12 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to feed_path
   end
 
-  test "feed is conditionally cached with ETag (304 on revalidation)" do
+  test "feed is served fresh each time (no-store; lazyLoadTabs handles in-session)" do
     make_profile_complete(@zoe)
 
     get feed_path
     assert_response :success
-    etag = response.headers["ETag"]
-    assert etag.present?
-    assert_match(/private/, response.headers["Cache-Control"])
-
-    get feed_path, headers: { "If-None-Match" => etag }
-    assert_response :not_modified
+    assert_match(/no-store/, response.headers["Cache-Control"])
   end
 
   test "feed ETag changes after a swipe consumes the daily queue" do
