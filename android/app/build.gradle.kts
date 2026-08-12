@@ -37,6 +37,14 @@ android {
     buildFeatures {
         buildConfig = true
     }
+
+    // okhttp 5.x / jspecify 等依赖含重复的 META-INF 文件，打包时排除
+    packaging {
+        resources {
+            excludes += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+            excludes += "META-INF/DEPENDENCIES"
+        }
+    }
 }
 
 kotlin {
