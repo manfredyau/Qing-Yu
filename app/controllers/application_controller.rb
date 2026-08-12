@@ -38,7 +38,10 @@ class ApplicationController < ActionController::Base
       if (version = cache_version_key)
         fresh_when etag: version
       else
-        response.headers["Cache-Control"] = "no-store"
+        # WebView 对 no-store 支持不一致，加全套反缓存头
+        response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
       end
     end
     def current_user
