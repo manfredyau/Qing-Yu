@@ -27,9 +27,22 @@ class ApplicationController < ActionController::Base
   private
     # 页面缓存版本 key。子类覆盖此方法返回业务版本字符串；返回 nil 表示不缓存（no-store）。
     # 版本必须覆盖所有会让页面内容变化的维度（如剩余额度、资料/认证/消息状态），
-    # 任何变化 → ETag 变化 → 304 失效 → 客户端立即拿到新页面。
+    # 任何变化 → ETag 变化 → 客户端立即拿到新页面。
     def cache_version_key
       nil
+    end
+
+    # 社交 APP 式缓存（青藤之恋/牵手/二狗同类思路）：
+    # - TTL 内：WebView 直接用本地缓存，秒开不转圈（无网络请求）
+    # - TTL 过期后：先展示本地内容，后台带 If-None-Match 比对服务器版本，
+    #   ETag 不一致 → 缓存换新，下次访问/刷新自动显示新页面
+    def page_cache_ttl
+      60
+    end
+
+    # stale-while-revalidate 窗口：TTL 过期后仍可先展示本地缓存的时长
+    def page_cache_stale
+      30.minutes.to_i
     end
 
     def set_page_cache
@@ -37,6 +50,8 @@ class ApplicationController < ActionController::Base
 
       if (version = cache_version_key)
         fresh_when etag: version
+        response.headers["Cache-Control"] =
+          "private, max-age=#{page_cache_ttl}, stale-while-revalidate=#{page_cache_stale}"
       else
         # WebView 对 no-store 支持不一致，加全套反缓存头
         response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"

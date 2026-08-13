@@ -34,7 +34,12 @@ class RecommendationService
     remaining = queue
     return false unless remaining.delete(target_id)
 
-    Rails.cache.write(queue_key, remaining, expires_in: QUEUE_EXPIRES_IN)
+    # 空队列不写缓存（否则会把空状态锁 30 小时，且候选池变化后无法自动恢复）
+    if remaining.empty?
+      Rails.cache.delete(queue_key)
+    else
+      Rails.cache.write(queue_key, remaining, expires_in: QUEUE_EXPIRES_IN)
+    end
     true
   end
 
@@ -59,7 +64,7 @@ class RecommendationService
 
   private
     def queue_key
-      "rec:queue:#{@user.id}:#{Date.current}"
+      "rec:queue:v2:#{@user.id}:#{Date.current}"
     end
 
     def swiped_ids

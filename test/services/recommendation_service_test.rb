@@ -69,6 +69,8 @@ class RecommendationServiceTest < ActiveSupport::TestCase
     service = RecommendationService.new(@zoe)
     assert_includes service.queue, @jack.id
 
+    # 真实流程：先记录滑动，再消费队列（消费掉最后一位后队列缓存被删除）
+    Swipe.create!(liker: @zoe, target: @jack, action: :pass)
     assert service.consume!(@jack.id)
     assert_not_includes RecommendationService.new(@zoe).queue, @jack.id
   end

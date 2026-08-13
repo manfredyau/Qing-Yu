@@ -1,7 +1,16 @@
 class ProfilesController < ApplicationController
-  # 「我的」页缓存版本：资料/认证/照片变化 → ETag 失效 → 返回新内容；编辑表单不缓存
+  # 我的页缓存：TTL 1 分钟内秒开；stale 窗口 24 小时（自己的资料自己改，版本比对兜底）
+  def page_cache_ttl
+    60
+  end
+
+  def page_cache_stale
+    24.hours.to_i
+  end
+
+  # 「我的」页缓存版本：资料/认证/照片变化 → ETag 失效 → 返回新内容；编辑表单/更新动作不缓存
   def cache_version_key
-    return nil if action_name == "edit"
+    return nil unless action_name == "show"
 
     [
       "profile", current_user.id,

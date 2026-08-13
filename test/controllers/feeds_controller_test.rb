@@ -90,6 +90,17 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
     assert_match(/照片审核中/, response.body)
   end
 
+  test "swipe labels render on the card (牵手式 不合适/还不错)" do
+    make_profile_complete(@zoe)
+
+    get feed_path
+    assert_response :success
+    assert_match(/不合适/, response.body)
+    assert_match(/还不错/, response.body)
+    assert_select "[data-swipe-card-target='passLabel']"
+    assert_select "[data-swipe-card-target='likeLabel']"
+  end
+
   private
     def make_profile_complete(user)
       user.update!(nickname: "小轻", city: "北京", interest_ids: [ interests(:one).id ])

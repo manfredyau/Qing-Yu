@@ -1,8 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
-// 滑卡交互：按住拖动卡片，松手超过阈值触发 喜欢/跳过
+// 滑卡交互：按住拖动卡片，松手超过阈值触发 喜欢/跳过；
+// 拖动时按方向渐变显示标签（左滑→不合适，右滑→还不错，牵手式）
 export default class extends Controller {
-  static targets = ["likeForm", "passForm"]
+  static targets = ["likeForm", "passForm", "likeLabel", "passLabel"]
   static values = { threshold: { type: Number, default: 90 } }
 
   connect() {
@@ -41,6 +42,17 @@ export default class extends Controller {
     const dy = event.clientY - this.startY
     this.card.style.transform = `translate(${dx}px, ${dy * 0.25}px) rotate(${dx * 0.04}deg)`
     this.card.style.opacity = String(Math.max(0.25, 1 - Math.abs(dx) / 450))
+    this.updateLabels(dx)
+  }
+
+  // 拖动距离越大，对应方向的标签越明显（0~1 渐变）
+  updateLabels(dx) {
+    if (this.hasLikeLabelTarget) {
+      this.likeLabelTarget.style.opacity = String(Math.min(1, Math.max(0, dx / 120)))
+    }
+    if (this.hasPassLabelTarget) {
+      this.passLabelTarget.style.opacity = String(Math.min(1, Math.max(0, -dx / 120)))
+    }
   }
 
   onPointerUp(event) {
@@ -63,10 +75,13 @@ export default class extends Controller {
   }
 
   resetCard() {
-    if (!this.card) return
-    this.card.style.transition = "transform 0.2s ease, opacity 0.2s ease"
-    this.card.style.transform = ""
-    this.card.style.opacity = ""
-    this.card = null
+    if (this.card) {
+      this.card.style.transition = "transform 0.2s ease, opacity 0.2s ease"
+      this.card.style.transform = ""
+      this.card.style.opacity = ""
+      this.card = null
+    }
+    if (this.hasLikeLabelTarget) this.likeLabelTarget.style.opacity = ""
+    if (this.hasPassLabelTarget) this.passLabelTarget.style.opacity = ""
   }
 }
