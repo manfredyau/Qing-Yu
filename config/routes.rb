@@ -51,4 +51,11 @@ Rails.application.routes.draw do
 
   # Hotwire Native 移动端（路径配置 + 原生 Tab）
   draw(:hotwire_native)
+
+  # 开发/测试专用：重置今日推荐（生产环境不加载路由，控制器内还有二次校验）
+  if Rails.env.local?
+    namespace :dev do
+      post "reset/recommendations", to: "resets#recommendations", as: :reset_recommendations
+    end
+  end
 end
