@@ -13,20 +13,15 @@ class RecommendationService
     @user = user
   end
 
-  # 当日候选队列：已实名、资料完整、目标性别、年龄偏好、未划过/未拉黑/非本人
+  # 当日候选队列：已实名、资料完整、目标性别、年龄偏好、未划过/未拉黑/非本人。
+  # 空队列不缓存：候选池或滑动记录变化后能立即恢复，不会把空状态锁 30 小时。
   def queue
-    Rails.cache.fetch(queue_key, expires_in: QUEUE_EXPIRES_IN) do
-      base = User.searchable
-                 .where.not(id: @user.id)
-                 .where.not(id: swiped_ids)
-                 .where.not(id: blocked_ids)
-                 .where.not(id: blocked_by_ids)
+    cached = Rails.cache.read(queue_key)
+    return cached if cached.present?
 
-      base = base.where(gender: @user.pref_gender) unless @user.pref_any?
-      base = base.where(birthdate: age_range)
-
-      base.order("RANDOM()").limit(DAILY_LIMIT).pluck(:id)
-    end
+    ids = build_candidate_ids
+    Rails.cache.write(queue_key, ids, expires_in: QUEUE_EXPIRES_IN) if ids.present?
+    ids
   end
 
   # 滑动后从今日队列移除该候选；返回是否在队列中（幂等，重复提交不报错）
@@ -63,6 +58,19 @@ class RecommendationService
   end
 
   private
+    def build_candidate_ids
+      base = User.searchable
+                 .where.not(id: @user.id)
+                 .where.not(id: swiped_ids)
+                 .where.not(id: blocked_ids)
+                 .where.not(id: blocked_by_ids)
+
+      base = base.where(gender: @user.pref_gender) unless @user.pref_any?
+      base = base.where(birthdate: age_range)
+
+      base.order("RANDOM()").limit(DAILY_LIMIT).pluck(:id)
+    end
+
     def queue_key
       "rec:queue:v2:#{@user.id}:#{Date.current}"
     end
