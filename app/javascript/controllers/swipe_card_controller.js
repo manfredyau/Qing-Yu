@@ -8,6 +8,7 @@ export default class extends Controller {
 
   connect() {
     this.dragging = false
+    this.animating = false
     this.startX = 0
     this.startY = 0
     this.lastDragEndAt = 0
@@ -33,7 +34,8 @@ export default class extends Controller {
   }
 
   onPointerDown(event) {
-    // 不拦截按钮/链接等可点击元素
+    // 飞出动画播放中忽略新触摸；不拦截按钮/链接等可点击元素
+    if (this.animating) return
     if (event.target.closest("button, a, input, select, textarea")) return
     this.dragging = true
     this.startX = event.clientX
@@ -69,19 +71,41 @@ export default class extends Controller {
     this.dragging = false
     this.lastDragEndAt = Date.now()
     const dx = event.clientX - this.startX
-    this.resetCard()
+    const dy = event.clientY - this.startY
 
     // 位移须在合理区间（90~450px）内才算一次有意的滑动，防止坐标异常的误判
     if (Math.abs(dx) > this.thresholdValue && Math.abs(dx) < 450) {
-      // 目标元素是提交按钮，须取其所属表单再提交（requestSubmit 是表单方法）
-      const button = dx > 0 ? this.likeFormTarget : this.passFormTarget
-      const form = button.form || button.closest("form")
-      if (!form) return
-      if (typeof form.requestSubmit === "function") {
-        form.requestSubmit()
-      } else {
-        form.submit()
-      }
+      const like = dx > 0
+      this.animateOut(like, dy)
+      // 等飞出动画播完再提交，让用户看到「卡片离场 → 下一张入场」的连续特效
+      setTimeout(() => this.submitDecision(like), 200)
+    } else {
+      this.resetCard()
+    }
+  }
+
+  // 卡片按滑动方向飞出屏幕（旋转 + 淡出），选中方向的标签定格伴随飞出
+  animateOut(like, dy) {
+    this.animating = true
+    const direction = like ? 1 : -1
+    if (this.card) {
+      this.card.style.transition = "transform 0.22s ease-in, opacity 0.22s ease-in"
+      this.card.style.transform =
+        `translate(${direction * (window.innerWidth + 160)}px, ${dy * 2}px) rotate(${direction * 28}deg)`
+      this.card.style.opacity = "0"
+    }
+    if (like && this.hasLikeLabelTarget) this.likeLabelTarget.style.opacity = "1"
+    if (!like && this.hasPassLabelTarget) this.passLabelTarget.style.opacity = "1"
+  }
+
+  submitDecision(like) {
+    const button = like ? this.likeFormTarget : this.passFormTarget
+    const form = button.form || button.closest("form")
+    if (!form) return
+    if (typeof form.requestSubmit === "function") {
+      form.requestSubmit()
+    } else {
+      form.submit()
     }
   }
 
