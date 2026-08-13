@@ -14,7 +14,7 @@
   </script>
 <% end %>
 
-<div class="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 py-6">
+<div class="mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-5 py-3">
   <header class="mb-5 flex items-center justify-between">
     <div class="flex items-center gap-2">
       <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 text-lg font-bold text-white">轻</div>
@@ -45,6 +45,5 @@
     </div>
   <% else %>
     <%= render "feeds/card", candidate: @candidate, remaining: @remaining, matched_user: nil %>
-    <p class="mt-6 text-center text-xs text-gray-400">左滑/✕ 跳过 · 右滑/♥ 喜欢 · 互相喜欢即配对</p>
   <% end %>
 </div>

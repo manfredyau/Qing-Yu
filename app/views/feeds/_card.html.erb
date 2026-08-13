@@ -1,16 +1,16 @@
-<turbo-frame id="feed-card" class="block">
+<turbo-frame id="feed-card" class="flex min-h-0 flex-1 flex-col">
   <% if matched_user %>
     <%= render "feeds/match_banner", matched_user: matched_user %>
   <% end %>
 
   <% if candidate %>
-    <div data-controller="swipe-card" class="relative">
-      <!-- 卡片 -->
-      <div class="touch-none select-none overflow-hidden rounded-3xl bg-white shadow-xl shadow-gray-200/70">
-        <div class="relative aspect-[3/4]">
+    <div data-controller="swipe-card" class="relative flex min-h-0 flex-1 flex-col">
+      <!-- 卡片：图片自适应剩余高度，按钮固定在下方永可见 -->
+      <div class="flex min-h-0 flex-1 touch-pan-y select-none flex-col overflow-hidden rounded-3xl bg-white shadow-xl shadow-gray-200/70">
+        <div class="relative min-h-0 flex-1">
           <% avatar = candidate.avatar_photo %>
           <% if avatar&.file&.attached? %>
-            <%= image_tag avatar.file.variant(resize_to_fill: [ 600, 800 ]), class: "h-full w-full object-cover", draggable: false %>
+            <%= image_tag avatar.file.variant(resize_to_fill: [ 600, 800 ]), class: "absolute inset-0 h-full w-full object-cover", draggable: false %>
             <% if avatar.pending? %>
               <!-- 照片待审核：向其他用户标注「审核中」，但不阻塞对方资料 -->
               <span class="absolute inset-x-0 top-3 flex justify-center">
@@ -18,7 +18,7 @@
               </span>
             <% end %>
           <% else %>
-            <div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-teal-100 to-emerald-100 text-7xl">👤</div>
+            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-teal-100 to-emerald-100 text-7xl">👤</div>
           <% end %>
 
           <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-5 pt-20 text-white">
@@ -41,11 +41,11 @@
           </div>
         </div>
 
-        <div class="p-5">
+        <div class="shrink-0 p-4">
           <% if candidate.bio.present? %>
             <p class="text-sm leading-relaxed text-gray-600"><%= candidate.bio %></p>
           <% end %>
-          <div class="mt-3 flex flex-wrap gap-1.5">
+          <div class="mt-2 flex flex-wrap gap-1.5">
             <% candidate.interests.limit(6).each do |interest| %>
               <span class="rounded-full bg-teal-50 px-2.5 py-1 text-xs text-teal-700"><%= interest.name %></span>
             <% end %>
@@ -53,16 +53,16 @@
         </div>
       </div>
 
-      <!-- 操作按钮 -->
-      <div class="mt-5 flex items-center justify-center gap-8">
+      <!-- 操作按钮：固定底部，任何屏幕都可见 -->
+      <div class="flex shrink-0 items-center justify-center gap-8 py-3">
         <%= button_to swipes_path, method: :post, params: { target_id: candidate.id, decision: "pass" },
               data: { swipe_card_target: "passForm" },
-              class: "flex h-16 w-16 items-center justify-center rounded-full border-2 border-gray-200 bg-white text-2xl text-gray-400 shadow-md transition hover:border-red-300 hover:text-red-400" do %>
+              class: "flex h-14 w-14 items-center justify-center rounded-full border-2 border-gray-200 bg-white text-2xl text-gray-400 shadow-md transition hover:border-red-300 hover:text-red-400" do %>
           <span aria-hidden="true">✕</span>
         <% end %>
         <%= button_to swipes_path, method: :post, params: { target_id: candidate.id, decision: "like" },
               data: { swipe_card_target: "likeForm" },
-              class: "flex h-16 w-16 items-center justify-center rounded-full border-2 border-teal-200 bg-teal-500 text-2xl text-white shadow-md shadow-teal-200/60 transition hover:bg-teal-400" do %>
+              class: "flex h-14 w-14 items-center justify-center rounded-full border-2 border-teal-200 bg-teal-500 text-2xl text-white shadow-md shadow-teal-200/60 transition hover:bg-teal-400" do %>
           <span aria-hidden="true">♥</span>
         <% end %>
       </div>

@@ -50,8 +50,15 @@ export default class extends Controller {
     this.resetCard()
 
     if (Math.abs(dx) > this.thresholdValue) {
-      const form = dx > 0 ? this.likeFormTarget : this.passFormTarget
-      form.requestSubmit()
+      // 目标元素是提交按钮，须取其所属表单再提交（requestSubmit 是表单方法）
+      const button = dx > 0 ? this.likeFormTarget : this.passFormTarget
+      const form = button.form || button.closest("form")
+      if (!form) return
+      if (typeof form.requestSubmit === "function") {
+        form.requestSubmit()
+      } else {
+        form.submit()
+      }
     }
   }
 
